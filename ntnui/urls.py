@@ -11,7 +11,12 @@ from django.contrib.auth import views as auth_views
 from accounts import views as accounts_views
 from groups import views as groups_views
 
+# GraphQL imports
+from graphene_django.views import GraphQLView
+
 urlpatterns = [
+    # Route api calls to the graphql schema handler and enable graphiql for visual queries
+    url(r'^api/', GraphQLView.as_view(graphiql=True)),
     url(r'^admin/', admin.site.urls),
     url(r'^ajax/', include('forms.ajax')),
     url(r'^$', groups_views.list_groups, name='home'),
