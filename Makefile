@@ -69,10 +69,10 @@ docker_stop: ##@Docker (stop) Stop the running containers
 docker_superuser: ##@Docker Create a superuser (details found in settings/common.py)
 	@-docker-compose run web python manage.py createsuperuser
 
-docker_app: ##@Docker Create a new app. 
+docker_app: ##@Docker Create a new app. OBS! Currently not working... preceed with caution
 	@read -p "Enter app name: " app; \
 	mkdir ntnui/apps/$$app; \
-	docker-compose run web python manage.py startapp $$app ntnui/apps/$$app
+	docker-compose run web python manage.py startproject $$app ntnui/apps/$$app
 	@echo "App successfully created. Make sure you add it to the LOCAL_APPS in settings/common.py"
 
 #---- END DOCKER INSTALL COMMANDS ----#
