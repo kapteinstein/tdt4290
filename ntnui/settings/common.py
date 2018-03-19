@@ -33,6 +33,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'widget_tweaks',
     'django_nose',
+    'graphene_django',
 ]
 
 LOCAL_APPS = [
@@ -40,9 +41,10 @@ LOCAL_APPS = [
     'hs',
     'groups',
     'forms',
+    'data_storage',
 ]
 
-INSTALLED_APPS  = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 ##### END APP CONFIGURATION #####
 
 MIDDLEWARE = [
@@ -162,8 +164,16 @@ DUMMY_USER_PASSWORD = 'locoloco'
 # Use nose to run all tests
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-#NOSE_ARGS = [
+# NOSE_ARGS = [
 #    '--with-coverage',
 #    '--cover-package=groups, forms, accounts',
 #]
 ##### END TEST CONFIGURATION #####
+
+##### GRAPHENE/GRAPHQL CONFIGURATION #####
+
+GRAPHENE = {
+    'SCHEMA': 'data_storage.schema.schema'
+}
+
+##### END GRAPHENE/GRAPHQL CONFIGURATION #####
