@@ -1,1 +1,1 @@
-from .schema import schema
+from .user import user_schema

@@ -173,7 +173,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 ##### GRAPHENE/GRAPHQL CONFIGURATION #####
 
 GRAPHENE = {
-    'SCHEMA': 'data_storage.schema.schema'
+    'SCHEMA': 'data_storage.schema.user_schema'
 }
 
 ##### END GRAPHENE/GRAPHQL CONFIGURATION #####
