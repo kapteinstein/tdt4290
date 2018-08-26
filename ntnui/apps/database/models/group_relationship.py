@@ -11,8 +11,10 @@ def validate_sub_groups(obj):
 class GroupRelationshipModel(models.Model):
     ''' Group relationship information '''
 
-    parent_group = models.ForeignKey(GroupModel, related_name="parent_group")
-    child_group = models.ForeignKey(GroupModel, related_name="child_group")
+    parent_group = models.ForeignKey(
+        GroupModel, related_name="parent_group", on_delete=models.CASCADE)
+    child_group = models.ForeignKey(
+        GroupModel, related_name="child_group", on_delete=models.CASCADE)
 
     class Meta:
         ''' Configure the name displayed in the admin panel '''

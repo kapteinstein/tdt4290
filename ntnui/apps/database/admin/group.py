@@ -40,11 +40,11 @@ class GroupRelationshipInline(nested_admin.NestedStackedInline):
 
 
 @admin.register(GroupModel)
-class GroupAdmin(nested_admin.NestedModelAdmin):
+class GroupAdmin(NtnuiAdmin):
     search_fields = ['name', 'founding_date']
 
     # Exclude the group media and meta as these are loaded inline
-    exclude = ('group_media', 'group_meta',)
     inlines = [GroupRelationshipInline,
                GroupMetaInline, GroupMediaInline, BoardInline]
+    exclude = ('group_media', 'group_meta',)
     list_display = ('name',)

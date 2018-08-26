@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.conf import settings
 from datetime import date
 from .enums import ROLE_CHOICES
-from ..models import UserModel
+from ..models import BoardModel
 
 
 def validate_user(obj):
@@ -26,11 +26,9 @@ class RoleModel(models.Model):
 
     ''' Role relationships '''
     board = models.ForeignKey(
-        'BoardModel', on_delete=models.CASCADE, related_name="roles")
+        BoardModel, on_delete=models.CASCADE, related_name="role_set")
     member = models.OneToOneField(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-    )
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         ''' Configure the name displayed in the admin panel '''

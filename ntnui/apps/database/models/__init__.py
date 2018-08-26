@@ -5,5 +5,5 @@ from .group_meta import GroupMetaModel
 from .group_media import GroupMediaModel
 from .membership import MembershipModel
 from .comment import CommentModel
-from .role import RoleModel
 from .board import BoardModel
+from .role import RoleModel

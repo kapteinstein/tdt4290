@@ -5,6 +5,8 @@ import sys
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
+APP_DIR = os.path.join(BASE_DIR, 'apps')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -24,7 +26,6 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rules.apps.AutodiscoverRulesConfig',
 
     # Admin panel
     'django.contrib.admin',
@@ -37,22 +38,22 @@ THIRD_PARTY_APPS = [
     # GraphQL
     'graphene_django',
 
-    # Filtering
-    'django_filters',
-
     # Nested Inlines (admin)
     'nested_admin',
+
+    'rules'
 ]
 
 LOCAL_APPS = [
     'database',
+    'management',
     #'accounts',
     #'hs',
     #'groups',
     #'forms',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
 ##### END APP CONFIGURATION #####
 
 MIDDLEWARE = [
@@ -63,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'authentication.middleware.AuthRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'ntnui.urls'
@@ -70,7 +72,14 @@ ROOT_URLCONF = 'ntnui.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': (
+            # It is important that we load the base templates first
+            os.path.join(BASE_DIR, 'static', 'templates'),
+
+            # Load app templates
+            os.path.join(APP_DIR, 'authentication', 'templates'),
+            os.path.join(APP_DIR, 'management', 'templates'),
+        ),
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -142,16 +151,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-''' Logging Configuration '''
-LOGGING = {
-    'version': 1,
-    'loggers': {
-        'django.db.backends': {
-            'level': 'DEBUG',
-        },
-    },
-}
-
 
 ##### STATIC FILE CONFIGURATION #####
 
@@ -167,9 +166,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'ntnui/static')
 ##### END STATIC FILE CONFIGURATION #####
 
 ##### LOGIN CONFIGURATION #####
-LOGIN_REDIRECT_URL = 'home'
-LOGIN_URL = 'login'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = "/a/login"
+LOGIN_REDIRECT_URL = '/m/home'
+LOGOUT_REDIRECT_URL = '/m/home'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # USER settings
@@ -191,7 +190,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 ##### GRAPHENE/GRAPHQL CONFIGURATION #####
 
 GRAPHENE = {
-    'SCHEMA': 'data_storage.schema.user_schema'
+    'SCHEMA': 'database.schema.user_schema'
 }
 
 ##### END GRAPHENE/GRAPHQL CONFIGURATION #####

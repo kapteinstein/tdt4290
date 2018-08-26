@@ -3,13 +3,15 @@ from hs.models import MainBoardMembership
 
 register = template.Library()
 
-@register.assignment_tag
+
+@register.simple_tag
 def user_in_hs(user):
     try:
         MainBoardMembership.objects.get(person=user)
         return True
     except MainBoardMembership.DoesNotExist:
         return False
+
 
 @register.filter
 def member(value, arg):
@@ -46,5 +48,3 @@ def role(value, arg):
         else:
             html += '<div>Member</div>'
     return html
-
-

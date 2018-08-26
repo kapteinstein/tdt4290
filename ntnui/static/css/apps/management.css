@@ -1,0 +1,740 @@
+.group-content {
+    width: 100%;
+}
+
+@media screen and (min-width: 800px) {
+    .group-content {
+        width: 790px;
+    }
+}
+
+.header {
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.header-jumbo {
+    height: 16rem;
+    position: relative;
+    color: white;
+    background-size: cover;
+    background-position: center;
+}
+
+.group-role {
+    color: white;
+    font-size: 1.25rem;
+    position: absolute;
+    left: 0;
+    bottom: 3.75rem;
+    padding: 0.25rem 1.5rem;
+    background-color: black;
+}
+
+.group-name {
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    bottom: 0.5rem;
+    padding: 0.25rem 1.5rem;
+    background-color: black;
+}
+
+.jumbo-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    min-width: 100%;
+    height: 16rem;
+}
+
+.top-menu {
+    background: white;
+    height: 3rem;
+    border: 1px solid #dfdfdf;
+    box-sizing: border-box;
+}
+
+.top-menu ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style-type: none;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.top-menu ul li:nth-child(2n-1) {
+    flex-grow: 1;
+}
+
+.top-menu a {
+    flex-grow: 1;
+    height: 52px;
+    display: block;
+    padding-top: 14px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.top-menu a:hover {
+    color: #007d32;
+    border-bottom: 4px solid #007d32;
+    opacity: 0.8;
+}
+
+.vert-divider {
+    width: 1px;
+    height: 1.5rem;
+    background-color: #979797;
+}
+
+.group-alert {
+    width: 100%;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.active-item {
+    border-bottom: 4px solid #007d32;
+}
+
+.no-border {
+    border-right: none;
+}
+
+/**
+ * MEMBERS TABLE
+ */
+
+.content-table {
+    width: 100%;
+    min-height: 3rem;
+    background-color: white;
+    border: 1px solid #dfdfdf;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.list-header {
+    border-bottom: 1px solid #979797;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    display: flex;
+    min-height: 4rem;
+    box-sizing: border-box;
+    font-weight: bold;
+    flex-wrap: wrap;
+}
+
+.total-tab-active {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    height: 36px;
+}
+
+.total-tab {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: lighter;
+}
+
+@media screen and (min-width: 500px) {
+    .total-tab-active {
+        font-size: 1rem;
+    }
+
+    .total-tab {
+        font-size: 1rem;
+    }
+}
+
+#member-search {
+    flex-grow: 1;
+    width: 40%;
+    display: inline-block;
+}
+
+#member-search-placeholder {
+    visibility: hidden;
+    flex-grow: 1;
+    width: 40%;
+    display: inline-block;
+}
+
+.download-field {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.members-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.group-table-row {
+    position: relative;
+    min-height: 48px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+@media screen and (min-width: 400px) {
+    .group-table-row {
+        font-size: 0.8rem;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .group-table-row {
+        font-size: 1rem;
+    }
+}
+
+.members-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 0 16px;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: bold;
+}
+
+.group-member-settings {
+    display: flex;
+    justify-content: center;
+}
+
+.group-column-5 {
+    width: 5%;
+    word-wrap: break-word;
+}
+
+.group-column-10 {
+    width: 10%;
+    word-wrap: break-word;
+}
+
+.group-column-15 {
+    width: 15%;
+    word-wrap: break-word;
+}
+
+.group-column-20 {
+    width: 20%;
+    word-wrap: break-word;
+}
+
+.group-column-40 {
+    width: 40%;
+    word-wrap: break-word;
+}
+
+.group-column-40 img {
+    width: 24px;
+    height: 24px;
+}
+
+.group-column-50 {
+    width: 50%;
+    word-wrap: break-word;
+}
+
+.add-new-member {
+    width: 40%;
+    font-weight: lighter;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 0 16px;
+}
+
+.download-members-button {
+    width: 60%;
+    font-weight: lighter;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 48px;
+    box-sizing: border-box;
+    padding: 0 16px;
+}
+
+.add-new-member:hover {
+    background-color: #f0f0f0;
+}
+
+.download-members-button:hover {
+    background-color: #f0f0f0;
+}
+
+.add-new-member-icon {
+    margin-right: 1rem;
+    margin-left: 0.3rem;
+}
+
+.download-icon {
+    margin-right: 1rem;
+    margin-left: 0.3rem;
+}
+
+/**
+ * DOWNLOAD MEMBERS
+ */
+
+.download-members {
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.download-members h2 {
+    padding: 16px 0;
+}
+
+.download-members-options {
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.download-options-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+/**
+ * INVITE MEMBERS
+ */
+
+.invite-member-form {
+    width: 100%;
+    padding: 16px;
+}
+
+.invite-member-form h2 {
+    padding: 16px 0;
+}
+
+/**
+* INVITATION LIST
+*/
+
+.btn-withdraw {
+    position: absolute;
+    right: 1rem;
+    bottom: 0.55rem;
+    border-radius: 0.15rem;
+    background: transparent;
+    border: 1px solid #d0d0d0;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+}
+
+/**
+REQUEST LIST
+ */
+
+.no-btn {
+    width: 40%;
+    border-color: red;
+}
+
+.yes-btn {
+    width: 40%;
+    margin-right: 0.25rem;
+    border-color: #007d32;
+}
+
+/**
+ * SETTINGS
+ */
+
+.group-settings,
+.no-settings {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3.75rem;
+    box-sizing: border-box;
+    padding: 0.75rem 2rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+}
+
+.no-settings {
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #d0d0d0;
+}
+
+.group-settings:active {
+    opacity: 0.6;
+}
+
+.group-settings span {
+    width: 80%;
+}
+
+.group-settings-description {
+    height: 130px;
+    padding: 0.5rem 2rem;
+}
+
+.group-settings-right {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 60px;
+    box-sizing: border-box;
+    padding: 0 2rem;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.group-settings-header {
+    color: #606060;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: bold;
+}
+
+.group-settings-public-check {
+    margin-right: 2rem;
+}
+
+.group-settings-input {
+    width: 54.5%;
+    margin-right: 2rem;
+}
+
+.group-settings-textarea {
+    width: 54.5%;
+    word-wrap: break-word;
+    resize: none;
+    height: 100%;
+    margin-right: 2rem;
+}
+
+.member-settings-row {
+    min-height: 64px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0 1rem;
+}
+
+.member-settings-row-key {
+    width: 230px;
+    text-align: right;
+    padding-right: 2rem;
+    font-weight: bold;
+}
+
+.member-settings-row-value {
+    flex-grow: 1;
+    padding-right: 1rem;
+}
+
+.member-settings-radios {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem;
+}
+
+.member-settings-radios label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.member-settings-radios label input {
+    margin-right: 1rem;
+}
+
+.member-settings-row-title-subtitle {
+    padding: 2rem 1rem;
+}
+
+.member-settings-row-title {
+    padding-bottom: 0.1rem;
+    font-weight: bold;
+}
+
+.member-settings-row-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+    padding-right: 1rem;
+}
+
+.group-settings-button {
+    cursor: pointer;
+    width: 22%;
+}
+
+.group-table-description {
+    word-wrap: break-word;
+    padding: 2rem;
+}
+
+.form-control {
+    border-radius: 0;
+}
+
+.open-modal {
+    cursor: pointer;
+}
+
+.open-modal:hover {
+    opacity: 0.7;
+}
+
+.request-buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.group-no-groups-info {
+    margin-top: 1rem;
+    color: #222;
+}
+
+.list-groups {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+@media screen and (min-width: 800px) {
+    .list-groups {
+        width: 790px;
+    }
+}
+
+.list-my-groups {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.group-header {
+    margin-top: 2rem;
+    margin-left: 1rem;
+    text-transform: uppercase;
+    color: #007d32;
+    font-size: 1.5rem;
+    max-width: 50%;
+    display: inline-block;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#group-search {
+    margin: 0 1rem;
+    align-self: flex-end;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 500px) {
+    #group-search {
+        max-width: 50%;
+    }
+}
+
+#all-groups {
+    margin-bottom: 2rem;
+}
+
+/**
+ * GROUP CARD
+ */
+
+.group-card-my-groups {
+    padding: 1rem 1rem;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(50, 50, 93, 0.1);
+    display: flex;
+    flex-direction: row;
+    border: solid 1px #dfdfdf;
+    min-height: 8rem;
+    width: 100%;
+    margin-top: 1rem;
+    position: relative;
+    align-items: center;
+}
+
+@media screen and (min-width: 400px) {
+    .group-card-my-groups {
+        max-width: 380px;
+    }
+}
+
+.group-card-all-groups {
+    padding: 1rem 1rem;
+    box-sizing: border-box;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(50, 50, 93, 0.1);
+    display: flex;
+    flex-direction: column;
+    border: solid 1px #dfdfdf;
+    width: 100%;
+    min-height: 7rem;
+    margin-top: 1rem;
+    position: relative;
+    justify-content: space-between;
+}
+
+.group-card-top-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+    height: 36px;
+    align-items: center;
+}
+
+.group-card:hover {
+    opacity: 0.8;
+}
+
+.group-card-image {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1rem;
+}
+
+.group-card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+@media screen and (min-width: 500px) {
+    .group-card-title {
+        font-size: 2rem;
+    }
+
+    .group-card-top-row {
+        height: 4rem;
+    }
+
+    .group-card-image {
+        width: 4rem;
+        height: 4rem;
+    }
+}
+
+.group-card-description {
+    margin: 0 4rem 0 0;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.group-card-description-expanded {
+    margin: 0 4rem 0 0;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.group-card-read-more {
+    align-self: flex-start;
+    color: #007d32;
+    margin-top: 0.5rem;
+}
+
+.group-card-read-more:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.group-card-read-more-hidden {
+    display: none;
+}
+
+.group-card-open {
+    line-height: 1rem;
+    color: #007d32;
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    flex-shrink: 0;
+}
+
+.group-card-restricted {
+    line-height: 1rem;
+    color: #a0a0a0;
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    flex-shrink: 0;
+}

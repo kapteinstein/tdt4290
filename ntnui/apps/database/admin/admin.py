@@ -1,16 +1,12 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib import admin
-from nested_admin import NestedModelAdmin
-
 from django.http import HttpResponse
+from nested_admin import NestedModelAdmin
 import csv
 
-# Remove the built in Group (auth) menu
-admin.site.unregister(Group)
 
-
-class NtnuiAdmin(admin.ModelAdmin):
+class NtnuiAdmin(NestedModelAdmin):
     ''' Actions '''
     actions = ["export_as_csv"]
 

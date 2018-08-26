@@ -11,7 +11,6 @@ class User(DjangoObjectType):
     ''' A NTNUI member'''
     class Meta:
         model = UserModel
-        filter_fields = ["firstName", "lastName", "ntnuiNo"]
         interfaces = (relay.Node, )
 
 
