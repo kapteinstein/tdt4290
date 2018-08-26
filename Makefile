@@ -3,7 +3,7 @@
 APPDIR := $(subst /, , $(subst  ./ntnui/apps/, , $(filter-out ./ntnui/apps/,$(dir $(wildcard ./ntnui/apps/*/)))))
 JSONDATA := users.json groups.json memberships.json boards.json invitations.json forms.json mainboard.json hs-memberships.json contracts.json
 JSONDOKKU := users.json groups.json memberships.json boards.json invitations.json forms.json mainboard.json hs-memberships.json
-DATABASE := dev_database.db
+DATABASE := ./ntnui/dev_database.db
 
 #---- END VARIABLES ----#
 
@@ -33,18 +33,18 @@ HELP_COMM = \
     }
 
 help:
-	@-clear
+	clear
 	@perl -e '$(HELP_COMM)' $(MAKEFILE_LIST)
 
 #---- END HELP COMMANDS ----#
 
 #---- DOCKER INSTALL COMMANDS ----#
 
-docker_build: ##@Docker (bld) Install requirements found in requirements.txt
-	@-docker-compose build
+docker_build: ##@Docker (build) Install requirements found in requirements.txt
+	docker-compose build
 
 docker_migrations: ##@Docker Set up migration files
-	@-docker-compose run web python manage.py makemigrations
+	docker-compose run web python manage.py makemigrations
 	@echo "Migrations completed successfully"
 
 # Run the makemigrations command on every app in the /apps folder
@@ -53,21 +53,21 @@ docker_force_migrations: ##@Docker Forcibly perform makemigrations on the separa
 	@echo "Migrations completed successfully"
 
 docker_migrate: ##@Docker Perform migrations to database
-	@-docker-compose run web python manage.py migrate
+	docker-compose run web python manage.py migrate
 	@echo "Migrate completed successfully"
 
 docker_start: ##@Docker (start) Start the webserver on http://localhost:8000
-	@-docker-compose up web
+	docker-compose up web
 
 docker_start_background: ##@Docker Start the webserver on http://localhost:8000 as a background process
-	@-docker-compose up web -d
-	@echo "Webserver running in the background on http://localhost:8000. Run docker_stop to end the process"
+	docker-compose up web -d
+	@echo "Webserver running in the background on http://localhost (port 80 and 8000). Run docker_stop to end the process"
 
 docker_stop: ##@Docker (stop) Stop the running containers
-	@-docker-compose down
+	docker-compose down
 
 docker_superuser: ##@Docker Create a superuser (details found in settings/common.py)
-	@-docker-compose run web python manage.py createsuperuser
+	docker-compose run web python manage.py createsuperuser
 
 docker_app: ##@Docker Create a new app. OBS! Currently not working... preceed with caution
 	@read -p "Enter app name: " app; \
@@ -80,49 +80,52 @@ docker_app: ##@Docker Create a new app. OBS! Currently not working... preceed wi
 #----- TEST ENVIRONMENT COMMANDS ----#
 
 dev_clean: ##@TestEnv Delete the old database and re-apply testdata
-	@-rm -f $(DATABASE)
-	@-make docker_migrations
-	@-make docker_force_migrations
-	@-make docker_migrate
-	@-make dev_loaddata
+	rm -f $(DATABASE)
+	make docker_migrations
+	make docker_force_migrations
+	make docker_migrate
+	make dev_loaddata
 
 dev_clean_install: ##@TestEnv (dci) Perform a clean installation of the test environment
-	@-make dev_clean_migrations # Delete previous migration files
-	@-make dev_clean
-	@echo "Installation successfull. Starting server on http://localhost:8000"
-	@-make docker_start
+	make dev_clean_migrations # Delete previous migration files
+	make dev_clean
+	@echo "Installation successfull. Starting server on http://localhost (port 80 and 8000)"
+	make docker_start
 
 dev_clean_migrations: ##@TestEnv Delete all migration files
-	@-$(foreach file,$(wildcard ./ntnui/apps/*/migrations/*/),rm -rf $(file))
+	$(foreach file,$(wildcard ./ntnui/apps/*/migrations/*/),rm -rf $(file))
 
 dev_loaddata:
-	@-docker-compose run web python manage.py loaddata $(JSONDATA)
+	docker-compose run web python manage.py loaddata $(JSONDATA)
 
-dev_dumpdata:
-	@-docker-compose run web python manage.py dumpdata --format=json --exclude auth.permission >  ntnui/fixtures/initial_data.json
+dev_dumpdata:  ##@TestEnv Create a JSON Dump of $APP (use APP="appname" from console)
+	docker-compose run web python manage.py dumpdata $(APP) --format=json --exclude=auth > ./ntnui/apps/$(APP)/fixtures/$(APP).json
+
+dev_dumpall:
+	$(foreach app,$(filter-out __pycache__, $(APPDIR)), echo "\n-- Dumping JSON Data for $(app) --" && make dev_dumpdata APP=$(app);)
 
 docker_test: ##@Test (test) Run all docker-tests (this does not include browser-tests)
-	$(foreach app,$(filter-out __pycache__, $(APPDIR)), docker-compose run web python manage.py test $(app);)  # Run the test suite (details found in settings/common.py)
-	@-make docker_stop
+	$(foreach app,$(filter-out __pycache__, $(APPDIR)), echo "\n-- Testing $(app) --" && docker-compose run web python manage.py test $(app);)  # Run the test suite (details found in settings/common.py)
+	make docker_stop
 
 docker_browser_test: ##@Test (btest) Run all browser-tests in docker
-	@-docker-compose up -d chrome
+	docker-compose up -d chrome
 	@echo "Chrome instance started"
-	@-docker-compose up -d firefox
+	docker-compose up -d firefox
 	@echo "Firefox instance started"
-	@-docker-compose run tester python3 manage.py test ntnui.tests.browser
+	docker-compose run tester python3 manage.py test ntnui.tests.browser
 	@echo "Browser test suite completed"
-	@-make docker_stop
+	make docker_stop
 
 docker_clean_test: ##@Test Clean and reapply database and run test suite
-	@-make docker_stop # Stop all running tests before re-installing the database
-	@-make docker_clean
-	@-make docker_test
+	make docker_stop # Stop all running tests before re-installing the database
+	make docker_clean
+	make docker_test
 
 docker_clean_browser_test:  ##@Test Clean and reapply databse and run browser tests
-	@-make docker_stop
-	@-make docker_clean
-	@-make docker_browser_test
+	make docker_stop
+	make docker_clean
+	make docker_browser_test
 
 #----- END TEST ENVIRONMENT COMMANDS ----#
 
@@ -136,11 +139,11 @@ local_browser_tests: ##@VirtualEnv Run browser tests locally
 #----- DEPLOYMENT COMMANDS ----#
 
 dokku_env: ##@Deployment Set up the Dokku environment
-	@-rm -f $(DATABASE)
-	@-make docker_migrations
-	@-make docker_force_migrations
-	@-make docker_migrate
-	@-docker-compose run web python manage.py loaddata $(JSONDOKKU)
+	rm -f $(DATABASE)
+	make docker_migrations
+	make docker_force_migrations
+	make docker_migrate
+	docker-compose run web python manage.py loaddata $(JSONDOKKU)
 
 #----- END DEPLOYMENT COMMANDS ----#
 
@@ -148,22 +151,23 @@ dokku_env: ##@Deployment Set up the Dokku environment
 
 # If you change something here, make sure to change the flavour text to accomodate it!
 dci:
-	@-make dev_clean_install
+	make dev_clean_install
 
-bld:
-	@-make docker_build
 
 test:
-	@-make docker_test
+	make docker_test
 
 btest:
-	@-make docker_browser_test
+	make docker_browser_test
+	
+build:
+	make docker_build
 
 start:
-	@-make docker_start
+	make docker_start
 
 stop:
-	@-make docker_stop
+	make docker_stop
 
 #---- END SHORTCUTS ----#
 

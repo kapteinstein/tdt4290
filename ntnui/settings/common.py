@@ -33,15 +33,23 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'widget_tweaks',
     'django_nose',
+
+    # GraphQL
     'graphene_django',
+
+    # Filtering
+    'django_filters',
+
+    # Nested Inlines (admin)
+    'nested_admin',
 ]
 
 LOCAL_APPS = [
-    'accounts',
-    'hs',
-    'groups',
-    'forms',
-    'data_storage',
+    'database',
+    #'accounts',
+    #'hs',
+    #'groups',
+    #'forms',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -112,8 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "accounts.User"
-AUTH_GROUPIMAGE_MODEL = "groups.GroupImage"
+AUTH_USER_MODEL = "database.UserModel"
 
 AUTHENTICATION_BACKENDS = (
     'rules.permissions.ObjectPermissionBackend',
@@ -127,13 +134,24 @@ AUTHENTICATION_BACKENDS = (
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'CET'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+''' Logging Configuration '''
+LOGGING = {
+    'version': 1,
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+        },
+    },
+}
+
 
 ##### STATIC FILE CONFIGURATION #####
 
