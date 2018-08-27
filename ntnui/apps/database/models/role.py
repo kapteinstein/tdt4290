@@ -38,6 +38,10 @@ class RoleModel(models.Model):
     def __str__(self):
         return self.role + " - " + str(self.member)
 
+    def get_full_role(self):
+        ''' Returns the full role descriptor '''
+        return dict(ROLE_CHOICES)[self.role]
+
     def clean(self):
         ''' This method is "magically" called by django whenever a model instance is saved '''
         validate_user(self)

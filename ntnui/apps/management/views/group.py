@@ -1,23 +1,47 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views import View
 from database.models import MembershipModel, GroupModel
+from management.utils import group_utils, group_decorators
+
+membership_decorators = [login_required, group_decorators.is_member]
 
 
-@login_required
-def group_list(request):
-    user_groups = GroupModel.objects.filter(members=request.user)
-    other_groups = GroupModel.objects.all().exclude(members=request.user)
+@method_decorator(login_required, name='dispatch')
+class GroupList(View):
+    ''' Returns an html template containing all groups based on membership of the active user'''
+    template_name = 'group_list.html'
 
-    print(other_groups[0].group_media)
+    def get(self, request):
+        user_groups = GroupModel.objects.filter(members=request.user)
+        other_groups = GroupModel.objects.all().exclude(members=request.user)
 
-    return render(request, 'group_list.html', {
-        'user_groups': user_groups,
-        'other_groups': other_groups
-    })
+        context = {
+            'user_groups': user_groups,
+            'other_groups': other_groups
+        }
+
+        return render(request, self.template_name, context)
 
 
-@login_required
-def group_home(request, slug):
-    ''' Returns the html template for the group homepage '''
-    return HttpResponse('<html><body>' + slug + '</body></html >')
+@method_decorator(membership_decorators, name='dispatch')
+class GroupHome(View):
+    template_name = 'group_home.html'
+
+    def get(self, request, slug):
+        group_info = group_utils.get_group_info(request, slug)
+
+        # Flatten the group_info object before passing it on
+        context = {**group_info}
+
+        return render(request, self.template_name, context)
+
+
+@method_decorator(membership_decorators, name='dispatch')
+class GroupMembers(View):
+    template_name = 'group_members.html'
+
+    def get(self, request, slug):
+        group_info = group_utils.get_group_info(request, slug)

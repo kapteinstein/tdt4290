@@ -2,14 +2,14 @@ from django.db import models
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from .enums import GENDER_CHOICES, LANGUAGE_CHOICES
-from .user_manager import CustomUserManager
 from datetime import date
+from database.utils import user_manager
 
 
 # class UserModel(models.Model):
 class UserModel(AbstractBaseUser, PermissionsMixin):
     ''' AUTHENTICATION VARIABLES '''
-    objects = CustomUserManager()
+    objects = user_manager.CustomUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

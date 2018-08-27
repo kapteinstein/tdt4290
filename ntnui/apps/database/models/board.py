@@ -26,7 +26,7 @@ class BoardModel(models.Model):
         "self", on_delete=models.SET_NULL, blank=True, null=True)
 
     group = models.OneToOneField(
-        GroupModel, on_delete=models.CASCADE, blank=True)
+        GroupModel, on_delete=models.CASCADE, blank=True, related_name="board")
 
     class Meta:
         ''' Configure the name displayed in the admin panel '''
@@ -40,6 +40,22 @@ class BoardModel(models.Model):
         members = ", ".join(str(r) for r in roles[:3])
 
         return members + " - est. " + str(self.creation_date)
+
+    def __contains__(self, other):
+        '''  This method checks if a user is part of a board '''
+        roles = self.role_set.all().filter(member=other)
+        return True if roles else False
+
+    def get_role(self, member):
+        ''' This method retrieves the role of a board member '''
+        if not member in self:
+            if member in self.group:
+                return "Member"
+
+            return None
+
+        # Return the full role descriptor for the user
+        return self.role_set.all().get(member=member).get_full_role()
 
     def clean(self):
         ''' This method is "magically" called by django whenever a model instance is saved '''

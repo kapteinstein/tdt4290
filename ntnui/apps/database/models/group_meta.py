@@ -11,8 +11,8 @@ class GroupMetaModel(models.Model):
     language = models.CharField(
         max_length=5, default="no", choices=LANGUAGE_CHOICES)
 
-    ''' Meta group relationships '''
-    group = models.OneToOneField('GroupModel', on_delete=models.CASCADE)
+    group = models.OneToOneField(
+        'GroupModel', on_delete=models.CASCADE, related_name='meta')
 
     class Meta:
         ''' Configure the name displayed in the admin panel '''

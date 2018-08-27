@@ -36,12 +36,6 @@ class GroupModel(models.Model):
 
     members = models.ManyToManyField('UserModel', through='MembershipModel')
 
-    ''' Group meta-data relationships '''
-    group_media = models.OneToOneField(
-        GroupMediaModel, on_delete=models.SET_NULL, null=True, blank=True)
-    group_meta = models.OneToOneField(
-        GroupMetaModel, on_delete=models.SET_NULL, null=True, blank=True)
-
     ''' Class Methods '''
 
     class Meta:

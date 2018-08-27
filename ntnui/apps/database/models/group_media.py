@@ -1,5 +1,10 @@
 from django.db import models
+from django.conf import settings
+from django.utils.html import mark_safe
 from os import path
+
+DEFAULT_COVER_PHOTO = "cover_photo/ntnui.png"
+DEFAULT_LOGO = "logo/ntnui.svg"
 
 
 def get_upload_location(type, instance, filename):
@@ -29,13 +34,12 @@ class GroupMediaModel(models.Model):
     media_id = models.AutoField(primary_key=True)
 
     cover_photo = models.ImageField(
-        upload_to=get_upload_cover, default="cover_photo/ntnui.png")
+        upload_to=get_upload_cover, default=DEFAULT_COVER_PHOTO)
 
-    logo = models.ImageField(upload_to=get_upload_logo,
-                             default="logo/ntnui.svg")
+    logo = models.ImageField(upload_to=get_upload_logo, default=DEFAULT_LOGO)
 
-    ''' Media group relationships '''
-    group = models.OneToOneField('GroupModel', on_delete=models.CASCADE)
+    group = models.OneToOneField(
+        'GroupModel', on_delete=models.CASCADE, related_name='media')
 
     class Meta:
         ''' Configure the name displayed in the admin panel '''
@@ -44,3 +48,9 @@ class GroupMediaModel(models.Model):
 
     def __str__(self):
         return "Media object for {}".format(str(self.group))
+
+    def logo_tag(self):
+        return mark_safe('<img src={} style="height: 4rem;"/>'.format(self.logo.url if self.media_id else settings.MEDIA_URL + DEFAULT_LOGO))
+
+    def cover_photo_tag(self):
+        return mark_safe('<img src={} />'.format(self.cover_photo.url if self.media_id else settings.MEDIA_URL + DEFAULT_COVER_PHOTO))

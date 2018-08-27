@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.forms.models import BaseInlineFormSet, ModelForm
 from ..models import GroupModel
 from ..models import GroupMetaModel
 from ..models import GroupMediaModel
@@ -9,12 +10,34 @@ from .admin import NtnuiAdmin
 import nested_admin
 
 
+class RequiredInlineFormSet(BaseInlineFormSet):
+    def _construct_form(self, i, **kwargs):
+        form = super(RequiredInlineFormSet, self)._construct_form(i, **kwargs)
+        form.empty_permitted = False
+        return form
+
+
+class ForceChangeForm(ModelForm):
+    ''' Override the has_changed method in order to always save the default media '''
+
+    def has_changed(self):
+        return True
+
+
 class GroupMetaInline(nested_admin.NestedStackedInline):
     model = GroupMetaModel
+    formset = RequiredInlineFormSet
 
 
 class GroupMediaInline(nested_admin.NestedStackedInline):
     model = GroupMediaModel
+    form = ForceChangeForm
+
+    fieldsets = (
+        ('Logo', {'fields': ('logo', 'logo_tag',)}),
+        ('Cover Photo', {'fields': ('cover_photo', 'cover_photo_tag',)})
+    )
+    readonly_fields = ('logo_tag', 'cover_photo_tag')
 
 
 class RoleInline(nested_admin.NestedStackedInline):
@@ -42,9 +65,9 @@ class GroupRelationshipInline(nested_admin.NestedStackedInline):
 @admin.register(GroupModel)
 class GroupAdmin(NtnuiAdmin):
     search_fields = ['name', 'founding_date']
+    exclude = ('meta', 'media',)
 
     # Exclude the group media and meta as these are loaded inline
     inlines = [GroupRelationshipInline,
                GroupMetaInline, GroupMediaInline, BoardInline]
-    exclude = ('group_media', 'group_meta',)
     list_display = ('name',)

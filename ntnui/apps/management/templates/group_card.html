@@ -1,11 +1,9 @@
 {% load static %}
 
 {% block card %}
-{% with logo=group.group_media.logo|default:'/logo/ntnui.svg' %}
   {% if group in user_groups %}
-
     <a class="group-card-my-groups" href={% url 'group-home' slug=group.slug %}>
-    <img class="group-card-image" src="{% static logo %}"/>
+    <img class="group-card-image" src="{{ group.media.logo.url }}"/>
     <div class="group-card-info">
       <h2>{{ group.name }}</h2>
     </div>
@@ -14,7 +12,7 @@
     <div class="group-card-all-groups">
       <div class="group-card-top-row">
         <a href={% url 'group-home' slug=group.slug %}>
-            <img class="group-card-image" src="{% static logo %}"/>
+            <img class="group-card-image" src="{{ group.media.logo.url }}"/>
         </a>
         <a class="group-card-title" href={% url 'group-home' slug=group.slug %}>
           {{ group.name }}
@@ -31,5 +29,4 @@
       </div>
     </div>
     {% endif %}
-{% endwith %}
 {% endblock %}
