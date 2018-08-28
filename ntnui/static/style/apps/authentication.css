@@ -1,0 +1,39 @@
+.logo-container {
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+}
+
+.login-title {
+    width: 100%;
+    text-align: center;
+}
+
+.button-ntnu {
+    background-color: #007d32;
+    color: #fff;
+}
+
+.button-ntnu:hover {
+    opacity: 0.8;
+}
+
+.reset-password,
+.reset-password:hover {
+    color: #007d32;
+}
+
+.reset-password:hover {
+    opacity: 0.8;
+}
+
+.card {
+    border-radius: 0.15rem;
+    margin-top: 120px;
+}
