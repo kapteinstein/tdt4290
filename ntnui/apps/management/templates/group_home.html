@@ -22,11 +22,10 @@
     </div>
 
     <div class="group-table-description">
-      {{ group.description }}
+      {{ group.meta.description }}
     </div>
   </div>
 
-  {% if show_board %}
     <div class="content-table">
       <div class="list-header">
         The Board
@@ -38,22 +37,12 @@
         <div class="group-column-20">Role</div>
       </div>
 
-      {% for core in board_core %}
+      {% for role in group.board.get_roles_sorted %}
         <div class="group-table-row">
-          <div class="group-column-20">{{ core.membership.person.first_name }} {{ core.membership.person.last_name }}</div>
-          <div class="group-column-50">{{ core.membership.person.email }}</div>
-          <div class="group-column-20">{{ core.role }}</div>
+          <div class="group-column-20">{{ role.member }}</div>
+          <div class="group-column-50">{{ role.member.email }}</div>
+          <div class="group-column-20">{{ role.get_full_role }}</div>
         </div>
       {% endfor %}
-
-      {% for membership in board_members %}
-        <div class="group-table-row">
-          <div class="group-column-20">{{ membership.person.first_name }} {{ membership.person.last_name }}</div>
-          <div class="group-column-50">{{ membership.person.email }}</div>
-          <div class="group-column-20">{{ membership.role }}</div>
-        </div>
-      {% endfor %}
-
     </div>
-  {% endif %}
 {% endblock %}

@@ -34,7 +34,7 @@ class BoardModel(models.Model):
         verbose_name_plural = "Boards"
 
     def __str__(self):
-        roles = self.role_set.all().filter()
+        roles = self.role_set.filter()
 
         # Represent the board as first three members
         members = ", ".join(str(r) for r in roles[:3])
@@ -43,7 +43,7 @@ class BoardModel(models.Model):
 
     def __contains__(self, other):
         '''  This method checks if a user is part of a board '''
-        roles = self.role_set.all().filter(member=other)
+        roles = self.role_set.filter(member=other)
         return True if roles else False
 
     def get_role(self, member):
@@ -56,6 +56,27 @@ class BoardModel(models.Model):
 
         # Return the full role descriptor for the user
         return self.role_set.all().get(member=member).get_full_role()
+
+    def get_roles_sorted(self):
+        ''' Returns a sorted list based on role importance '''
+        roles = self.role_set.filter()
+        order = ['P', 'VP', 'C', '-']
+        order = {key: i for i, key in enumerate(order)}
+
+        # Sort the QuerySet based on the order dict
+        ordered_roles = sorted(
+            roles, key=lambda role: order.get(role.role, 0))
+
+        return ordered_roles
+
+        # for role in roles:
+        #     roles_dict[role.role] = role.member
+        # print(roles_dict)
+        # roles_key = {'P': 1, 'VP': 2, 'C': 3, '-': 4}
+        # roles_sorted = sorted(roles_dict.items(),
+        #                       key=lambda x: roles_key.get(x[0]))
+        # print(roles_sorted)
+        # return roles_sorted
 
     def clean(self):
         ''' This method is "magically" called by django whenever a model instance is saved '''
