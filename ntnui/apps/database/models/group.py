@@ -53,3 +53,6 @@ class GroupModel(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(GroupModel, self).save(*args, **kwargs)
+
+    def get_access_status(self):
+        return dict(ACCESS_CHOICES)[self.access]

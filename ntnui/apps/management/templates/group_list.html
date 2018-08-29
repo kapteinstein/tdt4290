@@ -1,40 +1,49 @@
 {% extends 'base.html' %}
 
 {% load static %}
-
-{% block stylesheet %}
-  <link rel="stylesheet" href="{% static 'css/apps/management.css' %}">
-{% endblock %}
+<!-- Avaliable Variables from View:
+  - user_groups
+  _ other_groups
+-->
 
 {% block content %}
-  <div class="list-groups">
-    <h1 class="group-header">
-        My groups
-    </h1>
-    <div class="list-my-groups">
-      {% if user_groups %}
-        {% for group in user_groups %}
-          {% include "group_card.html" with group=group user_groups=user_groups %}
-        {% endfor %}
-      {% else %}
-        <div class="group-no-groups-info">You are not a member of any groups. Find a group today!</div>
-      {% endif %}
-    </div>
+  <ul uk-accordion="multiple: true" class="uk-margin-small-bottom">
+    <li class="uk-open">
+      <a class="uk-accordion-title" href="#">My Groups</a>
+      <div class="uk-accordion-content">
+        <!-- My Group content goes here -->
+        {% if user_groups %}
+          {% for group in user_groups %}
+            {% include "group_card.html" with group=group %}
+          {% endfor %}
+        {% else %}
+          <p>You are not a member of any groups. Find a group below to join!</p>
+        {% endif %}
+      </div>
+    </li>
+    <li class="uk-open">
+      <a class="uk-accordion-title" href="#">All Groups</a>
+      <div class="uk-accordion-content">
+        <!-- All Group content goes here -->
+          <form id="group-search-form" class="uk-search uk-search-default uk-width-1-1 uk-background-default" onsubmit="event.preventDefault()">
+            <span uk-search-icon></span>
+            <input id="group-search" class="uk-search-input" type="search" placeholder="Search for groups...">
+          </form>
 
-    <div class="search-container">
-      <h1 class="group-header">All groups</h1>
-      <input type="text" id="group-search" class="form-control"
-               placeholder="Search for groups.." aria-label="Search for groups..">
-    </div>
-    <div id="all-groups">
-      {% for group in other_groups %}
-        {% include "group_card.html" with group=group %}
-      {% endfor %}
-    </div>
-  </div>
+          <div id="group-list">
+          {% for group in other_groups %}
+            <div id="{{ group.slug }}">
+              {% include "group_card.html" with group=group %}
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
 {% endblock content %}
 
 {% block script %}
-  <script type="text/javascript" src="{% static 'js/search_functions.js' %}"></script>
-  <script type="text/javascript" src="{% static 'js/expand_group_card.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'script/filter.js' %}"></script>
 {% endblock script %}

@@ -10,8 +10,8 @@ LANGUAGE_CHOICES = (
 )
 
 ACCESS_CHOICES = (
-    ("O", "Open/Public"),
-    ("C", "Closed/Restricted")
+    ("O", "Open"),
+    ("C", "Closed")
 )
 
 ROLE_CHOICES = (

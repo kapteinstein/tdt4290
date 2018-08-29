@@ -1,0 +1,66 @@
+{% load static %}
+{% get_media_prefix as STATIC_MEDIA %}
+
+<div uk-sticky="media: 960" class="uk-navbar-container uk-sticky uk-sticky-fixed" style="position: fixed; top: 0px; width: 100vw;">
+    <div class="uk-container uk-container-expand uk-background-default">
+        <nav class="uk-navbar">
+            <!-- Header logo -->
+            <div class="uk-navbar-left">
+                <a href="/m/home" class="uk-navbar-item uk-logo">
+                    <img src="{{ STATIC_MEDIA }}logo/ntnui.svg" height="50" width="110" uk-svg>
+                </a>
+            </div>
+            
+            <!-- Header navbar when screen size M -->
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav uk-visible@m">
+                    <li class="uk-active" ><a href="{% url 'group-list' %}">Groups
+                        <span class="uk-margin-small-left" uk-icon="icon: users"></span>
+                    </a></li>
+                    <li>
+                        <a href="#">{% firstof user.get_username "Settings" %}
+                            <span class="uk-margin-small-left" uk-icon="icon: cog"></span>
+                        </a>
+                        <div uk-dropdown="mode: hover">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="{% url 'logout' %}">
+                                    <span class="uk-margin-small-right" uk-icon="icon: sign-out"></span>Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div class="uk-navbar-item uk-visible@m">
+                </div> 
+                
+                <a uk-navbar-toggle-icon="" href="#offcanvas" uk-toggle="target: #offcanvas-navbar" class="uk-navbar-toggle uk-hidden@m uk-navbar-toggle-icon uk-icon">
+                </a>
+
+                <!-- Off Canvas navbar (for medium screens and below -->
+                <div id="offcanvas-navbar" uk-offcanvas="mode: push;overlay: true">
+                    <div class="uk-offcanvas-bar">
+                        <button class="uk-offcanvas-close" type="button" uk-close></button>
+                        <ul class="uk-nav uk-nav-default">
+                            <li class="uk-nav-header uk-margin-small-top">Menu</li>
+                            <li><a href="{% url 'group-list' %}">
+                                <span class="uk-margin-small-right"  uk-icon="icon: users"></span>
+                                Groups
+                            </a></li>
+                            <li class="uk-parent">
+                                <a href="#">
+                                    <span class="uk-margin-small-right" uk-icon="icon: cog"></span>
+                                    {% firstof user.get_full_name "Settings" %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">
+                                    <span class="uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                                    Log out
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

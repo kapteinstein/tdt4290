@@ -69,15 +69,6 @@ class BoardModel(models.Model):
 
         return ordered_roles
 
-        # for role in roles:
-        #     roles_dict[role.role] = role.member
-        # print(roles_dict)
-        # roles_key = {'P': 1, 'VP': 2, 'C': 3, '-': 4}
-        # roles_sorted = sorted(roles_dict.items(),
-        #                       key=lambda x: roles_key.get(x[0]))
-        # print(roles_sorted)
-        # return roles_sorted
-
     def clean(self):
         ''' This method is "magically" called by django whenever a model instance is saved '''
         # TODO: Find a way to validate related objects in the clean method...
