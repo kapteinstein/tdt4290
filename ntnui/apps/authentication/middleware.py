@@ -19,4 +19,12 @@ class AuthRequiredMiddleware:
         if re.match(r"(\/a\/){1}", request.path):
             return response
 
+        # Ensure media files are fetched correctly
+        if "media" == request.path.split('/')[1]:
+            return response
+
+        # Ensure static files are fetched correctly
+        if "static" in request.path.split('/')[1]:
+            return response
+
         return HttpResponseRedirect(reverse('login'))

@@ -1,5 +1,6 @@
 from django.urls import path, re_path, include
 from django.contrib.auth import views as auth_views
+from authentication.views import UserSignup
 
 urlpatterns = [
     path('', include('django.contrib.auth.urls')),
@@ -14,4 +15,6 @@ urlpatterns = [
             auth_views.PasswordResetConfirmView.as_view(
                 template_name='registration/password_reset_confirm.html'
             ), name='password_reset_confirm'),
+
+    path('signup/', UserSignup.as_view(), name='signup'),
 ]
