@@ -1,0 +1,57 @@
+{% load static %}
+
+<nav class="uk-navbar-container">
+    <div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-1 uk-visible@m">
+        <ul class="uk-subnav uk-subnav-divider uk-margin-remove uk-padding-small" uk-margin>
+            <li><a href="">
+                <span uk-icon="comment" class="uk-margin-small-right"></span>
+                About
+            </a></li>
+            <li><a href="">
+                <span uk-icon="users" class="uk-margin-small-right"></span>
+                Members
+            </a></li>
+            <li><a href="">
+                <span uk-icon="calendar" class="uk-margin-small-right"></span>
+                Events
+            </a></li>
+            <li><a href=""><span uk-icon="mail" class="uk-margin-small-right"></span>
+                Forms
+            </a></li>
+            <li><a href=""><span uk-icon="settings" class="uk-margin-small-right"></span>
+                Settings
+            </a></li>
+        </ul>
+    </div>
+
+    <div class="uk-hidden@m uk-position-fixed uk-position-bottom-right uk-position-z-index uk-margin-small-right uk-margin-small-bottom">
+        <!-- TODO: Generalize this styling -->
+        <a href="#" uk-toggle="target: #group-menu-popup; mode: hover" class="uk-box-shadow-small" style="text-decoration: none; padding-top: 7px; padding-right:8px; background-color: green" uk-marker="icon: menu">
+            <span class="uk-margin-small-left" style="margin-right: 3px" >Group Menu</span>
+        </a>
+        <div id="group-menu-popup" uk-dropdown="animation: uk-animation-slide-bottom-small; duration: 600">
+            <ul class="uk-nav uk-dropdown-nav uk-align-right uk-text-right uk-margin-remove uk-padding-remove">
+                <li><a href="">
+                    About
+                    <span uk-icon="comment" class="uk-margin-small-right"></span>
+                </a></li>
+                <li><a href="">
+                    Members
+                    <span uk-icon="users" class="uk-margin-small-right"></span>
+                </a></li>
+                <li><a href="">
+                    Events
+                    <span uk-icon="calendar" class="uk-margin-small-right"></span>
+                </a></li>
+                <li><a href="">
+                    Forms
+                    <span uk-icon="mail" class="uk-margin-small-right"></span>
+                </a></li>
+                <li><a href="">
+                    Settings
+                    <span uk-icon="settings" class="uk-margin-small-right"></span>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>

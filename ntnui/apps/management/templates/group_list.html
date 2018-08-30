@@ -7,6 +7,7 @@
 -->
 
 {% block content %}
+<div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-medium-top">
   <ul uk-accordion="multiple: true" class="uk-margin-small-bottom">
     <li class="uk-open">
       <a class="uk-accordion-title" href="#">My Groups</a>
@@ -41,9 +42,9 @@
       </div>
     </li>
   </ul>
+</div>
 {% endblock content %}
 
 {% block script %}
-
   <script type="text/javascript" src="{% static 'script/filter.js' %}"></script>
 {% endblock script %}

@@ -27,19 +27,13 @@
       {% include "navbar.html" %}
       
       <!-- Subtract the footer and navbar height -->
-      <div style="min-height: calc(-225px + 100vh)">
-        <div class="uk-container uk-width-4-5@s uk-width-3-5@m uk-margin-medium-top" style="flex: 1 0 auto">
+      <div style="margin-bottom: 4rem">
           {% block content %}
           {% endblock %}
-        </div>
       </div>
 
       {% include "footer.html" %}
-    </div> 
-    <!-- <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/jquery.modal.min.js' %}"></script> -->
+    </div>
 
     <!-- Load the UI Kit Script files -->
     <script type="text/javascript" src="{% static 'script/uikit.min.js' %}"></script>

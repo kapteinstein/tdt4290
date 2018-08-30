@@ -1,7 +1,9 @@
-{% extends 'group_base.html' %}
+{% extends 'group.html' %}
 
-{% block group_content %}
-
+{% block group-content %}
+  <h1 class="uk-heading-divider uk-text-center">{{ group.name }}</h1>
+  <p>{{ group.meta.description }}</p>
+<!-- 
   <div class="content-table">
     <div class="list-header">
       About {{ group.name }}
@@ -44,5 +46,5 @@
           <div class="group-column-20">{{ role.get_full_role }}</div>
         </div>
       {% endfor %}
-    </div>
+    </div> -->
 {% endblock %}

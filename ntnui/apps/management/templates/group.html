@@ -2,11 +2,24 @@
 
 {% load static %}
 
-{% block stylesheet %}
-  <link rel="stylesheet" href="{% static 'css/apps/management.css' %}"/>
-{% endblock %}
-
 {% block content %}
+<div class="uk-cover-container">
+  <!-- Switch canvas on media queries -->
+  <canvas class="uk-visible@m" width="0" height="270" ></canvas>
+  <canvas class="uk-hidden@m" width="0" height="200" ></canvas>
+  <img src="{{ group.media.cover_photo.url }}" alt="group cover photo" uk-cover>
+</div>
+
+{% include "group_navbar.html" %}
+<div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
+  <div class="uk-flex uk-flex-column uk-flex-middle uk-width-1-1">
+    {% block group-content %}
+    {% endblock %}
+  </div>
+</div>
+{% endblock %}
+  
+  <!--
   <div class="group-content">
     <div class="header">
       <div class="header-jumbo" style="background-image: url('{{ group.media.cover_photo.url }}')">
@@ -25,8 +38,8 @@
           <li><a href="{% url 'group_members' slug=groupslug %}"
             class="{% if active == 'members' %}active-item{% endif %}">Members</a></li>
             {% endif %}
-
-          <!-- Board Member Specifics -->
+      
+    
           {% if user in board %}
             <li>
               <div class="vert-divider"></div>
@@ -57,4 +70,4 @@
     {% endblock %}
 
   </div>
-{% endblock %}
+  -->
