@@ -1,0 +1,27 @@
+{% extends 'group.html' %}
+{% load static %}
+
+{% block group-content %}
+    <div class="uk-container uk-width-6-7@m">
+        <h1 class="uk-heading-divider uk-text-center">Group Members</h1>
+    </div>
+
+    <div class="uk-grid-small uk-flex-between uk-flex-middle uk-width-1-1" uk-grid>
+        <ul class="uk-subnav uk-flex-center uk-subnav-divider uk-width-5-6 uk-width-2-3@s uk-margin-remove uk-padding-small" uk-switcher="connect: #group-member-table">
+            <li><a href="#">Members</a></li>
+            <li><a href="#">Invitations</a></li>
+            <li><a href="#">Requests</a></li>
+        </ul>
+
+        <form id="group-member-search-form" class="uk-search uk-width-1-6 uk-width-1-3@s uk-search-default uk-background-default" onsubmit="event.preventDefault()">
+            <span uk-search-icon></span>
+            <input id="group-search" class="ntnui-border-remove uk-search-input " type="search" placeholder="Search for members...">
+        </form>
+    </div>
+
+    <ul id="group-member-table" class="uk-switcher uk-margin uk-width-1-1">
+        <li>{% include 'group_members_list.html' with members=members %}</li>
+        <li>{% include 'group_members_invitation.html' with invitations=invitations %}</li>
+        <li>{% include 'group_members_request.html' with requests=requests %}</li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% load static %}
+
+
+<div uk-overflow-auto>
+    <table class="uk-table uk-table-divider">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th class="uk-table-expand">Mail</th>
+                <th>Phone</th>
+                <th class="uk-text-center">More</th>
+                <th class="uk-text-center">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %}
+            <tr>
+                {% include 'group_members_list_element.html' with member=member %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

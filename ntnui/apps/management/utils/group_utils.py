@@ -16,9 +16,36 @@ def get_group_info(request, slug):
     }
 
 
+def get_group_member_info(group):
+    members = get_member_list(group)
+    invitations = get_member_invitations(group)
+    requests = get_member_requests(group)
+
+    return {
+        'members': members,
+        'requests': requests,
+        'invitations': invitations
+    }
+
+
 def get_member_role(user, group):
     ''' Get the role of <user> in <group>'''
     if user not in group:
         return None
 
     return group.board.get_role(user)
+
+
+def get_member_list(group):
+    ''' Get a list of all the members in a group '''
+    return group.members.filter()
+
+
+def get_member_invitations(group):
+    ''' Get a list of all pending invitations '''
+    return []  # TODO: IMPLEMENT MODEL
+
+
+def get_member_requests(group):
+    ''' Get a list of all pending requests '''
+    return []  # TODO: IMPLEMENT MODEL

@@ -1,0 +1,24 @@
+{% load static %}
+{% load group_tags %}
+
+<!-- Member info modal -->
+<div id="member-info-modal-{{ member.pk }}" uk-modal>
+    <div class="uk-modal-dialog">
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+        <div class="uk-modal-header">
+            <h2 class="uk-modal-title uk-margin-remove-bottom">{{ member.get_full_name }}</h2>
+            <p class="uk-margin-remove-top" >{{ member|member_role:group }}</p>
+        </div>
+        <div class="uk-modal-body">
+            <ul class="uk-list">
+                <li>Member Since: {{ member|member_joined:group }}</li>
+                <li>Email: {{ member.email }}</li>
+                <li>Phone Number:  +{{ member.calling_code }} {{ member.phone_no }}</li>
+                <li>Contract Number: {{ member.contract_no }}</li>
+            </ul>
+            <p class="uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Close</button>
+            </p>
+        </div>
+    </div>
+</div>

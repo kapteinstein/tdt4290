@@ -7,7 +7,7 @@
                 <span uk-icon="comment" class="uk-margin-small-right"></span>
                 About
             </a></li>
-            <li><a href="#" onclick="notImplemented()">
+            <li><a href="{% url 'group-members' slug=group.slug %}">
                 <span uk-icon="users" class="uk-margin-small-right"></span>
                 Members
             </a></li>
@@ -28,7 +28,7 @@
 
     <div class="uk-hidden@m uk-position-fixed uk-position-bottom-right uk-position-z-index uk-margin-small-right uk-margin-small-bottom">
         <!-- TODO: Generalize this styling -->
-        <a href="#" uk-toggle="target: #group-menu-popup" class="uk-box-shadow-small" style="text-decoration: none; padding-top: 7px; padding-right:8px; background-color: green" uk-marker="icon: menu">
+        <a href="#" uk-toggle="target: #group-menu-popup" class="uk-box-shadow-small ntnui-hover-menu" uk-marker="icon: menu">
             <span class="uk-margin-small-left" style="margin-right: 3px" >Group Menu</span>
         </a>
         <div id="group-menu-popup" uk-dropdown="animation: uk-animation-slide-bottom-small; duration: 600">
@@ -37,7 +37,7 @@
                     About
                     <span uk-icon="comment" class="uk-margin-small-right"></span>
                 </a></li>
-                <li><a href="#" onclick="notImplemented()">
+                <li><a href="{% url 'group-members' slug=group.slug %}">
                     Members
                     <span uk-icon="users" class="uk-margin-small-right"></span>
                 </a></li>
@@ -56,4 +56,19 @@
             </ul>
         </div>
     </div>
+
+    <style>
+        .ntnui-hover-menu {
+            text-decoration: none; 
+            padding-top: 7px; 
+            padding-right:8px; 
+            background-color: #999;
+            color: #fff;
+        }
+
+        .ntnui-hover-menu:hover {
+            text-decoration: none;
+            color: #eee;
+        }
+    </style>
 </nav>

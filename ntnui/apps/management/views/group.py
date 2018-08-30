@@ -45,3 +45,12 @@ class GroupMembers(View):
 
     def get(self, request, slug):
         group_info = group_utils.get_group_info(request, slug)
+        group_member_info = group_utils.get_group_member_info(
+            group_info['group'])
+
+        context = {
+            **group_info,
+            **group_member_info
+        }
+
+        return render(request, self.template_name, context)

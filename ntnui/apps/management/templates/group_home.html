@@ -11,7 +11,7 @@
 
   <div class="uk-grid-match uk-width-4-5@s uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center uk-margin-small-bottom" uk-grid>
     {% for role in group.board.get_roles_sorted %}
-      {% include 'group_board_member_card.html' with role=role %}
+      {% include 'group_home_board_card.html' with role=role %}
     {% endfor %}
   </div>
 {% endblock %}
