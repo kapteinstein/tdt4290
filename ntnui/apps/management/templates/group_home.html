@@ -1,50 +1,17 @@
 {% extends 'group.html' %}
 
 {% block group-content %}
+  <div class="uk-container uk-width-6-7@m">
   <h1 class="uk-heading-divider uk-text-center">{{ group.name }}</h1>
   <p>{{ group.meta.description }}</p>
-<!-- 
-  <div class="content-table">
-    <div class="list-header">
-      About {{ group.name }}
-      <form method="post" novalidate>
-        {% csrf_token %}
-        {% if joined == False %}
-          {% if group.public %}
-            <input type="submit" class="btn btn-success" name="join-group" value="Join" />
-          {% else %}
-            {% if sent_request == False %}
-              <input type="submit" class="btn btn-success" value="Ask to join" />
-            {% else %}
-              <button disabled class="btn btn-disabled btn-pending">Request pending</button>
-            {% endif %}
-          {% endif %}
-        {% endif %}
-      </form>
-    </div>
+  <p>Below you can find some basic information about the group, including contact details to the board members.</p>
 
-    <div class="group-table-description">
-      {{ group.meta.description }}
-    </div>
+  <h3 class="uk-text-center uk-margin-small-bottom">Board Members</h3>
   </div>
 
-    <div class="content-table">
-      <div class="list-header">
-        The Board
-      </div>
-
-      <div class="members-header">
-        <div class="group-column-20">Name</div>
-        <div class="group-column-50">E-mail</div>
-        <div class="group-column-20">Role</div>
-      </div>
-
-      {% for role in group.board.get_roles_sorted %}
-        <div class="group-table-row">
-          <div class="group-column-20">{{ role.member }}</div>
-          <div class="group-column-50">{{ role.member.email }}</div>
-          <div class="group-column-20">{{ role.get_full_role }}</div>
-        </div>
-      {% endfor %}
-    </div> -->
+  <div class="uk-grid-match uk-width-4-5@s uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center uk-margin-small-bottom" uk-grid>
+    {% for role in group.board.get_roles_sorted %}
+      {% include 'group_board_member_card.html' with role=role %}
+    {% endfor %}
+  </div>
 {% endblock %}

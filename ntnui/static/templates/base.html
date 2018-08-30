@@ -13,12 +13,13 @@
   {% endblock %}
 
   {% block head-css %}
-  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %} "media="screen"/>
-  <link rel="stylesheet" href="{% static 'css/jquery.modal.min.css' %}" media="screen"/>
-
   <!-- Load the UI Kit Stylesheets -->
   <link href="{% static 'style/uikit.min.css' %}" rel="stylesheet" media="screen" />
   {% endblock %}
+
+  <!-- Load the UI Kit Script files -->
+  <script type="text/javascript" src="{% static 'script/uikit.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'script/uikit-icons.min.js' %}"></script>
 
   </head>
 
@@ -35,9 +36,9 @@
       {% include "footer.html" %}
     </div>
 
-    <!-- Load the UI Kit Script files -->
-    <script type="text/javascript" src="{% static 'script/uikit.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'script/uikit-icons.min.js' %}"></script>
-    {% block script %}{% endblock %}
+
+    <script type="text/javascript" src="{% static 'script/notifications.js' %}"></script>
+    {% block extend-script %}
+    {% endblock %}
   </body>
 </html>

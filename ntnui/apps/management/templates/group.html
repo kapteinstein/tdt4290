@@ -18,56 +18,17 @@
   </div>
 </div>
 {% endblock %}
-  
-  <!--
-  <div class="group-content">
-    <div class="header">
-      <div class="header-jumbo" style="background-image: url('{{ group.media.cover_photo.url }}')">
-        <div class="group-role">{{ role }}</div>
-        <div class="group-name">{{ group.name }}</div>
-        <div class="group-name">{{ request.path }}</div>
-      </div>
-      <div class="top-menu">
-        <ul>
-          <li><a href="{% url 'group-home' slug=group.slug %}"
-                 class="{% if active == 'about' %}active-item{% endif %}">About</a></li>
-          {% if show_members %}
-          <li>
-            <div class="vert-divider"></div>
-          </li>
-          <li><a href="{% url 'group_members' slug=groupslug %}"
-            class="{% if active == 'members' %}active-item{% endif %}">Members</a></li>
-            {% endif %}
-      
-    
-          {% if user in board %}
-            <li>
-              <div class="vert-divider"></div>
-            </li>
 
-              <div class="vert-divider"></div>
-            </li>
-            <li><a href="{% url 'group-settings' slug=group.slug %}"
-                   class="{% if active == 'settings' %}active-item{% endif %}">Settings</a></li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-
-    {% if messages %}
-      {% for message in messages %}
-        {% if 'error' in message.tags %}
-          <div class="alert alert-danger group-alert" role="alert">{{ message }}</div>
-        {% elif 'warning' in message.tags %}
-          <div class="alert alert-warning group-alert" role="alert">{{ message }}</div>
-        {% else %}
-          <div class="alert alert-success group-alert" role="alert">{{ message }}</div>
-        {% endif %}
-      {% endfor %}
+<!-- TODO: Implement a notification system
+{% if messages %}
+  {% for message in messages %}
+    {% if 'error' in message.tags %}
+      <div class="alert alert-danger group-alert" role="alert">{{ message }}</div>
+    {% elif 'warning' in message.tags %}
+      <div class="alert alert-warning group-alert" role="alert">{{ message }}</div>
+    {% else %}
+      <div class="alert alert-success group-alert" role="alert">{{ message }}</div>
     {% endif %}
-
-    {% block group_content %}
-    {% endblock %}
-
-  </div>
-  -->
+  {% endfor %}
+{% endif %}
+-->
