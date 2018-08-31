@@ -1,25 +1,26 @@
 {% load static %}
+{% load group_tags %}
 
 <nav class="uk-navbar-container">
     <div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-1 uk-visible@m">
         <ul class="uk-subnav uk-subnav-divider uk-margin-remove uk-padding-small" uk-margin>
-            <li><a href="{% url 'group-home' slug=group.slug %}">
+            <li class="{{ request.get_full_path|active_page:'about' }}"><a href="{% url 'group-home' slug=group.slug %}">
                 <span uk-icon="comment" class="uk-margin-small-right"></span>
                 About
             </a></li>
-            <li><a href="{% url 'group-members' slug=group.slug %}">
+            <li class="{{ request.get_full_path|active_page:'members' }}"><a href="{% url 'group-members' slug=group.slug %}">
                 <span uk-icon="users" class="uk-margin-small-right"></span>
                 Members
             </a></li>
-            <li><a href="#" onclick="notImplemented()">
+            <li class="{{ request.get_full_path|active_page:'events' }}"><a href="#" onclick="notImplemented()">
                 <span uk-icon="calendar" class="uk-margin-small-right"></span>
                 Events
             </a></li>
-            <li><a href="#" onclick="notImplemented()">
+            <li class="{{ request.get_full_path|active_page:'forms' }}"><a href="#" onclick="notImplemented()">
                 <span uk-icon="mail" class="uk-margin-small-right"></span>
                 Forms
             </a></li>
-            <li><a href="#" onclick="notImplemented()">
+            <li class="{{ request.get_full_path|active_page:'settings' }}"><a href="#" onclick="notImplemented()">
                 <span uk-icon="settings" class="uk-margin-small-right"></span>
                 Settings
             </a></li>
@@ -33,23 +34,23 @@
         </a>
         <div id="group-menu-popup" uk-dropdown="animation: uk-animation-slide-bottom-small; duration: 600">
             <ul class="uk-nav uk-dropdown-nav uk-align-right uk-text-right uk-margin-remove uk-padding-remove">
-                <li><a href="{% url 'group-home' slug=group.slug %}">
+                <li class="{{ request.get_full_path|active_page:'about' }}"><a href="{% url 'group-home' slug=group.slug %}">
                     About
                     <span uk-icon="comment" class="uk-margin-small-right"></span>
                 </a></li>
-                <li><a href="{% url 'group-members' slug=group.slug %}">
+                <li class="{{ request.get_full_path|active_page:'members' }}"><a href="{% url 'group-members' slug=group.slug %}">
                     Members
                     <span uk-icon="users" class="uk-margin-small-right"></span>
                 </a></li>
-                <li><a href="#" onclick="notImplemented()">
+                <li class="{{ request.get_full_path|active_page:'events' }}"><a href="#" onclick="notImplemented()">
                     Events
                     <span uk-icon="calendar" class="uk-margin-small-right"></span>
                 </a></li>
-                <li><a href="#" onclick="notImplemented()">
+                <li class="{{ request.get_full_path|active_page:'forms' }}"><a href="#" onclick="notImplemented()">
                     Forms
                     <span uk-icon="mail" class="uk-margin-small-right"></span>
                 </a></li>
-                <li><a href="#" onclick="notImplemented()">
+                <li class="{{ request.get_full_path|active_page:'settings' }}"><a href="#" onclick="notImplemented()">
                     Settings
                     <span uk-icon="settings" class="uk-margin-small-right"></span>
                 </a></li>

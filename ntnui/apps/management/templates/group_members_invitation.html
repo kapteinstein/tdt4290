@@ -25,5 +25,21 @@
     </table>
 </div>
 {% else %}
-<p class="uk-align-center uk-text-center uk-text-meta uk-margin-medium-top">There are no pending requests!</p>
+<p class="uk-align-center uk-text-center uk-text-meta uk-margin-medium-top">There are no pending invitations!</p>
 {% endif %}
+
+
+<form class="uk-form-stacked" method="POST">
+    {% csrf_token %} 
+    {% for field in form %}
+    <div>
+        <label class="uk-form-label">
+            {{ field.label }}
+        </label> 
+        <div class="uk-form-controls">
+            {{ field }}
+        </div>
+    </div>
+    {% endfor %}
+    <button class="uk-button uk-button-default">Invite</button>
+</form>

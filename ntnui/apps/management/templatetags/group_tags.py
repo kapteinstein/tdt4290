@@ -26,3 +26,11 @@ def time_since(time):
     nozone_time = time.replace(tzinfo=None)
 
     return time_utils.humanize_time_difference(datetime.now(), nozone_time)
+
+
+@register.filter
+def active_page(path, page_name):
+    if page_name in path.split('/'):
+        return "uk-active"
+
+    return ""
