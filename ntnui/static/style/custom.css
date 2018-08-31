@@ -6,6 +6,11 @@ html {
     overflow-y: scroll;
 }
 
+.ntnui-content {
+    /* Force the footer to be at the bottom - subtract: footer height, content-top-margin, navbar-height and content-bottom-margin */
+    min-height: calc(100vh - 64px - 80px - 10px);
+}
+
 .ntnui-icon-medium > svg {
     width: 2rem;
 }
