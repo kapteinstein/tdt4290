@@ -17,3 +17,7 @@ html {
 .ntnui-border-remove {
     border: none !important;
 }
+
+.ntnui-height-small {
+    height: 4rem !important;
+}
