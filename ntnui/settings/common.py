@@ -10,11 +10,10 @@ APP_DIR = os.path.join(BASE_DIR, 'apps')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
-# TODO: Fix this before deployment - See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-SECRET_KEY = 'cpivc$!*6-)c(u4k+bw-+cv*j1omilwt)#@#dezn6jb%m)j$y+'
+SECRET_KEY = os.environ.get('NTNUI_SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# If prod is set in env, debug is turned off
+DEBUG = "NTNUI_PROD" not in os.environ
 
 ALLOWED_HOSTS = ['.ntnui.no', 'localhost']
 
@@ -166,15 +165,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ##### END STATIC FILE CONFIGURATION #####
 
+##### MAILGUN SETTINGS #####
+
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'postmaster@mg.ntnui.no'
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_PASSWORD')
+EMAIL_USE_TLS = True
+
+
 ##### LOGIN CONFIGURATION #####
 LOGIN_URL = "/a/login"
 LOGIN_REDIRECT_URL = '/m/home'
 LOGOUT_REDIRECT_URL = '/m/home'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-# USER settings
-DUMMY_USER_EMAIL = 'todd.packer@online.com'
-DUMMY_USER_PASSWORD = 'locoloco'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ##### END LOGIN CONFIGURATION #####
 
