@@ -16,7 +16,7 @@ SECRET_KEY = 'cpivc$!*6-)c(u4k+bw-+cv*j1omilwt)#@#dezn6jb%m)j$y+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.ntnui.no']
+ALLOWED_HOSTS = ['.ntnui.no', 'localhost']
 
 ##### APP CONFIGURATION #####
 DJANGO_APPS = [
