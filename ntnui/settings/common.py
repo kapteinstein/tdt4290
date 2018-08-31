@@ -163,8 +163,13 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-
 ##### END STATIC FILE CONFIGURATION #####
+
+###### MESSAGE STORAGE CONFIGURATION ######
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
+###### END MESSAGE STORAGE CONFIGURATION #####
 
 ##### MAILGUN SETTINGS #####
 
