@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 from django.utils.html import mark_safe
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 from os import path
 
 DEFAULT_COVER_PHOTO = "cover_photo/ntnui.png"
@@ -33,10 +35,18 @@ def get_upload_logo(instance, filename):
 class GroupMediaModel(models.Model):
     media_id = models.AutoField(primary_key=True)
 
-    cover_photo = models.ImageField(
+    cover = models.ImageField(
         upload_to=get_upload_cover, default=DEFAULT_COVER_PHOTO)
+    cover_image = ImageSpecField(source='cover', processors=[
+                                 ResizeToFill(790, 260)],
+                                 format='JPEG',
+                                 options={'quality': 100})
 
     logo = models.ImageField(upload_to=get_upload_logo, default=DEFAULT_LOGO)
+    logo_image = ImageSpecField(source='logo', processors=[
+                                ResizeToFill(100, 100)],
+                                format='JPEG',
+                                options={'quality': 60})
 
     group = models.OneToOneField(
         'GroupModel', on_delete=models.CASCADE, related_name='media')

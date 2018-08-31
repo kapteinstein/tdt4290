@@ -6,7 +6,6 @@ selenium==3.6.0
 rules==2.0
 requests==2.18.4
 django-environ==0.4.4
-pillow==4.3.0
 dj-database-url==0.4.2
 
 # Test Coverage tools
@@ -26,3 +25,7 @@ graphene-django>=2.0
 
 # Nested Inlines
 django-nested-admin==3.1.1
+
+# Image-Kit
+pillow==4.3.0
+django-imagekit==4.0.2

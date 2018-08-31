@@ -41,7 +41,8 @@ THIRD_PARTY_APPS = [
     # Nested Inlines (admin)
     'nested_admin',
 
-    'rules'
+    # Imagekit
+    'imagekit',
 ]
 
 LOCAL_APPS = [
