@@ -43,9 +43,9 @@ def get_member_list(group):
 
 def get_member_invitations(group):
     ''' Get a list of all pending invitations '''
-    return []  # TODO: IMPLEMENT MODEL
+    return group.invitation.all()
 
 
 def get_member_requests(group):
     ''' Get a list of all pending requests '''
-    return []  # TODO: IMPLEMENT MODEL
+    return group.request.all()

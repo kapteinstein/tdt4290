@@ -1,3 +1,6 @@
 {% load static %}
+{% load group_tags %}
 
-{{ invitations }}
+{% for invitation in invitations %}
+    <div>{{ invitation }} {{ invitation.time|time_since }}</div>
+{% endfor %}

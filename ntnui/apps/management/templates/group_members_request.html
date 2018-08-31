@@ -1,3 +1,5 @@
 {% load static %}
 
-{{ requests }}
+{% for request in requests %}
+    <div>{{ request }}</div>
+{% endfor %}
