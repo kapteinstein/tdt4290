@@ -1,8 +1,10 @@
 #---- VARIABLES ----#
 
 APPDIR := $(subst /, , $(subst  ./ntnui/apps/, , $(filter-out ./ntnui/apps/,$(dir $(wildcard ./ntnui/apps/*/)))))
-JSONDATA := users.json groups.json memberships.json boards.json invitations.json forms.json mainboard.json hs-memberships.json contracts.json
-JSONDOKKU := users.json groups.json memberships.json boards.json invitations.json forms.json mainboard.json hs-memberships.json
+#JSONDATA := users.json groups.json memberships.json boards.json invitations.json forms.json mainboard.json hs-memberships.json contracts.json
+#JSONDOKKU := users.json groups.json memberships.json boards.json invitations.json forms.json mainboard.json hs-memberships.json
+JSONDATA := database.json
+JSONDOKKU := JSONDATA
 DATABASE := ./ntnui/dev_database.db
 
 #---- END VARIABLES ----#
@@ -103,6 +105,7 @@ dev_dumpdata:  ##@TestEnv Create a JSON Dump of $APP (use APP="appname" from con
 
 dev_dumpall:
 	$(foreach app,$(filter-out __pycache__, $(APPDIR)), echo "\n-- Dumping JSON Data for $(app) --" && make dev_dumpdata APP=$(app);)
+	
 
 docker_test: ##@Test (test) Run all docker-tests (this does not include browser-tests)
 	$(foreach app,$(filter-out __pycache__, $(APPDIR)), echo "\n-- Testing $(app) --" && docker-compose run web python manage.py test $(app);)  # Run the test suite (details found in settings/common.py)
