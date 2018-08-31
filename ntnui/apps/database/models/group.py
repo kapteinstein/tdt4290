@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
 from .group_media import GroupMediaModel
 from .group_meta import GroupMetaModel

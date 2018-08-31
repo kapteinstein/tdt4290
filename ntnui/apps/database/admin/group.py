@@ -6,6 +6,7 @@ from ..models import GroupMediaModel
 from ..models import BoardModel
 from ..models import RoleModel
 from ..models import GroupRelationshipModel
+from ..models import GroupInvitationModel
 from .admin import NtnuiAdmin
 import nested_admin
 
@@ -62,6 +63,10 @@ class GroupRelationshipInline(nested_admin.NestedStackedInline):
     max_num = 50
 
 
+class GroupInvitationsInline(nested_admin.NestedStackedInline):
+    model = GroupInvitationModel
+
+
 @admin.register(GroupModel)
 class GroupAdmin(NtnuiAdmin):
     search_fields = ['name', 'founding_date']
@@ -69,5 +74,5 @@ class GroupAdmin(NtnuiAdmin):
 
     # Exclude the group media and meta as these are loaded inline
     inlines = [GroupRelationshipInline,
-               GroupMetaInline, GroupMediaInline, BoardInline]
+               GroupMetaInline, GroupMediaInline, BoardInline, GroupInvitationsInline]
     list_display = ('name',)

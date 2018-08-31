@@ -3,6 +3,8 @@ from .group import GroupModel
 from .group_relationship import GroupRelationshipModel
 from .group_meta import GroupMetaModel
 from .group_media import GroupMediaModel
+from .group_invitation import GroupInvitationModel
+from .group_request import GroupRequestModel
 from .membership import MembershipModel
 from .comment import CommentModel
 from .board import BoardModel
