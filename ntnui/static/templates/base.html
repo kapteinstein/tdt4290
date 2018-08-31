@@ -2,27 +2,8 @@
 <!DOCTYPE html>
 
 <html class="uk-background-muted">
-  <head>
-  {% block head-meta %}
-    <title>{% block title %}NTNUI{% endblock %}</title>
-  	<meta charset="utf-8">
-  	<!--Add keywords that describe your project between the quotation marks. This helps search engines find and index your content-->
-    <meta name="keywords" content="REPLACE WITH YOUR OWN KEYWORDS HERE, AND HERE, AND HERE">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% endblock %}
-
-  {% block head-css %}
-  <!-- Load the UI Kit Stylesheets -->
-  <link href="{% static 'style/uikit.min.css' %}" rel="stylesheet" media="screen" />
-  <link href="{% static 'style/ntnui.css' %}" rel="stylesheet" media="screen" />
-  {% endblock %}
-
-  <!-- Load the UI Kit Script files -->
-  <script type="text/javascript" src="{% static 'script/uikit.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'script/uikit-icons.min.js' %}"></script>
-
-  </head>
+  <!-- Load the head tag, including stylesheets etc. -->
+  {% include "meta.html" %}
 
   <body>
     <div id="offcanvas" class="uk-offcanvas-content uk-background-muted">
@@ -37,8 +18,19 @@
       {% include "footer.html" %}
     </div>
 
-
+    <!-- Load the notification js before calling the notification methods -->
     <script type="text/javascript" src="{% static 'script/notifications.js' %}"></script>
+    
+    <!-- Show any messages as notifications -->
+    <script type="text/javascript">      
+      {% if messages %}
+        {% for message in messages %}
+          console.log("{{ message }}");
+          notificationMessage("{{ message }}", "{{ message.tags }}")
+        {% endfor %}
+      {% endif %}
+    </script>
+
     {% block extend-script %}
     {% endblock %}
   </body>
