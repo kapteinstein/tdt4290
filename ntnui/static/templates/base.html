@@ -25,7 +25,6 @@
     <script type="text/javascript">      
       {% if messages %}
         {% for message in messages %}
-          console.log("{{ message }}");
           notificationMessage("{{ message }}", "{{ message.tags }}")
         {% endfor %}
       {% endif %}
