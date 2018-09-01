@@ -26,3 +26,8 @@ html {
 .ntnui-height-small {
     height: 4rem !important;
 }
+
+.ntnui-button-primary {
+    background: green;
+    color: white;
+}
