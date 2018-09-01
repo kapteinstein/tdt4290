@@ -10,6 +10,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', include('database.urls')),
     path('nested_admin/', include('nested_admin.urls')),
+    path('api/', include('api.urls')),
 
     # Application routes
     path('a/', include('authentication.urls')),
