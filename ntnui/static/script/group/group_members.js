@@ -1,13 +1,15 @@
-// Make sure the UiKit Switcher is set to the correct tab when loading (based on hash)
-window.onload = function() {};
+document
+    .getElementById("group-member-invitation-form-submit")
+    .addEventListener("click", function(event) {
+        event.preventDefault();
+        console.log(event);
+    });
 
-document.onreadystatechange = function(e) {
-    if (document.readyState === "complete") {
-        const index = window.location.hash.split("#")[1];
-
-        if (index > 0 && index < 3) {
-            // Switch to the tab based on the hash
-            UIKit.switcher("#group-member-switcher").beforeshow(index);
-        }
-    }
-};
+axios
+    .get("/api/members/" + "parks-and-recreation-department")
+    .then(response => {
+        console.log(response);
+    })
+    .catch(e => {
+        console.log(e);
+    });

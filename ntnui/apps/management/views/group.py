@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -85,7 +84,7 @@ class GroupMembers(View):
             messages.add_message(
                 request, messages.SUCCESS, "Invitation Sent!")
 
-            return render(request, self.template_name, context)
+            return redirect('', request, self.template_name, context)
 
         messages.add_message(
             request, messages.ERROR, "Invitation Not Sent!")

@@ -19,8 +19,6 @@ const notImplemented = function() {
 };
 
 const notificationMessage = function(message, tag) {
-    console.log(tag);
-
     if (tag == "error") {
         notification(message, "warning", "danger");
     } else if (tag == "success") {

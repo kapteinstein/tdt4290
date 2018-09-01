@@ -12,4 +12,6 @@ class GroupInvitationForm(Form):
         super(GroupInvitationForm, self).__init__(*args, **kwargs)
 
     def clean(self):
-        print(self)
+        email = self.cleaned_data['email']
+
+        print(email, self.group)
