@@ -111,7 +111,7 @@
         "model": "database.groupmediamodel",
         "pk": 5,
         "fields": {
-            "cover_photo": "cover_photo/ntnui.png",
+            "cover": "cover_photo/ntnui.png",
             "logo": "logo/parks-and-recreation-department/pandr2.jpg",
             "group": 1
         }
@@ -120,7 +120,7 @@
         "model": "database.groupmediamodel",
         "pk": 6,
         "fields": {
-            "cover_photo": "cover_photo/ntnui.png",
+            "cover": "cover_photo/ntnui.png",
             "logo": "logo/sewage-department/sewage.jpg",
             "group": 5
         }
@@ -129,7 +129,7 @@
         "model": "database.groupmediamodel",
         "pk": 7,
         "fields": {
-            "cover_photo": "cover_photo/ntnui.png",
+            "cover": "cover_photo/ntnui.png",
             "logo": "logo/police-department/police.jpg",
             "group": 6
         }

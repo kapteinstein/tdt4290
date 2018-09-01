@@ -1,7 +1,7 @@
 // Load uikit from the window
 UIKit = window.UIkit;
 
-const notification = function(message, icon = "user", status = "default") {
+const notification = (message, icon = "user", status = "default") => {
     UIKit.notification({
         message:
             "<span class='uk-margin-small-right' uk-icon='icon: " +
@@ -14,11 +14,11 @@ const notification = function(message, icon = "user", status = "default") {
     });
 };
 
-const notImplemented = function() {
+const notImplemented = () => {
     notification("This route is not yet implemented", "cog");
 };
 
-const notificationMessage = function(message, tag) {
+const notificationMessage = (message, tag) => {
     if (tag == "error") {
         notification(message, "warning", "danger");
     } else if (tag == "success") {

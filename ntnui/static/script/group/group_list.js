@@ -1,12 +1,12 @@
 // Reset the search form on window reload
-window.onload = function() {
+window.onload = () => {
     document.forms["group-search-form"].reset();
 };
 
 // Group search functionality
 const groupList = document.querySelectorAll("#group-list > div");
 
-document.getElementById("group-search").onkeyup = function(e) {
+document.getElementById("group-search").onkeyup = e => {
     e = e || window.event;
 
     const input = this.value

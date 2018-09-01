@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 
 
 def member_not_in_group(obj):
@@ -26,7 +26,7 @@ class GroupRequestModel(models.Model):
     group = models.ForeignKey(
         'GroupModel', on_delete=models.CASCADE, related_name='request')
     time = models.DateTimeField(
-        default=datetime.now, editable=False)
+        default=timezone.now, editable=False)
 
     class Meta:
         ''' Configure the name displayed in the admin panel '''

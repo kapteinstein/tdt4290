@@ -1,1 +1,0 @@
-from .group_invitation_form import GroupInvitationForm

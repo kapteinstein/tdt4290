@@ -36,9 +36,9 @@ class GroupMediaInline(nested_admin.NestedStackedInline):
 
     fieldsets = (
         ('Logo', {'fields': ('logo', 'logo_tag',)}),
-        ('Cover Photo', {'fields': ('cover_photo', 'cover_photo_tag',)})
+        ('Cover', {'fields': ('cover', 'cover_tag',)})
     )
-    readonly_fields = ('logo_tag', 'cover_photo_tag')
+    readonly_fields = ('logo_tag', 'cover_tag')
 
 
 class RoleInline(nested_admin.NestedStackedInline):

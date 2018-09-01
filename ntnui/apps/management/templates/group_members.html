@@ -35,5 +35,9 @@
 {% endblock %}
 
 {% block extend-script %}
+    <script type="text/javascript">
+        // Inject slug as a global variable
+        const slug = "{{ group.slug }}"
+    </script>
     <script type="text/javascript" src="{% static 'script/group/group_members.js' %}"></script>
 {% endblock %}

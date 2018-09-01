@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 from django.core.exceptions import ValidationError
 
 
@@ -26,7 +26,7 @@ class GroupInvitationModel(models.Model):
     group = models.ForeignKey(
         'GroupModel', on_delete=models.CASCADE, related_name='invitation')
     time = models.DateTimeField(
-        default=datetime.now, editable=False)
+        default=timezone.now, editable=False)
 
     class Meta:
         ''' Configure the name displayed in the admin panel '''
@@ -35,6 +35,11 @@ class GroupInvitationModel(models.Model):
 
     def __str__(self):
         return "Group Invitation from {} to {}".format(str(self.group), str(self.member))
+
+    def save(self, *args, **kwargs):
+        ''' Override the default save object to call clean '''
+        self.full_clean()
+        return super(GroupInvitationModel, self).save(*args, **kwargs)
 
     def clean(self):
         ''' Make sure this object does not yet exist '''

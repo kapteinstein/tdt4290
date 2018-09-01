@@ -5,7 +5,7 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from os import path
 
-DEFAULT_COVER_PHOTO = "cover_photo/ntnui.png"
+DEFAULT_COVER = "cover/ntnui.png"
 DEFAULT_LOGO = "logo/ntnui.svg"
 
 
@@ -36,7 +36,7 @@ class GroupMediaModel(models.Model):
     media_id = models.AutoField(primary_key=True)
 
     cover = models.ImageField(
-        upload_to=get_upload_cover, default=DEFAULT_COVER_PHOTO)
+        upload_to=get_upload_cover, default=DEFAULT_COVER)
     cover_image = ImageSpecField(source='cover', processors=[
                                  ResizeToFill(790, 260)],
                                  format='JPEG',
@@ -62,5 +62,5 @@ class GroupMediaModel(models.Model):
     def logo_tag(self):
         return mark_safe('<img src={} style="height: 4rem;"/>'.format(self.logo.url if self.media_id else settings.MEDIA_URL + DEFAULT_LOGO))
 
-    def cover_photo_tag(self):
-        return mark_safe('<img src={} />'.format(self.cover_photo.url if self.media_id else settings.MEDIA_URL + DEFAULT_COVER_PHOTO))
+    def cover_tag(self):
+        return mark_safe('<img src={} />'.format(self.cover.url if self.media_id else settings.MEDIA_URL + DEFAULT_COVER))

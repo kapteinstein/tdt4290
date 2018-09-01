@@ -44,21 +44,22 @@
             <p class="uk-text-center">
                 Invite a new user to the group by filling out the form below!
             </p>
-            <form class="uk-form-stacked" method="POST">
+            <form id="group-members-invitation-form" class="uk-form-stacked">
                 {% csrf_token %} 
-                {% for field in form %}
                 <div>
                     <label class="uk-form-label">
-                        {{ field.label }}
+                        Email
                     </label> 
                     <div class="uk-form-controls">
-                        <input id="{{ field.id }}" name="{{ field.name }}" maxlength="{{ field.maxlength }}" class="uk-input" required type="{{ field.type }}">
+                        <input id="invitation-email" name="email" maxlength=100 class="uk-input" required type="email">
+                    </div>
+                    <div id="group-members-invitation-form-error" class="uk-center">
+                        <p class="uk-text-center uk-margin-small-top"></p>
                     </div>
                 </div>
-                {% endfor %}
                 <p class="uk-text-center">
                     <!-- Place an 'onclick' listener on this button using js -->
-                    <button id="group-member-invitation-form-submit" class="uk-button ntnui-button-primary" type="submit">Invite</button>
+                    <button class="uk-button ntnui-button-primary" type="submit">Invite</button>
                 </p>
             </form>
         </div>
