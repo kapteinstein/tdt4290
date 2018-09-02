@@ -1,9 +1,12 @@
 from math import floor
+from django.utils import timezone
 
 
-def humanize_time_difference(now, then):
-    if then:
-        dt = now - then
+def humanize_time_difference(time):
+    now = timezone.now()
+
+    if time:
+        dt = now - time
 
         if dt.days:
             elapsed = dt.days

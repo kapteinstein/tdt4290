@@ -24,7 +24,7 @@ def member_joined(member, group):
 def time_since(time):
     ''' Return a formatted string of elapsed time since <time>'''
     # Get the current time and add the tzinfo cause python...
-    return time_utils.humanize_time_difference(timezone.now(), time)
+    return time_utils.humanize_time_difference(time)
 
 
 @register.filter
