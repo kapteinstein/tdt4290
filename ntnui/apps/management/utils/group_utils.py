@@ -43,7 +43,7 @@ def get_member_list(group):
 
 def get_member_invitations(group):
     ''' Get a list of all pending invitations '''
-    return group.invitation.all()
+    return group.invitations.all()
 
 
 def get_member_requests(group):
