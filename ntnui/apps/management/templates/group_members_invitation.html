@@ -12,7 +12,8 @@
                 <th class="uk-text-center uk-width-1-5">Cancel</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="group-members-invitation-table">
+
             {% for invitation in invitations %}
             <tr>
                 <td>{{ invitation.member.get_full_name }}</td>

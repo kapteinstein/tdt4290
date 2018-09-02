@@ -7,7 +7,7 @@
     </div>
 
     <div class="uk-grid-small uk-flex-between uk-flex-middle uk-width-1-1" uk-grid>
-        <ul id="group-member-switcher" class="nav-overlay uk-navbar-left uk-subnav uk-flex-center uk-subnav-divider uk-margin-remove uk-padding-small uk-width-5-6" uk-switcher="connect: #group-member-table">
+        <ul id="group-member-switcher" class="nav-overlay uk-navbar-left uk-subnav uk-flex-center uk-subnav-divider uk-margin-remove uk-padding-small uk-width-5-6" uk-switcher="connect: #group-member-switcher-container">
             <li><a href="#">Members</a></li>
             <li><a href="#">Invitations</a></li>
             <li><a href="#">Requests</a></li>
@@ -27,10 +27,10 @@
         </div>
     </div>
 
-    <ul id="group-member-table" class="uk-switcher uk-margin uk-width-1-1">
-        <li>{% include 'group_members_list.html' with members=members %}</li>
-        <li>{% include 'group_members_invitation.html' with invitations=invitations %}</li>
-        <li>{% include 'group_members_request.html' with requests=requests %}</li>
+    <ul id="group-member-switcher-container" class="uk-switcher uk-margin uk-width-1-1">
+        <li id="group-member-list">{% include 'group_members_list.html' with members=members %}</li>
+        <li id="group-member-invitations">{% include 'group_members_invitation.html' with invitations=invitations %}</li>
+        <li id="group-member-requests">{% include 'group_members_request.html' with requests=requests %}</li>
     </ul>
 {% endblock %}
 
