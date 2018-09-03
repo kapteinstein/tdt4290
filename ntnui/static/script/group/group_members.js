@@ -295,6 +295,7 @@ const invitationRow = user => {
         e.preventDefault();
 
         uninviteUser(user["member__email"], slug).then(response => {
+            // If the invitation was successfully revoked, refresh the page and show a notification
             if (response === "InvitationRevoked") {
                 notification("The invitation was revoked", "check");
                 populateInvitations();
