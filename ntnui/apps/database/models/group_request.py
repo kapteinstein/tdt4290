@@ -24,7 +24,7 @@ class GroupRequestModel(models.Model):
     ''' Invitation details '''
     member = models.ForeignKey('UserModel', on_delete=models.CASCADE)
     group = models.ForeignKey(
-        'GroupModel', on_delete=models.CASCADE, related_name='request')
+        'GroupModel', on_delete=models.CASCADE, related_name='requests')
     time = models.DateTimeField(
         default=timezone.now, editable=False)
 

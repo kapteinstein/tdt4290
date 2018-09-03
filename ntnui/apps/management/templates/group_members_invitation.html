@@ -1,40 +1,16 @@
 {% load static %}
 {% load group_tags %}
 
-{% if invitations %}
-<div uk-overflow-auto>
-    <table class="uk-table uk-table-divider uk-margin-remove-top">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th class="uk-table-expand">Mail</th>
-                <th class="uk-table-expand">Invitation Sent</th>
-                <th class="uk-text-center uk-width-1-5">Cancel</th>
-            </tr>
-        </thead>
-        <tbody id="group-members-invitation-table">
-
-            {% for invitation in invitations %}
-            <tr>
-                <td>{{ invitation.member.get_full_name }}</td>
-                <td class="uk-text-truncate">{{ invitation.member.email }}</td>
-                <td class="uk-table-expand">{{ invitation.time|time_since }}</td>
-                <td class="uk-text-center uk-width-1-5"><a href="#" class="uk-link-reset" onclick="notImplemented()"><span uk-icon="icon: close"></span></a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div id="group-members-invitation">
+    <!-- Fill this div with data using the populateInvitations method in group_members.js -->
 </div>
-{% else %}
-<p class="uk-align-center uk-text-center uk-text-meta uk-margin-medium-top">There are no pending invitations!</p>
-{% endif %}
 
 <!-- This is a button toggling the modal -->
 <p class="uk-text-center uk-margin-small-bottom">
     <button class="uk-button uk-button-default" type="button" uk-toggle="target: #group-members-invitation-modal">Invite User</button>
 </p>
 
-<!-- This is the modal -->
+<!-- This is the modal containing the invitation form -->
 <div id="group-members-invitation-modal" uk-modal>
     <div class="uk-modal-dialog">
         <div class="uk-modal-header uk-text-center">
@@ -66,4 +42,3 @@
         </div>
     </div>
 </div>
-

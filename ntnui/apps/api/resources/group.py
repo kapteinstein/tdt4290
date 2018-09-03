@@ -66,6 +66,38 @@ class GroupInvites(JSONView):
 
 
 @method_decorator(login_required, name='dispatch')
+class GroupRequests(JSONView):
+    ''' Returns an html template containing all groups based on membership of the active user'''
+
+    def get(self, request):
+        return self.render_to_response(request.GET)
+
+    def get_data(self, context):
+        ''' Implement the get_data method from the JSONResponse Mixin '''
+        slug = context.get('slug') or ''
+
+        try:
+            group = GroupModel.objects.get(slug=slug)
+        except GroupModel.DoesNotExist:
+            return {'message': 'GroupDoesNotExist'}
+
+        # Filter the member values of the invitation objects
+        requests = list(group.requests.filter().values(
+            'member__pk', 'member__first_name', 'member__last_name', 'member__email', 'time'
+        ))
+
+        # Convert all the time elements to a readable format
+        for request in requests:
+            request['time'] = time_utils.humanize_time_difference(
+                request['time'])
+
+        sleep(3)  # TODO: Remove this after demo
+
+        # Return all the invitation objects
+        return {'message': requests}
+
+
+@method_decorator(login_required, name='dispatch')
 class InviteUser(JSONView):
     ''' Returns an html template containing all groups based on membership of the active user'''
 
@@ -120,12 +152,14 @@ class UninviteUser(JSONView):
         except GroupModel.DoesNotExist:
             return {'message': 'GroupDoesNotExist'}
 
-        invitation = GroupInvitationModel(
-            member=user, group=group)
+        try:
+            invitation = GroupInvitationModel.objects.get(
+                member=user, group=group)
+        except GroupInvitationModel.DoesNotExist:
+            return {'message': 'InvitationDoesNotExist'}
 
         try:
-            # DELETE INVITATION
-            pass
+            invitation.delete()
         except ValidationError:
             return {'message': 'UserAlreadyInGroup'}
 

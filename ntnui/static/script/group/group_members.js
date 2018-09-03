@@ -4,7 +4,12 @@
 
 const apiCall = (path, params) => {
     // Return a promise of a api get
-    return axios.get(path, { params }).then(({ data }) => {
+    return axios({
+        method: "get",
+        url: path,
+        params: params,
+        timeout: 5000 // timeout after 5 seconds
+    }).then(({ data }) => {
         // Unpack the data object and return its body
         return data.message;
     });
@@ -13,6 +18,14 @@ const apiCall = (path, params) => {
 const inviteUser = (email, slug) => {
     // Await the api GET and unpack the JSON response
     return apiCall("/api/invite-user", {
+        email: email,
+        slug: slug
+    });
+};
+
+const uninviteUser = (email, slug) => {
+    // Await the api GET and unpack the JSON response
+    return apiCall("/api/uninvite-user", {
         email: email,
         slug: slug
     });
@@ -36,6 +49,12 @@ const getInvitations = slug => {
     });
 };
 
+const getRequests = slug => {
+    return apiCall("/api/requests", {
+        slug: slug
+    });
+};
+
 /* MODAL FORM */
 
 // Get HTML elements
@@ -46,7 +65,7 @@ const invitationError = document.getElementById(
 );
 
 // Add an eventlistener to clear the invitation form before showing the modal
-UIkit.util.on("#" + invitationModal.id, "beforeshow", () => {
+UIkit.util.on("#group-members-invitation-modal", "beforeshow", () => {
     invitationError.setAttribute("class", "uk-hidden");
     invitationForm.reset();
 });
@@ -66,6 +85,7 @@ invitationForm.addEventListener("submit", event => {
                 switch (response) {
                     case "InvitationSent":
                         invitationFormSuccess("Invitation Sent!");
+                        populateInvitations();
                         break;
                     case "UserDoesNotExist":
                         invitationFormError(
@@ -125,6 +145,7 @@ UIkit.util.on("#" + memberSwitcherContainer.id, "shown", container => {
             break;
         case "group-member-requests":
             console.log("Switched to Requests");
+            populateRequests();
             break;
         default:
             console.log("Not found");
@@ -175,26 +196,183 @@ const htmlElement = dict => {
     return element;
 };
 
-const htmlTableLoader = columns => {
-    const spinner = htmlElement({ element: "div", "uk-spinner": "ratio: 1" });
-    const div = htmlElement({
+const createHeader = elements => {
+    // Create a html header consisting of the elements
+    return htmlElement({
+        element: "thead",
+        child: htmlElement({
+            element: "tr",
+            children: elements
+        })
+    });
+};
+
+const createBody = rows => {
+    // Create a html body consisting of the rows
+    return htmlElement({
+        element: "tbody",
+        children: rows
+    });
+};
+
+const createTable = (header, body) => {
+    return htmlElement({
+        element: "table",
+        class: "uk-table uk-table-divider uk-margin-remove-top",
+        children: [header, body]
+    });
+};
+
+const noTableData = message => {
+    return htmlElement({
+        element: "p",
+        class:
+            "uk-align-center uk-text-center uk-text-meta uk-margin-medium-top",
+        text: message
+    });
+};
+
+const switchTab = containerId => {
+    // Get the containerID element, clear it and add a loader icon
+    const container = document.getElementById(containerId);
+    // Clear the container and place a loader into it
+    container.innerHTML = "";
+    container.appendChild(createLoader());
+
+    return container;
+};
+
+const createLoader = () => {
+    // Create a div with a CSS spinner (loading icon)
+    return htmlElement({
         element: "div",
         class: "uk-width-1-1 uk-flex uk-flex-center",
-        child: spinner
+        child: htmlElement({
+            element: "div",
+            "uk-spinner": "ratio: 1"
+        })
     });
-    const td = htmlElement({
+};
+
+/* INVITATIONS PAGE */
+
+const invitationRow = user => {
+    const td_name = htmlElement({
         element: "td",
-        colspan: columns,
-        child: div
+        text: user["member__first_name"] + " " + user["member__last_name"]
     });
+
+    const td_email = htmlElement({
+        element: "td",
+        text: user["member__email"],
+        class: "uk-text-truncate"
+    });
+
+    const td_time = htmlElement({
+        element: "td",
+        text: user["time"],
+        class: "uk-table-expand"
+    });
+
+    const td_cancel = htmlElement({
+        element: "td",
+        id: "member-invitation-" + user["member__pk"],
+        class: "uk-text-center uk-width-1-5",
+        child: htmlElement({
+            element: "a",
+            href: "",
+            class: "uk-link-reset",
+            child: htmlElement({
+                element: "span",
+                "uk-icon": "icon: close"
+            })
+        })
+    });
+
+    // Add an onclick event listener for the cancel button
+    td_cancel.childNodes[0].addEventListener("click", e => {
+        // Prevent the page form jumping up again...
+        e.preventDefault();
+
+        uninviteUser(user["member__email"], slug).then(response => {
+            if (response === "InvitationRevoked") {
+                notification("The invitation was revoked", "check");
+                populateInvitations();
+            }
+        });
+    });
+
     const tr = htmlElement({
         element: "tr",
-        child: td
+        children: [td_name, td_email, td_time, td_cancel]
     });
+
     return tr;
 };
 
-const invitationRow = user => {
+const invitationTable = content => {
+    return createTable(
+        createHeader([
+            htmlElement({
+                element: "th",
+                text: "Name"
+            }),
+            htmlElement({
+                element: "th",
+                class: "uk-table-expand",
+                text: "Mail"
+            }),
+            htmlElement({
+                element: "th",
+                class: "uk-table-expand",
+                text: "Invitation Sent"
+            }),
+            htmlElement({
+                element: "th",
+                class: "uk-text-center uk-width-1-5",
+                text: "Cancel"
+            })
+        ]),
+        createBody(content)
+    );
+};
+
+const populateInvitations = () => {
+    const invitations = switchTab("group-members-invitation");
+
+    getInvitations(slug)
+        .then(response => {
+            invitations.innerHTML = "";
+
+            if (response.length > 0) {
+                // Map users to table rows
+                const content = response.map(user => invitationRow(user));
+
+                // Create a html table with the content
+                const table = invitationTable(content);
+
+                // Append the table to the invitations object
+                invitations.appendChild(table);
+            } else {
+                invitations.appendChild(
+                    noTableData("There are no invitations pending")
+                );
+            }
+        })
+        .catch(error => {
+            console.log(error);
+
+            // If there's an error, remove the loader and print an error message
+            invitations.innerHTML = "";
+            invitations.appendChild(
+                noTableData("An error occurred trying to fetch the invitations")
+            );
+        });
+};
+
+/* REQUESTS PAGE */
+
+const requestRow = user => {
     const td_name = htmlElement({
         element: "td",
         text: user["member__first_name"] + " " + user["member__last_name"]
@@ -223,7 +401,7 @@ const invitationRow = user => {
             class: "uk-link-reset",
             child: htmlElement({
                 element: "span",
-                "uk-icon": "icon: close"
+                "uk-icon": "icon: check"
             })
         })
     });
@@ -236,24 +414,55 @@ const invitationRow = user => {
     return tr;
 };
 
-const populateInvitations = () => {
-    const invitationsTable = document.getElementById(
-        "group-members-invitation-table"
+const requestTable = content => {
+    return createTable(
+        createHeader([
+            htmlElement({
+                element: "th",
+                text: "Name"
+            }),
+            htmlElement({
+                element: "th",
+                class: "uk-table-expand",
+                text: "Mail"
+            }),
+            htmlElement({
+                element: "th",
+                class: "uk-table-expand",
+                text: "Invitation Sent"
+            }),
+            htmlElement({
+                element: "th",
+                class: "uk-text-center uk-width-1-5",
+                text: "Accept"
+            })
+        ]),
+        createBody(content)
     );
+};
 
-    // Remove any content from the table
-    invitationsTable.innerHTML = "";
+const populateRequests = () => {
+    const requests = switchTab("group-members-requests");
 
-    // Place a loader into the table while fetching the list
-    const loader = htmlTableLoader(4);
+    getRequests(slug)
+        .then(response => {
+            requests.innerHTML = "";
 
-    invitationsTable.appendChild(loader);
-
-    getInvitations(slug).then(response => {
-        invitationsTable.removeChild(loader);
-
-        for (let user in response) {
-            invitationsTable.appendChild(invitationRow(response[user]));
-        }
-    });
+            if (response.length > 0) {
+                const content = response.map(user => requestRow(user));
+                const table = requestTable(content);
+                requests.appendChild(table);
+            } else {
+                requests.appendChild(
+                    noTableData("There are no requests pending")
+                );
+            }
+        })
+        .catch(() => {
+            // If there's an error, remove the loader and print an error message
+            requests.innerHTML = "";
+            requests.appendChild(
+                noTableData("An error occurred trying to fetch the requests")
+            );
+        });
 };

@@ -1,29 +1,6 @@
 {% load static %}
 {% load group_tags %}
 
-{% if requests %}
-<div uk-overflow-auto>
-    <table class="uk-table uk-table-divider uk-margin-remove-top">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th class="uk-table-expand">Mail</th>
-                <th class="uk-table-expand">Request Sent</th>
-                <th class="uk-text-center uk-width-1-5">Approve</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for request in requests %}
-            <tr>
-                <td>{{ request.member.get_full_name }}</td>
-                <td class="uk-text-truncate">{{ request.member.email }}</td>
-                <td class="uk-table-expand">{{ request.time|time_since }}</td>
-                <td class="uk-text-center uk-width-1-5"><a href="#" class="uk-link-reset" onclick="notImplemented()"><span uk-icon="icon: check"></span></a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div id="group-members-requests">
+    <!-- Fill this div with data using the populateInvitations method in group_members.js -->
 </div>
-{% else %}
-<p class="uk-align-center uk-text-center uk-text-meta uk-margin-medium-top">There are no pending requests!</p>
-{% endif %}
