@@ -1,7 +1,13 @@
 {% load static %}
 
 {% block card %}
+{% if is_member %}
+<!-- If the user is a member of the group then clicking the group card takes them to the home page-->
 <a class="uk-link-reset" href="{% url 'group-home' slug=group.slug %}">
+{% else %}
+<!-- If not a modal is shown containing group information-->
+<a id="{{ group.slug }}"class="uk-link-reset ntnui-group-modal">
+{% endif %}
   <div class="uk-card uk-card-default uk-panel uk-padding-small uk-margin-small-top uk-transition-toggle" >
     <span class="uk-badge uk-float-right uk-label-danger uk-text-small"> {{ group.get_access_status }} </span>
 

@@ -31,3 +31,9 @@ html {
     background: green;
     color: white;
 }
+
+/* OVERRIDE UIKIT DEFAULTS - TODO: SCSS OVERRIDES INSTEAD */
+.uk-notification * {
+    background-color: #3d9970;
+    color: #fff;
+}

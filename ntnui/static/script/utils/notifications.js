@@ -1,8 +1,5 @@
-// Load uikit from the window
-UIKit = window.UIkit;
-
 const notification = (message, icon = "user", status = "default") => {
-    UIKit.notification({
+    UIkit.notification({
         message:
             "<span class='uk-margin-small-right' uk-icon='icon: " +
             icon +

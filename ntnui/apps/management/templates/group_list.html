@@ -15,7 +15,7 @@
         <!-- My Group content goes here -->
         {% if user_groups %}
           {% for group in user_groups %}
-            {% include "group_card.html" with group=group %}
+            {% include "group_card.html" with group=group is_member=True %}
           {% endfor %}
         {% else %}
           <p>You are not a member of any groups. Find a group below to join!</p>
@@ -34,7 +34,7 @@
           <div id="group-list">
           {% for group in other_groups %}
             <div id="{{ group.slug }}">
-              {% include "group_card.html" with group=group %}
+              {% include "group_card.html" with group=group is_member=False %}
             </div>
           {% endfor %}
           </div>

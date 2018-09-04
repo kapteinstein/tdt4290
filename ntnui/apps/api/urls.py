@@ -4,6 +4,7 @@ from api.resources import user
 
 ''' Include URL Patterns '''
 urlpatterns = [
+    path('group-info', group.GroupInfo.as_view()),
     path('members', group.GroupMembers.as_view()),
     path('invitations', group.GroupInvites.as_view()),
     path('requests', group.GroupRequests.as_view()),

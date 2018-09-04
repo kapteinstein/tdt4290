@@ -13,6 +13,25 @@ membership_decorators = [login_required, group_decorators.is_member]
 
 
 @method_decorator(login_required, name='dispatch')
+class GroupInfo(JSONView):
+    ''' Returns standard group information, like description, name etc '''
+
+    def get(self, request):
+        return self.render_to_response(request.GET)
+
+    def get_data(self, context):
+        slug = context.get('slug') or ''
+
+        info = list(GroupModel.objects.filter(slug=slug).values(
+            'name', 'access', 'meta__description'))
+
+        if (info):
+            return {'message': info[0]}
+
+        return {'message': 'GroupDoesNotExist'}
+
+
+@method_decorator(login_required, name='dispatch')
 class GroupMembers(JSONView):
     ''' Returns an html template containing all groups based on membership of the active user'''
 

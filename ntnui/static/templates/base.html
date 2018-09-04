@@ -19,17 +19,8 @@
     </div>
 
     <!-- Load the notification js before calling the notification methods -->
-    <script type="text/javascript" src="{% static 'script/notifications.js' %}"></script>
+    <script type="text/javascript" src="{% static 'script/utils/notifications.js' %}"></script>
     
-    <!-- Show any messages as notifications -->
-    <script type="text/javascript">      
-      {% if messages %}
-        {% for message in messages %}
-          notificationMessage("{{ message }}", "{{ message.tags }}")
-        {% endfor %}
-      {% endif %}
-    </script>
-
     {% block extend-script %}
     {% endblock %}
   </body>
