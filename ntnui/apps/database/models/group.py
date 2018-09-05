@@ -30,8 +30,8 @@ class GroupModel(models.Model):
         max_length=20, choices=ACCESS_CHOICES, default="O")
 
     ''' Group relationships '''
-    sub_group = models.ManyToManyField(
-        "self", through='GroupRelationshipModel', symmetrical=False, blank=True, related_name="related_to")
+    parent = models.ManyToManyField(
+        "self", through='GroupRelationshipModel', symmetrical=False, blank=True, related_name="child")
 
     members = models.ManyToManyField('UserModel', through='MembershipModel')
 

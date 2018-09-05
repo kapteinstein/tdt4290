@@ -1,6 +1,7 @@
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import RedirectView
 
 # from accounts import views as accounts_views
 # from groups import views as groups_views
@@ -15,7 +16,8 @@ urlpatterns = [
     # Application routes
     path('a/', include('authentication.urls')),
     path('m/', include('management.urls')),
-
+    re_path(r'^$', RedirectView.as_view(
+        pattern_name='group-list', permanent=False))
     # url(r'^ajax/', include('forms.ajax')),
     # url(r'^$', groups_views.list_groups, name='home'),
     # url(r'^forms/', include('forms.urls')),
