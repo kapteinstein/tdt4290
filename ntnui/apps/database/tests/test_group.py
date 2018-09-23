@@ -1,6 +1,6 @@
 from django.test import TestCase
 from datetime import date, timedelta
-from data_storage.models import GroupModel
+from database.models import GroupModel
 
 
 class GroupModelTestCase(TestCase):

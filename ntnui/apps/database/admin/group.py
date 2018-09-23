@@ -58,7 +58,7 @@ class GroupRelationshipInline(nested_admin.NestedStackedInline):
     model = GroupRelationshipModel
 
     # Reference to the related name in the GroupRelationshipModel
-    fk_name = "parent_group"
+    fk_name = "child_group"
     extra = 1
     max_num = 50
 
