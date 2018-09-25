@@ -1,0 +1,7 @@
+Using default file-based DB.
+System check identified some issues:
+
+WARNINGS:
+[33;1maccounts.User: (auth.W004) 'User.email' is named as the 'USERNAME_FIELD', but it is not unique.
+	HINT: Ensure that your authentication backend(s) can handle non-unique usernames.[0m
+[{"model": "hs.mainboard", "pk": 1, "fields": {"name": "Main Board", "slug": "hs", "cover_photo": "cover_photo/ntnui-volleyball.png"}}, {"model": "hs.mainboardmembership", "pk": 1, "fields": {"person": 1, "board": 1, "date_joined": "2017-09-30", "role": "Leader"}}]

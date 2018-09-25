@@ -1,0 +1,31 @@
+{% load static %}
+
+<head>
+    {% block head-meta %}
+    <title>{% block title %}NTNUI {% endblock %}</title>
+    <meta charset="utf-8">
+    <!--Add keywords that describe your project between the quotation marks. This helps search engines find and index your content-->
+    <meta name="keywords" content="REPLACE WITH YOUR OWN KEYWORDS HERE, AND HERE, AND HERE">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Load the Favicon Kit Stylesheets -->
+    <link rel="shortcut icon" href="{% static 'favicon.png' %}">
+
+    <!-- -->
+    {% endblock %}
+
+    {% block head-css %}
+    <!-- Load the UI Kit Stylesheets -->
+    <link href="{% static 'style/uikit.min.css' %}" rel="stylesheet" media="screen" />
+    <link href="{% static 'style/ntnui.css' %}" rel="stylesheet" media="screen" />
+    {% endblock %}
+
+    <!-- Load the UI Kit Script files -->
+    <script type="text/javascript" src="{% static 'script/uikit.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'script/uikit-icons.min.js' %}"></script>
+
+    <!-- Load Axios -->
+    <script type="text/javascript" src="{% static 'script/axios.min.js' %}"></script>
+
+</head>

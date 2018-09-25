@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<!-- Avaliable Variables from View:
+  - user_groups
+  _ other_groups
+-->
+
+{% block content %}
+<div class="uk-container uk-width-4-5@m uk-width-2-3@l">
+  <ul uk-accordion="multiple: true" class="uk-margin-medium-top">
+    <li class="uk-open ">
+      <a class="uk-accordion-title" href="#">My Groups</a>
+      <div class="uk-accordion-content">
+        <!-- My Group content goes here -->
+        {% if user_groups %}
+          {% for group in user_groups %}
+            {% include "group_card.html" with group=group is_member=True %}
+          {% endfor %}
+        {% else %}
+          <p>You are not a member of any groups. Find a group below to join!</p>
+        {% endif %}
+      </div>
+    </li>
+    <li class="uk-open">
+      <a class="uk-accordion-title" href="#">All Groups</a>
+      <div class="uk-accordion-content">
+        <!-- All Group content goes here -->
+          <form id="group-search-form" class="uk-search uk-search-default uk-width-1-1 uk-background-default" onsubmit="event.preventDefault()">
+            <span uk-search-icon></span>
+            <input id="group-search" class="uk-search-input" type="search" placeholder="Search for groups...">
+          </form>
+
+          <div id="group-list">
+          {% for group in other_groups %}
+            <div id="{{ group.slug }}">
+              {% include "group_card.html" with group=group is_member=False %}
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+{% endblock content %}
+
+{% block extend-script %}
+  <script type="module" src="{% static 'script/group/group_list.js' %}"></script>
+{% endblock %}

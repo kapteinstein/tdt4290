@@ -1,0 +1,29 @@
+{% load static %}
+
+<div>
+    <div class="uk-card uk-card-default">
+        <div class="uk-card-header uk-flex uk-flex-center uk-height-small uk-padding-small ntnui-card-gradient ">
+            <div class="uk-grid-small uk-flex-middle uk-light " uk-grid>
+                <div class="uk-width-1-5">
+                    <!-- Different icons for different roles -->
+                    {% if role.role == "P" %}
+                        <span class="ntnui-icon-medium" uk-icon="icon: star"></span>
+                    {% elif role.role == "VP" %}
+                        <span class="ntnui-icon-medium" uk-icon="icon: heart"></span>
+                    {% elif role.role == "C" %}
+                        <span class="ntnui-icon-medium" uk-icon="icon: cart"></span>
+                    {% else %}
+                        <span class="ntnui-icon-medium" uk-icon="icon: user"></span>
+                    {% endif %}
+                </div>
+                <div class="uk-margin-small-left uk-width-expand uk-text-left">
+                    <h4 class="uk-margin-remove-bottom uk-text-truncate">{{ role.member }}</h4>
+                    <p class="uk-text-meta uk-margin-remove-top uk-text-truncate">{{ role.get_full_role }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="uk-card-footer ntnui-border-remove">
+            <a href="mailto:{{ role.member.email }}" class="uk-button uk-button-text">Send e-mail</a>
+        </div>
+    </div>
+</div>

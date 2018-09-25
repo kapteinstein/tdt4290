@@ -1,0 +1,275 @@
+[
+    {
+        "model": "database.usermodel",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$vfiJE6ixbWeZ$q3g3pkeyyr9Q9p6ZBY4iZFJLOGH7VUkBWJz0eerjcm4=",
+            "last_login": "2018-08-29T18:28:08.458Z",
+            "is_superuser": true,
+            "is_active": true,
+            "is_admin": false,
+            "is_staff": true,
+            "first_name": "",
+            "last_name": "",
+            "date_of_birth": null,
+            "gender": "-",
+            "customer_no": "",
+            "register_date": "2018-08-27",
+            "card_no": null,
+            "contract_no": null,
+            "contract_expiry_date": null,
+            "language": "no",
+            "calling_code": null,
+            "phone_no": null,
+            "email": "super@admin.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "database.usermodel",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$F0agatNLEMTv$2705giYaWkzHHIB1zLJfLv3X0MB76az9R67+6JDhBFY=",
+            "last_login": "2018-08-30T10:35:14.678Z",
+            "is_superuser": false,
+            "is_active": true,
+            "is_admin": false,
+            "is_staff": false,
+            "first_name": "Ron",
+            "last_name": "Swanson",
+            "date_of_birth": "1970-06-26",
+            "gender": "M",
+            "customer_no": "1",
+            "register_date": "2018-08-27",
+            "card_no": "111111",
+            "contract_no": 111111,
+            "contract_expiry_date": "2019-08-27",
+            "language": "no",
+            "calling_code": 47,
+            "phone_no": 12345678,
+            "email": "ron@swanson.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "database.usermodel",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$hXfdhYbVfDYk$f1u367fLm/ZzJyJtPW7ZZg6cx0f6U6xbhGoIXQ2bp/s=",
+            "last_login": null,
+            "is_superuser": false,
+            "is_active": true,
+            "is_admin": false,
+            "is_staff": false,
+            "first_name": "Leslie",
+            "last_name": "Knope",
+            "date_of_birth": "1971-09-16",
+            "gender": "F",
+            "customer_no": "2",
+            "register_date": "2018-08-27",
+            "card_no": "222222",
+            "contract_no": 222222,
+            "contract_expiry_date": "2019-08-27",
+            "language": "no",
+            "calling_code": 47,
+            "phone_no": 12345678,
+            "email": "leslie@knope.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "database.usermodel",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$latKbgYutg27$W5uLAQ6X9lOtUEbs4j02mQHwPwsDJz9kgoMVVJcQjZA=",
+            "last_login": null,
+            "is_superuser": false,
+            "is_active": true,
+            "is_admin": false,
+            "is_staff": false,
+            "first_name": "Tom",
+            "last_name": "Haverford",
+            "date_of_birth": "1983-02-23",
+            "gender": "M",
+            "customer_no": "3",
+            "register_date": "2018-08-27",
+            "card_no": "333333",
+            "contract_no": 333333,
+            "contract_expiry_date": "2019-08-27",
+            "language": "no",
+            "calling_code": 47,
+            "phone_no": 12345678,
+            "email": "tom@haverford.com",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "database.groupmediamodel",
+        "pk": 5,
+        "fields": {
+            "cover": "cover_photo/ntnui.png",
+            "logo": "logo/parks-and-recreation-department/pandr2.jpg",
+            "group": 1
+        }
+    },
+    {
+        "model": "database.groupmediamodel",
+        "pk": 6,
+        "fields": {
+            "cover": "cover_photo/ntnui.png",
+            "logo": "logo/sewage-department/sewage.jpg",
+            "group": 5
+        }
+    },
+    {
+        "model": "database.groupmediamodel",
+        "pk": 7,
+        "fields": {
+            "cover": "cover_photo/ntnui.png",
+            "logo": "logo/police-department/police.jpg",
+            "group": 6
+        }
+    },
+    {
+        "model": "database.groupmetamodel",
+        "pk": 1,
+        "fields": {
+            "description": "Welcome to the Parks and Recreation department of Pawnee, Indiana",
+            "language": "no",
+            "group": 1
+        }
+    },
+    {
+        "model": "database.groupmetamodel",
+        "pk": 5,
+        "fields": {
+            "description": "The Sewage Department, nicknamed \"the toilet party\", deals with Pawnee's sewage system.",
+            "language": "no",
+            "group": 5
+        }
+    },
+    {
+        "model": "database.groupmetamodel",
+        "pk": 6,
+        "fields": {
+            "description": "The officers of Pawnee tend to speak in a descriptive, police-like manner, even in matters unrelated to their work. They also tend to be jumpy, especially when pulling things out of your pocket.",
+            "language": "no",
+            "group": 6
+        }
+    },
+    {
+        "model": "database.groupmodel",
+        "pk": 1,
+        "fields": {
+            "name": "Parks and Recreation Department",
+            "slug": "parks-and-recreation-department",
+            "founding_date": "2018-08-27",
+            "payment_key": null,
+            "newsletter_key": null,
+            "access": "O"
+        }
+    },
+    {
+        "model": "database.groupmodel",
+        "pk": 5,
+        "fields": {
+            "name": "Sewage Department",
+            "slug": "sewage-department",
+            "founding_date": "2018-08-29",
+            "payment_key": null,
+            "newsletter_key": null,
+            "access": "C"
+        }
+    },
+    {
+        "model": "database.groupmodel",
+        "pk": 6,
+        "fields": {
+            "name": "Police Department",
+            "slug": "police-department",
+            "founding_date": "2018-08-29",
+            "payment_key": null,
+            "newsletter_key": null,
+            "access": "O"
+        }
+    },
+    {
+        "model": "database.membershipmodel",
+        "pk": 1,
+        "fields": {
+            "date_joined": "2018-08-27",
+            "group_expiry": "2019-08-27",
+            "sports_license_expiry": null,
+            "sports_license_no": null,
+            "member": 2,
+            "group": 1
+        }
+    },
+    {
+        "model": "database.membershipmodel",
+        "pk": 2,
+        "fields": {
+            "date_joined": "2018-08-27",
+            "group_expiry": "2019-08-27",
+            "sports_license_expiry": null,
+            "sports_license_no": null,
+            "member": 3,
+            "group": 1
+        }
+    },
+    {
+        "model": "database.membershipmodel",
+        "pk": 3,
+        "fields": {
+            "date_joined": "2018-08-27",
+            "group_expiry": "2019-08-27",
+            "sports_license_expiry": null,
+            "sports_license_no": null,
+            "member": 4,
+            "group": 1
+        }
+    },
+    {
+        "model": "database.boardmodel",
+        "pk": 1,
+        "fields": {
+            "creation_date": "2018-08-27",
+            "predecessor": null,
+            "group": 1
+        }
+    },
+    {
+        "model": "database.rolemodel",
+        "pk": 1,
+        "fields": {
+            "role": "P",
+            "date_joined": "2018-08-27",
+            "board": 1,
+            "member": 2
+        }
+    },
+    {
+        "model": "database.rolemodel",
+        "pk": 2,
+        "fields": {
+            "role": "-",
+            "date_joined": "2018-08-27",
+            "board": 1,
+            "member": 3
+        }
+    },
+    {
+        "model": "database.rolemodel",
+        "pk": 3,
+        "fields": {
+            "role": "C",
+            "date_joined": "2018-08-27",
+            "board": 1,
+            "member": 4
+        }
+    }
+]

@@ -1,0 +1,39 @@
+/* EVERYTHING HERE SHOULD START WITH NTNUI- */
+
+html {
+    /* Always keep the scrollbar visible */
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+}
+
+.ntnui-content {
+    /* Force the footer to be at the bottom - subtract: footer height, content-top-margin, navbar-height and content-bottom-margin */
+    min-height: calc(100vh - 64px - 80px - 10px);
+}
+
+.ntnui-icon-medium > svg {
+    width: 2rem;
+}
+
+.ntnui-card-gradient {
+    background-image: linear-gradient(-15deg, #13547a 10%, #80d0c7 100%);
+}
+
+.ntnui-border-remove {
+    border: none !important;
+}
+
+.ntnui-height-small {
+    height: 4rem !important;
+}
+
+.ntnui-button-primary {
+    background: green;
+    color: white;
+}
+
+/* OVERRIDE UIKIT DEFAULTS - TODO: SCSS OVERRIDES INSTEAD */
+.uk-notification * {
+    background-color: #3d9970;
+    color: #fff;
+}

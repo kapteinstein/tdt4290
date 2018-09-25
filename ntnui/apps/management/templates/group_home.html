@@ -1,0 +1,17 @@
+{% extends 'group.html' %}
+
+{% block group-content %}
+  <div class="uk-container uk-width-6-7@m">
+  <h1 class="uk-heading-divider uk-text-center">{{ group.name }}</h1>
+  <p>{{ group.meta.description }}</p>
+  <p>Below you can find some basic information about the group, including contact details to the board members.</p>
+
+  <h3 class="uk-text-center uk-margin-small-bottom">Board Members</h3>
+  </div>
+
+  <div class="uk-grid-match uk-width-4-5@s uk-grid-small uk-child-width-1-2@s uk-flex-center uk-text-center uk-margin-small-bottom" uk-grid>
+    {% for role in group.board.get_roles_sorted %}
+      {% include 'group_home_board_card.html' with role=role %}
+    {% endfor %}
+  </div>
+{% endblock %}

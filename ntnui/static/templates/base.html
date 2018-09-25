@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html class="uk-background-muted">
+  <!-- Load the head tag, including stylesheets etc. -->
+  {% include "meta.html" %}
+
+  <body>
+    <div id="offcanvas" class="uk-offcanvas-content uk-background-muted">
+      {% include "navbar.html" %}
+      
+      <!-- Subtract the footer and navbar height -->
+    <div class="ntnui-content uk-margin-small-bottom">
+          {% block content %}
+          {% endblock %}
+      </div>
+
+      {% include "footer.html" %}
+    </div>
+
+    <!-- Load the notification js before calling the notification methods -->
+    <script type="text/javascript" src="{% static 'script/utils/notifications.js' %}"></script>
+    
+    {% block extend-script %}
+    {% endblock %}
+  </body>
+</html>

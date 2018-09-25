@@ -1,0 +1,44 @@
+{% load static %}
+{% load group_tags %}
+
+<div id="group-members-invitation">
+    <!-- Fill this div with data using the populateInvitations method in group_members.js -->
+</div>
+
+<!-- This is a button toggling the modal -->
+<p class="uk-text-center uk-margin-small-bottom">
+    <button class="uk-button uk-button-default" type="button" uk-toggle="target: #group-members-invitation-modal">Invite User</button>
+</p>
+
+<!-- This is the modal containing the invitation form -->
+<div id="group-members-invitation-modal" uk-modal>
+    <div class="uk-modal-dialog">
+        <div class="uk-modal-header uk-text-center">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <h2 class="uk-modal-title">Invite</h2>
+        </div>
+        <div class="uk-modal-body">
+            <p class="uk-text-center">
+                Invite a new user to the group by filling out the form below!
+            </p>
+            <form id="group-members-invitation-form" class="uk-form-stacked">
+                {% csrf_token %} 
+                <div>
+                    <label class="uk-form-label">
+                        Email
+                    </label> 
+                    <div class="uk-form-controls">
+                        <input id="invitation-email" name="email" maxlength=100 class="uk-input" required type="email">
+                    </div>
+                    <div id="group-members-invitation-form-error" class="uk-center">
+                        <p class="uk-text-center uk-margin-small-top"></p>
+                    </div>
+                </div>
+                <p class="uk-text-center">
+                    <!-- Place an 'onclick' listener on this button using js -->
+                    <button class="uk-button ntnui-button-primary" type="submit">Invite</button>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>

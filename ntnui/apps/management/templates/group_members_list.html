@@ -1,0 +1,30 @@
+{% load static %}
+
+
+<div uk-overflow-auto>
+    <table class="uk-table uk-table-divider uk-margin-remove-top">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th class="uk-table-expand">Mail</th>
+                <th>Phone</th>
+                <th class="uk-text-center">More</th>
+                <th class="uk-text-center">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members %}
+            <tr>
+                <td>{{ member.get_full_name }}</td>
+                <td class="uk-table-expand">{{ member.email }}</td>
+                <td class="uk-text-truncate">+ {{ member.calling_code }} {{ member.phone_no }}</td>
+                <td class="uk-text-center"><a href="#" class="uk-link-reset" uk-toggle="target: #member-info-modal-{{ member.pk }}"><span uk-icon="icon: more"></span></a></td>
+                <td class="uk-text-center"><a href="#" class="uk-link-reset" onclick="notImplemented()"><span uk-icon="icon: pencil"></span></a></td>
+
+                <!-- TODO: Instead of loading a billion modals and not showing them, do this with JS -->
+                {% include 'group_members_info_modal.html' with member=member %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

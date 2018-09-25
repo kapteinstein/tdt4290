@@ -1,0 +1,43 @@
+{% extends 'group.html' %}
+{% load static %}
+
+{% block group-content %}
+    <div class="uk-container uk-width-6-7@m">
+        <h1 class="uk-heading-divider uk-text-center">Group Members</h1>
+    </div>
+
+    <div class="uk-grid-small uk-flex-between uk-flex-middle uk-width-1-1" uk-grid>
+        <ul id="group-member-switcher" class="nav-overlay uk-navbar-left uk-subnav uk-flex-center uk-subnav-divider uk-margin-remove uk-padding-small uk-width-5-6" uk-switcher="connect: #group-member-switcher-container">
+            <li><a href="#">Members</a></li>
+            <li><a href="#">Invitations</a></li>
+            <li><a href="#">Requests</a></li>
+        </ul>
+
+        <div class="nav-overlay uk-navbar-left uk-flex-1 ntnui-height-small" hidden>
+            <div class="uk-navbar-item uk-width-expand ntnui-height-small">
+                <form id="group-members-search-form" class="uk-search uk-search-navbar uk-width-1-1">
+                    <input class="uk-search-input" type="search" placeholder="Search..." autofocus>
+                </form>
+            </div>
+            <a class="uk-navbar-toggle ntnui-height-small" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+        </div>
+
+        <div class="nav-overlay uk-navbar-right uk-width-1-6">
+            <a class="uk-navbar-toggle ntnui-height-small" uk-search-icon uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+        </div>
+    </div>
+
+    <ul id="group-member-switcher-container" class="uk-switcher uk-margin uk-width-1-1">
+        <li id="group-member-list">{% include 'group_members_list.html' with members=members %}</li>
+        <li id="group-member-invitations">{% include 'group_members_invitation.html' with invitations=invitations %}</li>
+        <li id="group-member-requests">{% include 'group_members_request.html' with requests=requests %}</li>
+    </ul>
+{% endblock %}
+
+{% block extend-script %}
+    <script type="text/javascript">
+        // Inject slug as a global variable
+        const slug = "{{ group.slug }}"
+    </script>
+    <script type="text/javascript" src="{% static 'script/group/group_members.js' %}"></script>
+{% endblock %}
