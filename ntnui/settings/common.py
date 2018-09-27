@@ -49,10 +49,11 @@ LOCAL_APPS = [
     'authentication',
     'database',
     'management',
+    'forms',
+
     #'accounts',
     #'hs',
     #'groups',
-    #'forms',
 ]
 
 INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
