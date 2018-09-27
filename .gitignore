@@ -6,3 +6,5 @@ geckodriver.log
 .coverage
 .env
 .vscode
+*.db
+ntnui/media/CACHE
