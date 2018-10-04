@@ -16,6 +16,7 @@ urlpatterns = [
     # Application routes
     path('a/', include('authentication.urls')),
     path('m/', include('management.urls')),
+    path('f/', include('forms.urls')),
     re_path(r'^$', RedirectView.as_view(
         pattern_name='group-list', permanent=False))
     # url(r'^ajax/', include('forms.ajax')),

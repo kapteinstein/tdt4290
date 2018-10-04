@@ -1,7 +1,7 @@
 """
-AbstractModel
+AbstractFormModel      
 
-All models inherits from this AbstractModel because they share the same fields.
+All models inherits from this AbstractFormModel because they share the same fields.
 The Abstract Model is a super class with disjunct subclasses as drawn below.
                         _______________________
                         |                     |
@@ -79,7 +79,7 @@ form are the form_instantiator, form_signers and form_approvers.
 from django.db import models
 
 
-class AbstractModel(models.Model):
+class AbstractFormModel(models.Model):
     # databse fields
     form_instantiatior = models.ForeignKey('database.UserModel', on_delete=models.SET_NULL, null=True, related_name="form_instantiatior")
     form_signers = models.ManyToManyField('database.UserModel', related_name="form_signers")
@@ -90,14 +90,10 @@ class AbstractModel(models.Model):
     # class attributes
     form_name = 'NO NAME'
     required_sign_type = 0
-    access_level = 0
 
     # attribute spesific methods
     def get_required_sign_level(self):
         return self.required_sign_type
-
-    def get_access_level(self):
-        return self.access_level
 
     def get_form_name(self):
         return self.form_name
