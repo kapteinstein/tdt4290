@@ -1,5 +1,3 @@
-from django.db import models
-
 """
 AbstractModel
 
@@ -78,13 +76,21 @@ form are the form_instantiator, form_signers and form_approvers.
 
 """
 
+from django.db import models
+
+
 class AbstractModel(models.Model):
     # databse fields
     form_instantiatior = models.ForeignKey('database.UserModel', on_delete=models.SET_NULL, null=True, related_name="form_instantiatior")
     form_signers = models.ManyToManyField('database.UserModel', related_name="form_signers")
-    form_approvers = models.ManyToManyField('database.UserModel', related_name="form_approvers")
-    form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures")
+    form_approvers = models.ManyToManyField('database.UserModel', related_name="form_approvers", blank=True)
+    form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures", blank=True)
     form_completed = models.BooleanField(default = False)
+
+    # class attributes
+    form_name = 'NO NAME'
+    required_sign_type = 0
+    access_level = 0
 
     # attribute spesific methods
     def get_required_sign_level(self):
@@ -95,12 +101,3 @@ class AbstractModel(models.Model):
 
     def get_form_name(self):
         return self.form_name
-
-    def __str__(self):
-        return 'name: {}, access_level: {}, sign_type: {}'.format(self.get_form_name(),
-            self.get_access_level(), self.get_required_sign_level())
-
-    def __init__(self, form_name = 'NO NAME', required_sign_type = 0, access_level = 0):
-        self.form_name = form_name
-        self.required_sign_type = required_sign_type
-        self.access_level = access_level
