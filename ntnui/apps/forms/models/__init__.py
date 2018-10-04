@@ -1,1 +1,1 @@
-from .abstract_form import *
+from .abstract import *
