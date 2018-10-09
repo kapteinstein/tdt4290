@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from forms.models import CoachInstantiationForm, CoachSigningForm, CoachModel
+from forms.models import CoachInstantiationForm, CoachSigningForm, CoachFormModel
 
 class CoachInstantiatorView(View):
     def get(self, request):
