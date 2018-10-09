@@ -4,7 +4,7 @@ from forms.models import AbstractFormModel, enums
 from datetime import datetime
 
 
-class CoachModel(AbstractFormModel):
+class CoachFormModel(AbstractFormModel):
 
     position = models.IntegerField(choices=enums._POSITION)
     start_date = models.DateField()
@@ -18,12 +18,12 @@ class CoachModel(AbstractFormModel):
 
 class CoachInstantiationForm(forms.ModelForm):
     class Meta:
-        model = CoachModel
+        model = CoachFormModel
         fields = ['form_signers', 'form_approvers']
 
 class CoachSigningForm(forms.ModelForm):
     class Meta:
-        model = CoachModel
+        model = CoachFormModel
         fields = ['position', 'group', 'compensation', 'compensation_comments', 'start_date']
         widgets = {
             'position': forms.Select(attrs={'class': 'uk-select'}),

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import AbstractFormModel
-from .models import CoachModel
+from .models import CoachFormModel
 
 admin.site.register(AbstractFormModel)
-admin.site.register(CoachModel)
+admin.site.register(CoachFormModel)
