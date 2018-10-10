@@ -23,7 +23,8 @@ class CoachInstantiatorView(View):
         return render(request, 'coach_instantiator.html', context)
 
 class CoachSignerInfoView(View):
-    def get(self, request):
+    def get(self, request)
+
         context = {}
         return render(request, 'coach_info.html', context)        
 
