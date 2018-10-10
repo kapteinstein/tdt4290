@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="uk-cover-container">
+  <!-- Switch canvas on media queries -->
+  <canvas class="uk-visible@m" width="0" height="270" ></canvas>
+  <canvas class="uk-hidden@m" width="0" height="200" ></canvas>
+  <img src="/media/forms/forms_photo.png" alt="group cover photo" uk-cover>
+</div>
+
+{% include "form_navbar.html" %}
+
+<div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
+
+
+<ul class="uk-list uk-list-divider">
+{% for form in forms %}
+    <li>
+    {% with 'forms:'|add:form.form_slug|add:'-signer-info' as signer_url %}
+        <a href="{% url signer_url id=form.id %}">
+            {{ form.form_name }} {% if form.group %} - {{ form.group }}{% endif %}
+        </a>
+    {% endwith %}
+    </li>
+{% endfor %}
+</ul>
+
+</div>
+
+{% endblock %}
