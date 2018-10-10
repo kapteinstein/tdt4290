@@ -16,16 +16,34 @@
 
 
 <ul class="uk-list uk-list-divider">
-{% for form in forms %}
-    <li>
-    {% with 'forms:'|add:form.form_slug|add:'-signer-info' as signer_url %}
-        <a href="{% url signer_url id=form.id %}">
-            {{ form.form_name }} {% if form.group %} - {{ form.group }}{% endif %}
-        </a>
-    {% endwith %}
-    </li>
-{% endfor %}
+
 </ul>
+
+{% if forms %}
+        <table class="uk-table uk-table-divider">
+        <thead>
+            <tr>
+                <th>Skjema</th>
+                <th>Gruppe</th>
+                <th>Fra</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for form in forms %}
+                {% with 'forms:'|add:form.form_slug|add:'-signer-info' as signer_url %}
+                <tr class="uk-table-link">
+                <td><a href="{% url signer_url id=form.id %}">{{ form.form_name }}</a></td>
+                <td>{{ form.group }}</td>
+                <td>{{ form.form_instantiator }}</td>
+                </tr>
+                {% endwith %}
+            {% endfor %}
+        </tbody>
+        </table>
+
+{% else %}
+    Du har ikke fått noen skjema som venter din signering
+{% endif %}
 
 </div>
 

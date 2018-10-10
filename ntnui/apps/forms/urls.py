@@ -11,5 +11,5 @@ urlpatterns = [
     path(CoachFormModel.form_slug+'-signer/<int:id>/', CoachSignerView.as_view(), name=CoachFormModel.form_slug+"-signer"),
     path('incoming-list', IncomingView.as_view(), name="incoming-list"),
     path('outgoing-list', OutgoingView.as_view(), name="outgoing-list"),
-
+    path('instantiate-form-list', InstantiateListView.as_view(), name="instantiate-form-list"),
 ]
