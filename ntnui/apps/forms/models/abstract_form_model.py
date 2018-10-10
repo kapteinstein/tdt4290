@@ -103,6 +103,9 @@ class AbstractFormModel(models.Model):
     def get_form_name(self):
         return self.form_name
 
+    def is_form_completed(self):
+        self.form_completed = ((set(self.form_signers.all()) | set(self.form_approvers.all())) == set(self.form_signatures.all()))
+        return self.form_completed
 
     # Actions
     # ---Notify
