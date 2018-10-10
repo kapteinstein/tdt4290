@@ -37,7 +37,12 @@ class CoachSignerView(View):
             record = CoachFormModel.objects.get(id=request.GET.get('id')) # TODO Needs to be modified to Jans URL
             form = CoachSigningForm(request.POST or None, instance=record)
             form_signers = record.form_signers.all()
-            if (request.user in form_signers):
+            form_signatures = record.form_signatures.all()
+            current_user = request.user
+            if current_user in form_signatures:
+                return HttpResponseForbidden("Denied. Form already submitted")
+
+            if current_user in form_signers:
                 context = {
                     'form': form,
                     'id': record.id,
@@ -57,7 +62,6 @@ class CoachSignerView(View):
             record.form_signatures.add(request.user)
             if record.is_form_completed():
                 record.form_completed = True
-                print(record.form_completed)
             form.save()
             return HttpResponse("valid")
 
