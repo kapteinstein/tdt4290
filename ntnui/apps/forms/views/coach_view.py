@@ -17,13 +17,13 @@ class CoachInstantiatorView(View):
     def post(self, request):
         form = CoachInstantiationForm(request.POST)
         model_instance = form.save(commit=True)
+        model_instance.notify_signers()
         model_instance.save()
 
         context = {
             'form': form
         }
-        model_instance.notify_signers()
-        return HttpResponse("Form instansiated")
+        return HttpResponse("Form instantiated")
 
 class CoachSignerInfoView(View):
     def get(self, request):
