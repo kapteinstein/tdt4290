@@ -1,26 +1,29 @@
 from django.shortcuts import render
 from django.views import View
-from forms.models import CoachInstantiationForm, CoachSigningForm, CoachModel
+from forms.models import CoachInstantiationForm, CoachSigningForm, CoachFormModel
+from django.http import HttpResponse, Http404
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import HttpResponseForbidden
 
 class CoachInstantiatorView(View):
+
     def get(self, request):
-        if request.method == 'post':
-            form = CoachInstantiationForm(request.POST)
-            model_instance = form.save(commit=True)
-            model_instance.save()
+        form = CoachInstantiationForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'coach_instantiator.html', context)
 
-        else:
-            form = CoachInstantiationForm()
-
-
-        # record = CoachModel.objects.get(id=1)
-        # form = CoachSigningForm(instance=record)
+    def post(self, request):
+        form = CoachInstantiationForm(request.POST)
+        model_instance = form.save(commit=True)
+        model_instance.save()
 
         context = {
             'form': form
         }
-
-        return render(request, 'coach_instantiator.html', context)
+        model_instance.notify_signers()
+        return HttpResponse("HEi")
 
 class CoachSignerInfoView(View):
     def get(self, request):
@@ -29,20 +32,27 @@ class CoachSignerInfoView(View):
 
 class CoachSignerView(View):
     def get(self, request):
-        if request.method == 'post':
-            form = CoachSigningForm(request.POST)
-            print(form.id)
-            model_instance = form.save(commit=True)
-            model_instance.save()
+        try:
+            record = CoachFormModel.objects.get(id=request.GET.get('id'))
+            form = CoachSigningForm(request.POST or None, instance=record)
+            form_signers = record.form_signers.all()
+            if (request.user in form_signers):
+                context = {
+                    'form': form,
+                    'id': record.id,
+                }
+                return render(request, 'coach_signer.html', context)
+            else: 
+                return HttpResponseForbidden("You do not have access to this form")
+        except ObjectDoesNotExist:
+            raise Http404("Could not find form record")
+        # example urL: http://localhost:8000/f/2?id=2#
 
-        else:
-            form = CoachSigningForm()
+    def post(self, request):
+        record = CoachFormModel.objects.get(id=request.GET.get('id'))
+        form = CoachSigningForm(request.POST or None, instance=record)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("valid")
 
-
-        """ record = CoachModel.objects.get(id=1)
-        form = CoachSigningForm(instance=record) """
-
-        context = {
-            'form'      : form,
-        }
-        return render(request, 'coach_signer.html', context)
+        return HttpResponse("invalid")
