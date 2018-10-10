@@ -23,7 +23,7 @@ class CoachInstantiatorView(View):
             'form': form
         }
         model_instance.notify_signers()
-        return HttpResponse("HEi")
+        return HttpResponse("Form instansiated")
 
 class CoachSignerInfoView(View):
     def get(self, request):
@@ -34,7 +34,7 @@ class CoachSignerInfoView(View):
 class CoachSignerView(View):
     def get(self, request):
         try:
-            record = CoachFormModel.objects.get(id=request.GET.get('id'))
+            record = CoachFormModel.objects.get(id=request.GET.get('id')) # TODO Needs to be modified to Jans URL
             form = CoachSigningForm(request.POST or None, instance=record)
             form_signers = record.form_signers.all()
             if (request.user in form_signers):
@@ -62,3 +62,5 @@ class CoachSignerView(View):
             return HttpResponse("valid")
 
         return HttpResponse("invalid")
+
+class 
