@@ -62,5 +62,3 @@ class CoachSignerView(View):
             return HttpResponse("valid")
 
         return HttpResponse("invalid")
-
-class 
