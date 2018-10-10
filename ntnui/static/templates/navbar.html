@@ -10,10 +10,13 @@
                     <img src="{{ STATIC_MEDIA }}logo/ntnui.svg" height="50" width="110" uk-svg>
                 </a>
             </div>
-            
+
             <!-- Header navbar when screen size M -->
             <div class="uk-navbar-right">
                 <ul class="uk-navbar-nav uk-visible@m">
+                    <li><a href="/admin">admin
+                        <span class="uk-margin-small-left" uk-icon="icon: database"></span>
+                    </a></li>
                     <li class="uk-active" ><a href="{% url 'group-list' %}">Groups
                         <span class="uk-margin-small-left" uk-icon="icon: users"></span>
                     </a></li>
@@ -30,12 +33,12 @@
                     </li>
                 </ul>
                 <div class="uk-navbar-item uk-visible@m">
-                </div> 
-                
+                </div>
+
 
                 <a class="uk-navbar-toggle uk-hidden@m" uk-toggle="target: #offcanvas-navbar" href="#">
                     <span class="uk-margin-small-right uk-text-uppercase">Menu</span>
-                    <span uk-navbar-toggle-icon></span> 
+                    <span uk-navbar-toggle-icon></span>
                 </a>
 
                 <!-- Off Canvas navbar (for medium screens and below -->
@@ -44,6 +47,9 @@
                         <button class="uk-offcanvas-close" type="button" uk-close></button>
                         <ul class="uk-nav uk-nav-default">
                             <li class="uk-nav-header uk-margin-small-top">Menu</li>
+                            <li><a href="/admin">admin
+                                <span class="uk-margin-small-left" uk-icon="icon: database"></span>
+                            </a></li>
                             <li><a href="{% url 'group-list' %}">
                                 <span class="uk-margin-small-right"  uk-icon="icon: users"></span>
                                 Groups
