@@ -101,7 +101,7 @@ class AbstractFormModel(models.Model):
 
     # Actions
     # ---Notify
-    def notify_signer(self):
+    def notify_signers(self):
         emails = self.form_signers.all().values_list('email', flat=True);
         for email in emails: 
             send_mail("You have a new form", "Hei, we would like you to sign the following form", "no-reply@ntnui.no", [email])
