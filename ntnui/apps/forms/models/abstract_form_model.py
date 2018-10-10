@@ -77,11 +77,12 @@ form are the form_instantiator, form_signers and form_approvers.
 """
 
 from django.db import models
+from polymorphic.models import PolymorphicModel
 
 
-class AbstractFormModel(models.Model):
+class AbstractFormModel(PolymorphicModel):
     # databse fields
-    form_instantiatior = models.ForeignKey('database.UserModel', on_delete=models.SET_NULL, null=True, related_name="form_instantiatior")
+    form_instantiator = models.ForeignKey('database.UserModel', on_delete=models.SET_NULL, null=True, related_name="form_instantiatior")
     form_signers = models.ManyToManyField('database.UserModel', related_name="form_signers")
     form_approvers = models.ManyToManyField('database.UserModel', related_name="form_approvers", blank=True)
     form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures", blank=True)
@@ -89,6 +90,7 @@ class AbstractFormModel(models.Model):
 
     # class attributes
     form_name = 'NO NAME'
+    form_slug = 'NO SLUG'
     required_sign_type = 0
 
     # attribute spesific methods

@@ -12,8 +12,9 @@ class CoachFormModel(AbstractFormModel):
     compensation = models.IntegerField(choices=enums._COMPENSATIONS)
     compensation_comments = models.TextField(null=False, blank=True)
 
-    form_name = "Midlertidig ansettelse",
-    required_sign_type = 0,
+    form_name = "Midlertidig ansettelse"
+    form_slug = 'coach'
+    required_sign_type = 0
 
 
 class CoachInstantiationForm(forms.ModelForm):

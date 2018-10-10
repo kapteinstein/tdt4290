@@ -7,24 +7,31 @@
             <ul uk-tab class="uk-subnav uk-subnav-divider uk-margin-remove uk-padding-small" uk-margin>
                 </a>
             </li>
-                <li><a href="#">
-                    <span uk-icon="plus" class="uk-margin-small-right" ></span>
-                    Nytt skjema
-                </a></li>
+                <li>
+                    <a href="#">
+                        <span uk-icon="plus" class="uk-margin-small-right" ></span>
+                        Nytt skjema
+                    </a>
+                </li>
                 
-                <li><a href="#">
-                    <span uk-icon="star" class="uk-margin-small-right"></span>
-                    Aktive skjema
-                </a></li>
-                <li><a href="#">
-                    <span uk-icon="future" class="uk-margin-small-right"></span>
-                    Sjekk status
-                </a></li>
-                <li><a href="#" onclick="notImplemented()">
-                    <span uk-icon="mail" class="uk-margin-small-right"></span>
-                    Forespørsler
-                </a>
-            </li>
+                <li {% if navbar == 'incoming-list' %}class="uk-active"{% endif %}>
+                    <a href="{% url 'forms:incoming-list' %}">
+                        <span uk-icon="star" class="uk-margin-small-right"></span>
+                        Skjema til signering
+                    </a>
+                </li>
+                <li {% if navbar == 'outgoing-list' %}class="uk-active"{% endif %}>
+                    <a href="#">
+                        <span uk-icon="future" class="uk-margin-small-right"></span>
+                        Sendte skjema
+                    </a>
+                </li>
+                <li>
+                    <a href="#" onclick="notImplemented()">
+                        <span uk-icon="mail" class="uk-margin-small-right"></span>
+                        Arkiv
+                    </a>
+                </li>
             </ul>
         </div>
 
