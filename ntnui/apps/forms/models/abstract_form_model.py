@@ -1,5 +1,5 @@
 """
-AbstractFormModel      
+AbstractFormModel
 
 All models inherits from this AbstractFormModel because they share the same fields.
 The Abstract Model is a super class with disjunct subclasses as drawn below.
@@ -74,6 +74,11 @@ form are the form_instantiator, form_signers and form_approvers.
         1: Member
         0: Non-member
 
+For an organization with the size like NTNUI, a more flexible and better way to
+implement access control is via a role-based access control system. Every user
+is a part of one or several different access groups, and every resource in the
+system or on the site are available for one or several access groups.
+
 """
 
 from django.db import models
@@ -102,17 +107,17 @@ class AbstractFormModel(models.Model):
     # Actions
     # ---Notify
     def notify_signers(self):
-        emails = self.form_signers.all().values_list('email', flat=True);
-        for email in emails: 
-            send_mail("You have a new form", "Hei, we would like you to sign the following form", "no-reply@ntnui.no", [email])
-    
-    def notify_approvers(self):
-        emails = self.form_signers.all().values_list('email', flat=True);
-        for email in emails: 
+        emails = self.form_signers.all().values_list('email', flat=True)
+        for email in emails:
             send_mail("You have a new form", "Hei, we would like you to sign the following form", "no-reply@ntnui.no", [email])
 
+    def notify_approvers(self):
+        emails = self.form_approvers.all().values_list('email', flat=True)
+        for email in emails:
+            send_mail("You have a new form", "Hei, we would like you to approve the following form", "no-reply@ntnui.no", [email])
+
     def notify_owner(self):
-        email = self.form_instantiatior.email;
+        email = self.form_instantiatior.email
         send_mail("You have a new form", "Hei, we would like you to sign the following form", "no-reply@ntnui.no", [email])
 
 
