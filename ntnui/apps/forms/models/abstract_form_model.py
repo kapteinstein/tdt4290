@@ -77,7 +77,7 @@ form are the form_instantiator, form_signers and form_approvers.
 """
 
 from django.db import models
-
+from django.core.mail import send_mail
 
 class AbstractFormModel(models.Model):
     # databse fields
@@ -97,3 +97,24 @@ class AbstractFormModel(models.Model):
 
     def get_form_name(self):
         return self.form_name
+
+
+    # Actions
+    # ---Notify
+    def notify_signer(self):
+        emails = self.form_signers.all().values_list('email', flat=True);
+        for email in emails: 
+            send_mail("You have a new form", "Hei, we would like you to sign the following form", "no-reply@ntnui.no", [email])
+    
+    def notify_approvers(self):
+        emails = self.form_signers.all().values_list('email', flat=True);
+        for email in emails: 
+            send_mail("You have a new form", "Hei, we would like you to sign the following form", "no-reply@ntnui.no", [email])
+
+    def notify_owner(self):
+        email = self.form_instantiatior.email;
+        send_mail("You have a new form", "Hei, we would like you to sign the following form", "no-reply@ntnui.no", [email])
+
+
+    def sign(self):
+        pass
