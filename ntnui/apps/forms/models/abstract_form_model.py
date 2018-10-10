@@ -85,15 +85,20 @@ class AbstractFormModel(models.Model):
     form_signers = models.ManyToManyField('database.UserModel', related_name="form_signers")
     form_approvers = models.ManyToManyField('database.UserModel', related_name="form_approvers", blank=True)
     form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures", blank=True)
-    form_completed = models.BooleanField(default = False)
+    form_completed = models.BooleanField(default=False)
 
     # class attributes
     form_name = 'NO NAME'
     required_sign_type = 0
 
+    def is_form_completed(self):
+        return len(self.form_signatures.all()) == len(self.form_signers.all())
     # attribute spesific methods
     def get_required_sign_level(self):
         return self.required_sign_type
 
     def get_form_name(self):
         return self.form_name
+
+
+

@@ -20,6 +20,10 @@ class CoachInstantiationForm(forms.ModelForm):
     class Meta:
         model = CoachFormModel
         fields = ['form_signers', 'form_approvers']
+        # widgets = {
+        #    'form_signers': forms.Select(attrs={'class': 'uk-select'}),
+        #    'form_approvers': forms.Select(attrs={'class': 'uk-select'}),
+        #}
 
 class CoachSigningForm(forms.ModelForm):
     class Meta:

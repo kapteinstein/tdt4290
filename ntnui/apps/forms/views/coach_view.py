@@ -27,7 +27,8 @@ class CoachInstantiatorView(View):
 
 class CoachSignerInfoView(View):
     def get(self, request):
-        context = {}
+        context = {
+        }
         return render(request, 'coach_info.html', context)        
 
 class CoachSignerView(View):
@@ -43,15 +44,20 @@ class CoachSignerView(View):
                 }
                 return render(request, 'coach_signer.html', context)
             else: 
-                return HttpResponseForbidden("You do not have access to this form")
+                return HttpResponseForbidden("Denied Access")
         except ObjectDoesNotExist:
             raise Http404("Could not find form record")
         # example urL: http://localhost:8000/f/2?id=2#
 
     def post(self, request):
+        # TODO Add verification before adding user to signature-list
         record = CoachFormModel.objects.get(id=request.GET.get('id'))
         form = CoachSigningForm(request.POST or None, instance=record)
         if form.is_valid():
+            record.form_signatures.add(request.user)
+            if record.is_form_completed():
+                record.form_completed = True
+                print(record.form_completed)
             form.save()
             return HttpResponse("valid")
 
