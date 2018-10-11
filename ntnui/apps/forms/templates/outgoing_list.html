@@ -17,13 +17,14 @@
 
 
 {% if forms %}
+    <p>Disse skjema har du sendt ut og er ikke fullført ennå.</p>
         <table class="uk-table uk-table-divider">
         <thead>
             <tr>
                 <th>Skjema</th>
                 <th>Gruppe</th>
-                <th>Fra</th>
-                <th>Fullført</th>
+                <th>Til</th>
+                <th>Godkjenner</th>
             </tr>
         </thead>
         <tbody>
@@ -33,10 +34,27 @@
                 <td>{{ form.group }}</td>
                 <td>
                     {% for dude in form.form_signers.all %}
-                    {{ dude }}
+                        <p>
+                            {{ dude }} -
+                            {% if dude in form.form_signatures.all %}
+                            signert
+                            {% else %}
+                            ikke signert
+                            {% endif %}
+                        </p>
                     {% endfor %}
                 </td>
-                <td>{{ form.form_completed }}</td>
+                <td>
+                    {%  if form.form_approvers.all %}
+                    {% for dude in form.form_approvers.all %}
+                        <p>
+                            {{ dude }}
+                        </p>
+                    {% endfor %}
+                    {% else %}
+                        Ingen
+                    {% endif %}
+                </td>
                 </tr>
             {% endfor %}
         </tbody>

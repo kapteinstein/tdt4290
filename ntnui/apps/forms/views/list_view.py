@@ -22,7 +22,7 @@ class OutgoingView(View):
 
     def get(self, request):
         current_user = request.user
-        forms = AbstractFormModel.objects.filter(form_instantiator=current_user)
+        forms = AbstractFormModel.objects.filter(form_instantiator=current_user).filter(form_completed=False)
 
         context = {
             'forms': forms,
