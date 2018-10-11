@@ -5,25 +5,25 @@
         <ul class="uk-tab uk-subnav uk-subnav-divider uk-margin-remove uk-padding-small"  uk-margin>
             <li {% if navbar == 'instantiate-form-list' %}class="uk-active"{% endif %}>
                 <a href="{% url 'forms:instantiate-form-list' %}" >
-                    <span uk-icon="plus" class="uk-margin-small-right" ></span>
+                    <span uk-icon="copy" class="uk-margin-small-right" ></span>
                     Nytt skjema
                 </a>
             </li>
             <li {% if navbar == 'incoming-list' %}class="uk-active"{% endif %}>
                 <a href="{% url 'forms:incoming-list' %}" >
-                    <span uk-icon="star" class="uk-margin-small-right"></span>
+                    <span uk-icon="file-edit" class="uk-margin-small-right"></span>
                     Skjema til signering
                 </a>
             </li>
             <li {% if navbar == 'outgoing-list' %}class="uk-active"{% endif %}>
                 <a href="{% url 'forms:outgoing-list' %}">
-                    <span uk-icon="future" class="uk-margin-small-right"></span>
+                    <span uk-icon="forward" class="uk-margin-small-right"></span>
                     Sendte skjema
                 </a>
             </li>
             <li {% if navbar == 'archive' %}class="uk-active"{% endif %}>
                 <a href="{% url 'forms:archive-incoming-list' %}">
-                    <span uk-icon="mail" class="uk-margin-small-right"></span>
+                    <span uk-icon="album" class="uk-margin-small-right"></span>
                     Arkiv
                 </a>
             </li>

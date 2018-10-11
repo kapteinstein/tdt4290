@@ -6,14 +6,16 @@
 
             <li {% if archive_navbar == 'incoming-list' %}class="uk-active"{% endif %}>
                 <a href="{% url 'forms:archive-incoming-list' %}" >
-                    <span uk-icon="sign-in" class="uk-margin-small-right" ></span>
+                    <span uk-icon="album"></span>
+                    <span uk-icon="file-edit" class="uk-margin-small-right" ></span>
                     Skjema du har signert
                 </a>
             </li>
 
             <li {% if archive_navbar == 'outgoing-list' %}class="uk-active"{% endif %}>
                 <a href="{% url 'forms:archive-outgoing-list' %}" >
-                    <span uk-icon="sign-out" class="uk-margin-small-right"></span>
+                    <span uk-icon="album"></span>
+                    <span uk-icon="forward" class="uk-margin-small-right"></span>
                     Skjema du har sendt ut
                 </a>
             </li>
