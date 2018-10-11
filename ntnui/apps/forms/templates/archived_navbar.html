@@ -1,0 +1,23 @@
+{% load static %}
+
+<nav class="uk-navbar-container">
+    <div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-1 uk-visible@m">
+        <ul class="uk-tab uk-subnav uk-subnav-divider uk-margin-remove uk-padding-small" >
+
+            <li {% if archive_navbar == 'incoming-list' %}class="uk-active"{% endif %}>
+                <a href="{% url 'forms:archive-incoming-list' %}" >
+                    <span uk-icon="sign-in" class="uk-margin-small-right" ></span>
+                    Skjema du har signert
+                </a>
+            </li>
+
+            <li {% if archive_navbar == 'outgoing-list' %}class="uk-active"{% endif %}>
+                <a href="{% url 'forms:archive-outgoing-list' %}" >
+                    <span uk-icon="sign-out" class="uk-margin-small-right"></span>
+                    Skjema du har sendt ut
+                </a>
+            </li>
+
+        </ul>
+    </div>
+</nav>

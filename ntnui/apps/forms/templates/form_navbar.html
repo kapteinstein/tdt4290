@@ -21,8 +21,8 @@
                     Sendte skjema
                 </a>
             </li>
-            <li>
-                <a href="#" onclick="notImplemented()">
+            <li {% if navbar == 'archive' %}class="uk-active"{% endif %}>
+                <a href="{% url 'forms:archive-incoming-list' %}">
                     <span uk-icon="mail" class="uk-margin-small-right"></span>
                     Arkiv
                 </a>

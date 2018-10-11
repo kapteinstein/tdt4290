@@ -16,22 +16,54 @@
 
 
 {% if forms %}
-    <p>Disse skjema venter på din signatur.</p>
+    <p>Disse skjema venter på din signatur eller venter på ekstern godkjenning.</p>
         <table class="uk-table uk-table-divider">
         <thead>
             <tr>
                 <th>Skjema</th>
                 <th>Gruppe</th>
                 <th>Fra</th>
+                <th>Signert</th>
+                <th>Godkjenner</th>
             </tr>
         </thead>
         <tbody>
             {% for form in forms %}
                 {% with 'forms:'|add:form.form_slug|add:'-signer-info' as signer_url %}
-                <tr class="uk-table-link">
-                <td><a href="{% url signer_url id=form.id %}">{{ form.form_name }}</a></td>
-                <td>{{ form.group }}</td>
-                <td>{{ form.form_instantiator }}</td>
+                <tr>
+                <td>
+                    {% if current_user not in form.form_signatures.all %}
+                        <a href="{% url signer_url id=form.id %}">
+                            {{ form.form_name }}
+                        </a>
+                    {% else %}
+                            {{ form.form_name }}
+                    {% endif %}
+                </td>
+                <td>
+                    {{ form.group }}
+                </td>
+                <td>
+                    {{ form.form_instantiator }}
+                </td>
+                <td>
+                    {% if current_user in form.form_signatures.all %}
+                        Ja
+                    {% else %}
+                        Nei
+                    {% endif %}
+                </td>
+                <td>
+                    {%  if form.form_approvers.all %}
+                    {% for dude in form.form_approvers.all %}
+                        <p>
+                            {{ dude }}
+                        </p>
+                    {% endfor %}
+                    {% else %}
+                        Ingen
+                    {% endif %}
+                </td>
                 </tr>
                 {% endwith %}
             {% endfor %}
@@ -39,7 +71,7 @@
         </table>
 
 {% else %}
-    Du har ikke fått noen skjema som venter din signering
+    Du har ikke fått noen skjema som venter din signering.
 {% endif %}
 
 </div>

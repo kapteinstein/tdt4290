@@ -10,14 +10,14 @@
   <img src="/media/forms/forms_photo.png" alt="group cover photo" uk-cover>
 </div>
 
-{% include "form_navbar.html" %}
+    {% include "form_navbar.html" %}
+
+    {% include "archived_navbar.html" %}
 
 <div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
 
-
-
 {% if forms %}
-    <p>Disse skjema har du sendt ut og er ikke fullført ennå.</p>
+    <p>Disse skjema har du sendt ut og har blitt fullført.</p>
         <table class="uk-table uk-table-divider">
         <thead>
             <tr>
@@ -61,7 +61,7 @@
         </table>
 
 {% else %}
-    Det finnes ingen skjema fra deg som venter signering.
+    Det finnes ingen skjema her.
 {% endif %}
 
 

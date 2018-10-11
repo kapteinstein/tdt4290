@@ -10,20 +10,20 @@
   <img src="/media/forms/forms_photo.png" alt="group cover photo" uk-cover>
 </div>
 
-{% include "form_navbar.html" %}
+    {% include "form_navbar.html" %}
+
+    {% include "archived_navbar.html" %}
 
 <div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
 
-
-
 {% if forms %}
-    <p>Disse skjema har du sendt ut og er ikke fullført ennå.</p>
+    <p>Disse skjema har du signert og har blitt godkjent.</p>
         <table class="uk-table uk-table-divider">
         <thead>
             <tr>
                 <th>Skjema</th>
                 <th>Gruppe</th>
-                <th>Til</th>
+                <th>Fra</th>
                 <th>Godkjenner</th>
             </tr>
         </thead>
@@ -32,18 +32,7 @@
                 <tr>
                 <td>{{ form.form_name }}</td>
                 <td>{{ form.group }}</td>
-                <td>
-                    {% for dude in form.form_signers.all %}
-                        <p>
-                            {{ dude }} -
-                            {% if dude in form.form_signatures.all %}
-                            signert
-                            {% else %}
-                            ikke signert
-                            {% endif %}
-                        </p>
-                    {% endfor %}
-                </td>
+                <td>{{ form.form_instantiator }}</td>
                 <td>
                     {%  if form.form_approvers.all %}
                     {% for dude in form.form_approvers.all %}
@@ -61,7 +50,7 @@
         </table>
 
 {% else %}
-    Det finnes ingen skjema fra deg som venter signering.
+    Det finnes ingen skjema her.
 {% endif %}
 
 
