@@ -4,6 +4,7 @@ from forms.models import CoachFormModel, AbstractFormModel
 from database.models import MembershipModel, GroupModel
 from database.models.enums import ROLE_CHOICES
 from forms.form_types import FORM_TYPES
+from forms.utils import form_utils
 
 class IncomingArchiveView(View):
 
@@ -15,6 +16,7 @@ class IncomingArchiveView(View):
             'forms': forms,
             'navbar': 'archive',
             'archive_navbar': 'incoming-list',
+            'is_authorized': form_utils.is_authorized(current_user),
         }
         return render(request, 'archived_incoming_list.html', context)
 
@@ -29,5 +31,6 @@ class OutgoingArchiveView(View):
             'forms': forms,
             'navbar': 'archive',
             'archive_navbar': 'outgoing-list',
+            'is_authorized': form_utils.is_authorized(current_user),
         }
         return render(request, 'archived_outgoing_list.html', context)
