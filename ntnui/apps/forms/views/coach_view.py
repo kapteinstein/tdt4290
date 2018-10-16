@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 
-from forms.models import CoachInstantiationForm, CoachSigningForm, CoachFormModel
+from forms.models import CoachInstantiationForm, CoachSigningForm, CoachFormModel, FormTextModel, AbstractFormModel
 from django.http import HttpResponse, Http404
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import HttpResponseForbidden
@@ -19,10 +19,12 @@ class CoachInstantiatorView(View):
     def post(self, request):
         form = CoachInstantiationForm(request.POST)
         model_instance = form.save(commit=True)
+        setattr(model_instance, 'meta_version', model_instance.current_version)
         #model_instance.notify_signers()
         model_instance.save()
         return HttpResponse("Form instantiated")
 
+# DEPRECATED use generic info view
 class CoachSignerInfoView(View):
     def get(self, request, id):
         context = {

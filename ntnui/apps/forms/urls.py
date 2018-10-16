@@ -17,4 +17,5 @@ urlpatterns = [
     path('instantiate-form-list', InstantiateListView.as_view(), name="instantiate-form-list"),
     path('archive-incoming-list', IncomingArchiveView.as_view(), name="archive-incoming-list"),
     path('archive-outgoing-list', OutgoingArchiveView.as_view(), name="archive-outgoing-list"),
+    path('signer-info/<str:slug>/<int:id>/', InfoView.as_view(), name="signer-info"),
 ]

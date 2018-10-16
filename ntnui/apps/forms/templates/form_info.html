@@ -1,0 +1,24 @@
+{% extends 'form.html' %}
+
+{% block form-content %}
+
+<div class="uk-container uk-width-6-7@m">
+
+    {{ form_text | safe }}
+
+        <p>
+            <label><input class="uk-checkbox" type="checkbox" unchecked> Jeg bekrefter å ha lest innholdet over</label>
+            <br><br>
+
+            {% with 'forms:'|add:form_slug|add:'-signer' as signing_url %}
+            <form action="{% url signing_url id=form_id %}" >
+                <input type="submit" value="Neste" class="uk-button uk-button-secondary" />
+            </form>
+            {% endwith %}
+
+        </p>
+        <hr>
+
+</div>
+{% endblock %}
+
