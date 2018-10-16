@@ -1,79 +1,68 @@
-{% extends 'base.html' %}
+{% extends 'form_navbar.html' %}
 
-{% load static %}
+{% block navbar_content %}
 
-{% block content %}
-<div class="uk-cover-container">
-  <!-- Switch canvas on media queries -->
-  <canvas class="uk-visible@m" width="0" height="270" ></canvas>
-  <canvas class="uk-hidden@m" width="0" height="200" ></canvas>
-  <img src="/media/forms/forms_photo.png" alt="group cover photo" uk-cover>
-</div>
+    <div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
 
-{% include "form_navbar.html" %}
-
-<div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
-
-
-{% if forms %}
-    <p>Disse skjema venter på din signatur eller venter på ekstern godkjenning.</p>
-        <table class="uk-table uk-table-divider">
-        <thead>
-            <tr>
-                <th>Skjema</th>
-                <th>Gruppe</th>
-                <th>Fra</th>
-                <th>Signert</th>
-                <th>Godkjenner</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for form in forms %}
-                {% with 'forms:'|add:form.form_slug|add:'-signer-info' as signer_url %}
+    {% if forms %}
+        <p>Disse skjema venter på din signatur eller venter på ekstern godkjenning.</p>
+            <table class="uk-table uk-table-divider">
+            <thead>
                 <tr>
-                <td>
-                    {% if current_user not in form.form_signatures.all %}
-                        <a href="{% url signer_url id=form.id %}">
-                            {{ form.form_name }}
-                        </a>
-                    {% else %}
-                            {{ form.form_name }}
-                    {% endif %}
-                </td>
-                <td>
-                    {{ form.group }}
-                </td>
-                <td>
-                    {{ form.form_instantiator }}
-                </td>
-                <td>
-                    {% if current_user in form.form_signatures.all %}
-                        Ja
-                    {% else %}
-                        Nei
-                    {% endif %}
-                </td>
-                <td>
-                    {%  if form.form_approvers.all %}
-                    {% for dude in form.form_approvers.all %}
-                        <p>
-                            {{ dude }}
-                        </p>
-                    {% endfor %}
-                    {% else %}
-                        Ingen
-                    {% endif %}
-                </td>
+                    <th>Skjema</th>
+                    <th>Gruppe</th>
+                    <th>Fra</th>
+                    <th>Signert</th>
+                    <th>Godkjenner</th>
                 </tr>
-                {% endwith %}
-            {% endfor %}
-        </tbody>
-        </table>
+            </thead>
+            <tbody>
+                {% for form in forms %}
+                    {% with 'forms:'|add:form.form_slug|add:'-signer-info' as signer_url %}
+                    <tr>
+                    <td>
+                        {% if current_user not in form.form_signatures.all %}
+                            <a href="{% url signer_url id=form.id %}">
+                                {{ form.form_name }}
+                            </a>
+                        {% else %}
+                                {{ form.form_name }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ form.group }}
+                    </td>
+                    <td>
+                        {{ form.form_instantiator }}
+                    </td>
+                    <td>
+                        {% if current_user in form.form_signatures.all %}
+                            Ja
+                        {% else %}
+                            Nei
+                        {% endif %}
+                    </td>
+                    <td>
+                        {%  if form.form_approvers.all %}
+                        {% for dude in form.form_approvers.all %}
+                            <p>
+                                {{ dude }}
+                            </p>
+                        {% endfor %}
+                        {% else %}
+                            Ingen
+                        {% endif %}
+                    </td>
+                    </tr>
+                    {% endwith %}
+                {% endfor %}
+            </tbody>
+            </table>
 
-{% else %}
-    Du har ikke fått noen skjema som venter din signering.
-{% endif %}
+    {% else %}
+        Du har ikke fått noen skjema som venter din signering.
+    {% endif %}
 
-</div>
+    </div>
 
 {% endblock %}
