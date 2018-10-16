@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from forms.models import CoachInstantiationForm, CoachSigningForm, CoachFormModel
 from django.http import HttpResponse, Http404
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import HttpResponseForbidden
 
 class CoachInstantiatorView(View):
@@ -17,7 +17,7 @@ class CoachInstantiatorView(View):
     def post(self, request):
         form = CoachInstantiationForm(request.POST)
         model_instance = form.save(commit=True)
-        model_instance.notify_signers()
+        #model_instance.notify_signers()
         model_instance.save()
 
         context = {
@@ -36,20 +36,17 @@ class CoachSignerView(View):
         try:
             record = CoachFormModel.objects.get(id=request.GET.get('id')) # TODO Needs to be modified to Jans URL
             form = CoachSigningForm(request.POST or None, instance=record)
-            form_signers = record.form_signers.all()
-            form_signatures = record.form_signatures.all()
-            current_user = request.user
-            if current_user in form_signatures:
-                return HttpResponseForbidden("Denied. Form already submitted")
-
-            if current_user in form_signers:
+            signatures = record.form_signatures.all()
+            signers = record.form_signers.all()
+            user = request.user
+            if user in signatures or user not in signers:
+                raise PermissionDenied
+            else:
                 context = {
                     'form': form,
                     'id': record.id,
                 }
                 return render(request, 'coach_signer.html', context)
-            else: 
-                return HttpResponseForbidden("Denied Access")
         except ObjectDoesNotExist:
             raise Http404("Could not find form record")
         # example urL: http://localhost:8000/f/2?id=2#
@@ -63,6 +60,6 @@ class CoachSignerView(View):
             if record.is_form_completed():
                 record.form_completed = True
             form.save()
-            return HttpResponse("valid")
+            return HttpResponse("valid") # TODO Display success page
 
         return HttpResponse("invalid")
