@@ -29,3 +29,6 @@ django-nested-admin==3.1.1
 # Image-Kit
 pillow==4.3.0
 django-imagekit==4.0.2
+
+# Kundestyrt 2018
+django-polymorphic==2.0.3
