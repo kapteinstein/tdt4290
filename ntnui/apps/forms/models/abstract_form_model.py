@@ -93,13 +93,13 @@ class AbstractFormModel(PolymorphicModel):
     form_approvers = models.ManyToManyField('database.UserModel', related_name="form_approvers", blank=True)
     form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures", blank=True)
     form_completed = models.BooleanField(default=False)
+    current_action = models.IntegerField(null = True, default=0)
 
     # class attributes
     form_name = 'NO NAME'
     form_slug = 'NO SLUG'
     required_sign_type = 0
     actions = []
-    current_action = models.IntegerField(null = True)
 
     # attribute spesific methods
     def get_required_sign_level(self):
@@ -110,10 +110,6 @@ class AbstractFormModel(PolymorphicModel):
 
     def is_form_completed(self):
         return ((set(self.form_signers.all()) | set(self.form_approvers.all())) == set(self.form_signatures.all()))
-
-    def is_complete(self):
-        if(len(self.actions) >= self.current_action):
-            return True
 
     def sign(self):
         pass
