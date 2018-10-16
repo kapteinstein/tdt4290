@@ -10,7 +10,6 @@ urlpatterns = [
     path('3', FormTextSaverView.as_view(), name="Form Text Saver"),
     path('4', FormTextTestView.as_view(), name="Form Text Test View"),
     path(coach+"-instantiator", CoachInstantiatorView.as_view(), name=coach+"-instantiator"),
-    path(coach+'-signer-info/<int:id>/', CoachSignerInfoView.as_view(), name=coach+"-signer-info"),
     path(coach+'-signer/<int:id>/', CoachSignerView.as_view(), name=coach+"-signer"),
     path('incoming-list', IncomingView.as_view(), name="incoming-list"),
     path('outgoing-list', OutgoingView.as_view(), name="outgoing-list"),
