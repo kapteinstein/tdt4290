@@ -2,7 +2,7 @@ from django.db import models
 from django import forms
 from forms.models import AbstractFormModel, enums
 from datetime import datetime
-
+from forms.actions import Notify
 
 class CoachFormModel(AbstractFormModel):
 
@@ -16,6 +16,7 @@ class CoachFormModel(AbstractFormModel):
     form_slug = 'coach'
     required_sign_type = 0
 
+    
 
 class CoachInstantiationForm(forms.ModelForm):
     class Meta:
