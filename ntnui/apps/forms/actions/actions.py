@@ -21,8 +21,7 @@ class Actions():
         self.action = action_object_creators[self.form.actions[self.form.current_action]]["action_creator"](self.form);
 
     def status(self):
-        return 
-        pass
+        return action_object_creators[self.form.actions[self.form.current_action]]["status_message"]
 
     def do(self):
         self.action.do()
