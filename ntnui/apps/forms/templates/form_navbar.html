@@ -1,33 +1,44 @@
+{% extends 'base.html' %}
+
 {% load static %}
 
-<nav class="uk-navbar-container">
-    <div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-1 uk-visible@m">
-        <ul class="uk-tab uk-subnav uk-subnav-divider uk-margin-remove uk-padding-small"  uk-margin>
-            <li {% if navbar == 'instantiate-form-list' %}class="uk-active"{% endif %}>
-                <a href="{% url 'forms:instantiate-form-list' %}" >
-                    <span uk-icon="copy" class="uk-margin-small-right" ></span>
-                    Nytt skjema
-                </a>
-            </li>
-            <li {% if navbar == 'incoming-list' %}class="uk-active"{% endif %}>
-                <a href="{% url 'forms:incoming-list' %}" >
-                    <span uk-icon="file-edit" class="uk-margin-small-right"></span>
-                    Skjema til signering
-                </a>
-            </li>
-            <li {% if navbar == 'outgoing-list' %}class="uk-active"{% endif %}>
-                <a href="{% url 'forms:outgoing-list' %}">
-                    <span uk-icon="forward" class="uk-margin-small-right"></span>
-                    Sendte skjema
-                </a>
-            </li>
-            <li {% if navbar == 'archive' %}class="uk-active"{% endif %}>
-                <a href="{% url 'forms:archive-incoming-list' %}">
-                    <span uk-icon="album" class="uk-margin-small-right"></span>
-                    Arkiv
-                </a>
-            </li>
-        </ul>
+{% block content %}
+    <div class="uk-cover-container">
+        <canvas class="uk-visible@m" width="0" height="270" ></canvas>
+        <canvas class="uk-hidden@m" width="0" height="200" ></canvas>
+        <img src="/media/forms/forms_photo.png" alt="group cover photo" uk-cover>
     </div>
-</nav>
 
+    <nav class="uk-navbar-container">
+        <div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-1 uk-visible@m">
+            <ul class="uk-tab uk-subnav uk-subnav-divider uk-margin-remove uk-padding-small"  uk-margin>
+                <li {% if navbar == 'instantiate-form-list' %}class="uk-active"{% endif %}>
+                    <a href="{% url 'forms:instantiate-form-list' %}" >
+                        <span uk-icon="copy" class="uk-margin-small-right" ></span>
+                        Nytt skjema
+                    </a>
+                </li>
+                <li {% if navbar == 'incoming-list' %}class="uk-active"{% endif %}>
+                    <a href="{% url 'forms:incoming-list' %}" >
+                        <span uk-icon="file-edit" class="uk-margin-small-right"></span>
+                        Skjema til signering
+                    </a>
+                </li>
+                <li {% if navbar == 'outgoing-list' %}class="uk-active"{% endif %}>
+                    <a href="{% url 'forms:outgoing-list' %}">
+                        <span uk-icon="forward" class="uk-margin-small-right"></span>
+                        Sendte skjema
+                    </a>
+                </li>
+                <li {% if navbar == 'archive' %}class="uk-active"{% endif %}>
+                    <a href="{% url 'forms:archive-incoming-list' %}">
+                        <span uk-icon="album" class="uk-margin-small-right"></span>
+                        Arkiv
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    {% block navbar_content %}
+    {% endblock %}
+{% endblock %}
