@@ -6,15 +6,15 @@ from datetime import datetime
 
 class CoachFormModel(AbstractFormModel):
 
-    position = models.IntegerField(choices=enums._POSITION)
-    start_date = models.DateField()
-    group = models.ForeignKey('database.GroupModel', on_delete=models.CASCADE, related_name="group")
-    compensation = models.IntegerField(choices=enums._COMPENSATIONS)
-    compensation_comments = models.TextField(null=False, blank=True)
-    form_text = FormTextModel.objects.get(form_name, version_nr=1)
+    position = models.IntegerField(choices=enums._POSITION, null=True)
+    start_date = models.DateField(null=True)
+    group = models.ForeignKey('database.GroupModel', on_delete=models.CASCADE, related_name="group", null=True)
+    compensation = models.IntegerField(choices=enums._COMPENSATIONS, null=True)
+    compensation_comments = models.TextField(blank=True)
 
     form_name = "Midlertidig ansettelse"
     form_slug = 'coach'
+    current_version = 1
     required_sign_type = 0
 
 

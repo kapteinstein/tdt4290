@@ -92,13 +92,17 @@ class AbstractFormModel(PolymorphicModel):
     form_signers = models.ManyToManyField('database.UserModel', related_name="form_signers")
     form_approvers = models.ManyToManyField('database.UserModel', related_name="form_approvers", blank=True)
     form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures", blank=True)
-    form_text = models.ForeignKey('database.FormTextModel', on_delete=models.CASCADE, related_name="form_text")
     form_completed = models.BooleanField(default=False)
+
+    # Change the current version in inheriting forms when form text is updated
+    current_version = -1
+    meta_version = models.IntegerField(default=current_version)
 
     # class attributes
     form_name = 'NO NAME'
     form_slug = 'NO SLUG'
     required_sign_type = 0
+
 
     # attribute spesific methods
     def get_required_sign_level(self):
