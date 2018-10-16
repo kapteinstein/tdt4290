@@ -1,6 +1,6 @@
 from django.db import models
 from django import forms
-from forms.models import AbstractFormModel, enums
+from forms.models import AbstractFormModel, enums, FormTextModel
 from datetime import datetime
 
 
@@ -11,10 +11,9 @@ class CoachFormModel(AbstractFormModel):
     group = models.ForeignKey('database.GroupModel', on_delete=models.CASCADE, related_name="group")
     compensation = models.IntegerField(choices=enums._COMPENSATIONS)
     compensation_comments = models.TextField(null=False, blank=True)
-
     form_name = "Midlertidig ansettelse",
+    form_text = FormTextModel.objects.get(form_name, version_nr=1)
     required_sign_type = 0,
-
 
 class CoachInstantiationForm(forms.ModelForm):
     class Meta:
@@ -30,6 +29,5 @@ class CoachSigningForm(forms.ModelForm):
             'group': forms.Select(attrs={'class': 'uk-select'}),
             'compensation': forms.Select(attrs={'class': 'uk-select'}),
             'start_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'value': datetime.now(),  'type':'date'}),
-            'compensation_comments': forms.Textarea(attrs={'class': 'uk-textarea', 'rows':3}),    
-
+            'compensation_comments': forms.Textarea(attrs={'class': 'uk-textarea', 'rows':3}),
         }
