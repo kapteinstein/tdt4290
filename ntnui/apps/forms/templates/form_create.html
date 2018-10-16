@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="uk-cover-container">
+  <!-- Switch canvas on media queries -->
+  <canvas class="uk-visible@m" width="0" height="270" ></canvas>
+  <canvas class="uk-hidden@m" width="0" height="200" ></canvas>
+  <img src="/media/forms/forms_photo.png" alt="group cover photo" uk-cover>
+</div>
+
+{% include "form_view_navbar.html" %}
+
+<div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
+
+    <p>{{ form_name }}</p>
+    <form method="post" action="{% url 'forms:instantiate' form_slug %}">
+        {% csrf_token %}
+        <table>
+            {{ formset }}
+        </table>
+        <input type="submit" value="Send ut" class="uk-button uk-button-default">
+    </form>
+
+</div>
+
+{% endblock %}

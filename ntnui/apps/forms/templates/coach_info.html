@@ -74,7 +74,9 @@
         <p>
             <label><input class="uk-checkbox" type="checkbox" unchecked> Jeg bekrefter å ha lest innholdet over</label>
             <br><br>
-            <button class="uk-button uk-button-secondary" href="#">Neste</button>
+            <form action="{% url 'forms:coach-signer' id=form_id %}" >
+                <input type="submit" value="Neste" class="uk-button uk-button-secondary" />
+            </form>
         </p>
         <hr>
 

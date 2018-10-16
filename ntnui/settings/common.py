@@ -42,6 +42,9 @@ THIRD_PARTY_APPS = [
 
     # Imagekit
     'imagekit',
+
+    # Kundestyrt 2018
+    'polymorphic',
 ]
 
 LOCAL_APPS = [

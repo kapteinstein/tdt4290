@@ -1,275 +1,560 @@
 [
-    {
-        "model": "database.usermodel",
-        "pk": 1,
-        "fields": {
-            "password": "pbkdf2_sha256$120000$vfiJE6ixbWeZ$q3g3pkeyyr9Q9p6ZBY4iZFJLOGH7VUkBWJz0eerjcm4=",
-            "last_login": "2018-08-29T18:28:08.458Z",
-            "is_superuser": true,
-            "is_active": true,
-            "is_admin": false,
-            "is_staff": true,
-            "first_name": "",
-            "last_name": "",
-            "date_of_birth": null,
-            "gender": "-",
-            "customer_no": "",
-            "register_date": "2018-08-27",
-            "card_no": null,
-            "contract_no": null,
-            "contract_expiry_date": null,
-            "language": "no",
-            "calling_code": null,
-            "phone_no": null,
-            "email": "super@admin.com",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "database.usermodel",
-        "pk": 2,
-        "fields": {
-            "password": "pbkdf2_sha256$120000$F0agatNLEMTv$2705giYaWkzHHIB1zLJfLv3X0MB76az9R67+6JDhBFY=",
-            "last_login": "2018-08-30T10:35:14.678Z",
-            "is_superuser": false,
-            "is_active": true,
-            "is_admin": false,
-            "is_staff": false,
-            "first_name": "Ron",
-            "last_name": "Swanson",
-            "date_of_birth": "1970-06-26",
-            "gender": "M",
-            "customer_no": "1",
-            "register_date": "2018-08-27",
-            "card_no": "111111",
-            "contract_no": 111111,
-            "contract_expiry_date": "2019-08-27",
-            "language": "no",
-            "calling_code": 47,
-            "phone_no": 12345678,
-            "email": "ron@swanson.com",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "database.usermodel",
-        "pk": 3,
-        "fields": {
-            "password": "pbkdf2_sha256$120000$hXfdhYbVfDYk$f1u367fLm/ZzJyJtPW7ZZg6cx0f6U6xbhGoIXQ2bp/s=",
-            "last_login": null,
-            "is_superuser": false,
-            "is_active": true,
-            "is_admin": false,
-            "is_staff": false,
-            "first_name": "Leslie",
-            "last_name": "Knope",
-            "date_of_birth": "1971-09-16",
-            "gender": "F",
-            "customer_no": "2",
-            "register_date": "2018-08-27",
-            "card_no": "222222",
-            "contract_no": 222222,
-            "contract_expiry_date": "2019-08-27",
-            "language": "no",
-            "calling_code": 47,
-            "phone_no": 12345678,
-            "email": "leslie@knope.com",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "database.usermodel",
-        "pk": 4,
-        "fields": {
-            "password": "pbkdf2_sha256$120000$latKbgYutg27$W5uLAQ6X9lOtUEbs4j02mQHwPwsDJz9kgoMVVJcQjZA=",
-            "last_login": null,
-            "is_superuser": false,
-            "is_active": true,
-            "is_admin": false,
-            "is_staff": false,
-            "first_name": "Tom",
-            "last_name": "Haverford",
-            "date_of_birth": "1983-02-23",
-            "gender": "M",
-            "customer_no": "3",
-            "register_date": "2018-08-27",
-            "card_no": "333333",
-            "contract_no": 333333,
-            "contract_expiry_date": "2019-08-27",
-            "language": "no",
-            "calling_code": 47,
-            "phone_no": 12345678,
-            "email": "tom@haverford.com",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "database.groupmediamodel",
-        "pk": 5,
-        "fields": {
-            "cover": "cover_photo/ntnui.png",
-            "logo": "logo/parks-and-recreation-department/pandr2.jpg",
-            "group": 1
-        }
-    },
-    {
-        "model": "database.groupmediamodel",
-        "pk": 6,
-        "fields": {
-            "cover": "cover_photo/ntnui.png",
-            "logo": "logo/sewage-department/sewage.jpg",
-            "group": 5
-        }
-    },
-    {
-        "model": "database.groupmediamodel",
-        "pk": 7,
-        "fields": {
-            "cover": "cover_photo/ntnui.png",
-            "logo": "logo/police-department/police.jpg",
-            "group": 6
-        }
-    },
-    {
-        "model": "database.groupmetamodel",
-        "pk": 1,
-        "fields": {
-            "description": "Welcome to the Parks and Recreation department of Pawnee, Indiana",
-            "language": "no",
-            "group": 1
-        }
-    },
-    {
-        "model": "database.groupmetamodel",
-        "pk": 5,
-        "fields": {
-            "description": "The Sewage Department, nicknamed \"the toilet party\", deals with Pawnee's sewage system.",
-            "language": "no",
-            "group": 5
-        }
-    },
-    {
-        "model": "database.groupmetamodel",
-        "pk": 6,
-        "fields": {
-            "description": "The officers of Pawnee tend to speak in a descriptive, police-like manner, even in matters unrelated to their work. They also tend to be jumpy, especially when pulling things out of your pocket.",
-            "language": "no",
-            "group": 6
-        }
-    },
-    {
-        "model": "database.groupmodel",
-        "pk": 1,
-        "fields": {
-            "name": "Parks and Recreation Department",
-            "slug": "parks-and-recreation-department",
-            "founding_date": "2018-08-27",
-            "payment_key": null,
-            "newsletter_key": null,
-            "access": "O"
-        }
-    },
-    {
-        "model": "database.groupmodel",
-        "pk": 5,
-        "fields": {
-            "name": "Sewage Department",
-            "slug": "sewage-department",
-            "founding_date": "2018-08-29",
-            "payment_key": null,
-            "newsletter_key": null,
-            "access": "C"
-        }
-    },
-    {
-        "model": "database.groupmodel",
-        "pk": 6,
-        "fields": {
-            "name": "Police Department",
-            "slug": "police-department",
-            "founding_date": "2018-08-29",
-            "payment_key": null,
-            "newsletter_key": null,
-            "access": "O"
-        }
-    },
-    {
-        "model": "database.membershipmodel",
-        "pk": 1,
-        "fields": {
-            "date_joined": "2018-08-27",
-            "group_expiry": "2019-08-27",
-            "sports_license_expiry": null,
-            "sports_license_no": null,
-            "member": 2,
-            "group": 1
-        }
-    },
-    {
-        "model": "database.membershipmodel",
-        "pk": 2,
-        "fields": {
-            "date_joined": "2018-08-27",
-            "group_expiry": "2019-08-27",
-            "sports_license_expiry": null,
-            "sports_license_no": null,
-            "member": 3,
-            "group": 1
-        }
-    },
-    {
-        "model": "database.membershipmodel",
-        "pk": 3,
-        "fields": {
-            "date_joined": "2018-08-27",
-            "group_expiry": "2019-08-27",
-            "sports_license_expiry": null,
-            "sports_license_no": null,
-            "member": 4,
-            "group": 1
-        }
-    },
-    {
-        "model": "database.boardmodel",
-        "pk": 1,
-        "fields": {
-            "creation_date": "2018-08-27",
-            "predecessor": null,
-            "group": 1
-        }
-    },
-    {
-        "model": "database.rolemodel",
-        "pk": 1,
-        "fields": {
-            "role": "P",
-            "date_joined": "2018-08-27",
-            "board": 1,
-            "member": 2
-        }
-    },
-    {
-        "model": "database.rolemodel",
-        "pk": 2,
-        "fields": {
-            "role": "-",
-            "date_joined": "2018-08-27",
-            "board": 1,
-            "member": 3
-        }
-    },
-    {
-        "model": "database.rolemodel",
-        "pk": 3,
-        "fields": {
-            "role": "C",
-            "date_joined": "2018-08-27",
-            "board": 1,
-            "member": 4
-        }
+{
+    "model": "database.usermodel",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$vfiJE6ixbWeZ$q3g3pkeyyr9Q9p6ZBY4iZFJLOGH7VUkBWJz0eerjcm4=",
+        "last_login": "2018-10-10T09:04:47.713Z",
+        "is_superuser": true,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": true,
+        "first_name": "",
+        "last_name": "",
+        "date_of_birth": null,
+        "gender": "-",
+        "customer_no": "",
+        "register_date": "2018-08-27",
+        "card_no": null,
+        "contract_no": null,
+        "contract_expiry_date": null,
+        "language": "no",
+        "calling_code": null,
+        "phone_no": null,
+        "email": "super@admin.com",
+        "groups": [],
+        "user_permissions": []
     }
+},
+{
+    "model": "database.usermodel",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$F0agatNLEMTv$2705giYaWkzHHIB1zLJfLv3X0MB76az9R67+6JDhBFY=",
+        "last_login": "2018-10-10T09:04:16.392Z",
+        "is_superuser": false,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": false,
+        "first_name": "Ron",
+        "last_name": "Swanson",
+        "date_of_birth": "1970-06-26",
+        "gender": "M",
+        "customer_no": "1",
+        "register_date": "2018-08-27",
+        "card_no": "111111",
+        "contract_no": 111111,
+        "contract_expiry_date": "2019-08-27",
+        "language": "no",
+        "calling_code": 47,
+        "phone_no": 12345678,
+        "email": "ron@swanson.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "database.usermodel",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$hXfdhYbVfDYk$f1u367fLm/ZzJyJtPW7ZZg6cx0f6U6xbhGoIXQ2bp/s=",
+        "last_login": "2018-10-10T09:04:32.294Z",
+        "is_superuser": false,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": false,
+        "first_name": "Leslie",
+        "last_name": "Knope",
+        "date_of_birth": "1971-09-16",
+        "gender": "F",
+        "customer_no": "2",
+        "register_date": "2018-08-27",
+        "card_no": "222222",
+        "contract_no": 222222,
+        "contract_expiry_date": "2019-08-27",
+        "language": "no",
+        "calling_code": 47,
+        "phone_no": 12345678,
+        "email": "leslie@knope.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "database.usermodel",
+    "pk": 4,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$latKbgYutg27$W5uLAQ6X9lOtUEbs4j02mQHwPwsDJz9kgoMVVJcQjZA=",
+        "last_login": "2018-10-10T09:04:25.795Z",
+        "is_superuser": false,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": false,
+        "first_name": "Tom",
+        "last_name": "Haverford",
+        "date_of_birth": "1983-02-23",
+        "gender": "M",
+        "customer_no": "3",
+        "register_date": "2018-08-27",
+        "card_no": "333333",
+        "contract_no": 333333,
+        "contract_expiry_date": "2019-08-27",
+        "language": "no",
+        "calling_code": 47,
+        "phone_no": 12345678,
+        "email": "tom@haverford.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "database.usermodel",
+    "pk": 5,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$FjFBdZnaoqMe$2Hz8uVC0KSIepYAATxsPeNDWvQTRSmAp6BPROKcaCLU=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": false,
+        "first_name": "Alfred",
+        "last_name": "Aronsen",
+        "date_of_birth": "2018-10-08",
+        "gender": "F",
+        "customer_no": "20",
+        "register_date": "2018-10-08",
+        "card_no": "20",
+        "contract_no": 20,
+        "contract_expiry_date": "2019-01-05",
+        "language": "no",
+        "calling_code": 47,
+        "phone_no": 12345678,
+        "email": "mock@user.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "database.usermodel",
+    "pk": 6,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$OmvVWYGevCDG$rhZ6MdRNUXrv1HbZxnRgrGYjfAlkuZMKCcsRWtI/Pog=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": false,
+        "first_name": "Beate",
+        "last_name": "Bertelsen",
+        "date_of_birth": "2018-10-08",
+        "gender": "F",
+        "customer_no": "21",
+        "register_date": "2018-10-08",
+        "card_no": "21",
+        "contract_no": 21,
+        "contract_expiry_date": "2019-01-05",
+        "language": "no",
+        "calling_code": 47,
+        "phone_no": 12345678,
+        "email": "mock1@user.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "database.usermodel",
+    "pk": 7,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$bmWMrDns5avp$TwRL8jPPWwQ6JuYRQPbPFS2F/NPx7ImUJXu96xL7MaQ=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": false,
+        "first_name": "Cristobal",
+        "last_name": "Colon",
+        "date_of_birth": "2018-10-08",
+        "gender": "M",
+        "customer_no": "22",
+        "register_date": "2018-10-08",
+        "card_no": "22",
+        "contract_no": 22,
+        "contract_expiry_date": "2019-01-05",
+        "language": "en",
+        "calling_code": 32,
+        "phone_no": 12345678,
+        "email": "mock2@user.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "database.usermodel",
+    "pk": 8,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$X2d4MzzqbelC$mq4mzcXUx0r1gX5bP+4kNFOex/089tas2zDOfhRiCvc=",
+        "last_login": "2018-10-10T09:06:26.395Z",
+        "is_superuser": false,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": false,
+        "first_name": "Dina",
+        "last_name": "Davidsen",
+        "date_of_birth": "2018-10-08",
+        "gender": "F",
+        "customer_no": "23",
+        "register_date": "2018-10-08",
+        "card_no": "23",
+        "contract_no": 23,
+        "contract_expiry_date": "2019-01-05",
+        "language": "no",
+        "calling_code": 47,
+        "phone_no": 12345678,
+        "email": "mock3@user.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "database.usermodel",
+    "pk": 9,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$IYr7XTzufKmX$wuBgARvLuRb/v7LWqoQ4iU4K/BO/K3albHMM4GQfhV8=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": false,
+        "first_name": "Eddard",
+        "last_name": "Edric",
+        "date_of_birth": "2018-10-08",
+        "gender": "-",
+        "customer_no": "25",
+        "register_date": "2018-10-08",
+        "card_no": "25",
+        "contract_no": 25,
+        "contract_expiry_date": "2019-01-05",
+        "language": "en",
+        "calling_code": 5,
+        "phone_no": 12345678,
+        "email": "mock5@user.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "database.usermodel",
+    "pk": 10,
+    "fields": {
+        "password": "pbkdf2_sha256$120000$BA8a04x6LkkW$Y+VR3JiD4hwFfuVLaXCItSPs/jHIEJ1dYgAgBiwpaUY=",
+        "last_login": null,
+        "is_superuser": false,
+        "is_active": true,
+        "is_admin": false,
+        "is_staff": false,
+        "first_name": "Fredrikke",
+        "last_name": "Fredriksen",
+        "date_of_birth": "2018-10-08",
+        "gender": "F",
+        "customer_no": "26",
+        "register_date": "2018-10-08",
+        "card_no": "26",
+        "contract_no": 26,
+        "contract_expiry_date": "2019-01-05",
+        "language": "no",
+        "calling_code": 47,
+        "phone_no": 12345678,
+        "email": "mock6@user.com",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "database.groupmediamodel",
+    "pk": 5,
+    "fields": {
+        "cover": "cover_photo/ntnui.png",
+        "logo": "logo/parks-and-recreation-department/pandr2.jpg",
+        "group": 1
+    }
+},
+{
+    "model": "database.groupmediamodel",
+    "pk": 6,
+    "fields": {
+        "cover": "cover_photo/ntnui.png",
+        "logo": "logo/sewage-department/sewage.jpg",
+        "group": 5
+    }
+},
+{
+    "model": "database.groupmediamodel",
+    "pk": 7,
+    "fields": {
+        "cover": "cover_photo/ntnui.png",
+        "logo": "logo/police-department/police.jpg",
+        "group": 6
+    }
+},
+{
+    "model": "database.groupmetamodel",
+    "pk": 1,
+    "fields": {
+        "description": "Welcome to the Parks and Recreation department of Pawnee, Indiana",
+        "language": "no",
+        "group": 1
+    }
+},
+{
+    "model": "database.groupmetamodel",
+    "pk": 5,
+    "fields": {
+        "description": "The Sewage Department, nicknamed \"the toilet party\", deals with Pawnee's sewage system.",
+        "language": "no",
+        "group": 5
+    }
+},
+{
+    "model": "database.groupmetamodel",
+    "pk": 6,
+    "fields": {
+        "description": "The officers of Pawnee tend to speak in a descriptive, police-like manner, even in matters unrelated to their work. They also tend to be jumpy, especially when pulling things out of your pocket.",
+        "language": "no",
+        "group": 6
+    }
+},
+{
+    "model": "database.groupmodel",
+    "pk": 1,
+    "fields": {
+        "name": "Parks and Recreation Department",
+        "slug": "parks-and-recreation-department",
+        "founding_date": "2018-08-27",
+        "payment_key": null,
+        "newsletter_key": null,
+        "access": "O"
+    }
+},
+{
+    "model": "database.groupmodel",
+    "pk": 5,
+    "fields": {
+        "name": "Sewage Department",
+        "slug": "sewage-department",
+        "founding_date": "2018-08-29",
+        "payment_key": null,
+        "newsletter_key": null,
+        "access": "O"
+    }
+},
+{
+    "model": "database.groupmodel",
+    "pk": 6,
+    "fields": {
+        "name": "Police Department",
+        "slug": "police-department",
+        "founding_date": "2018-08-29",
+        "payment_key": null,
+        "newsletter_key": null,
+        "access": "O"
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 1,
+    "fields": {
+        "date_joined": "2018-08-27",
+        "group_expiry": "2019-08-27",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 2,
+        "group": 1
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 2,
+    "fields": {
+        "date_joined": "2018-08-27",
+        "group_expiry": "2019-08-27",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 3,
+        "group": 1
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 3,
+    "fields": {
+        "date_joined": "2018-08-27",
+        "group_expiry": "2019-08-27",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 4,
+        "group": 1
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 4,
+    "fields": {
+        "date_joined": "2018-10-08",
+        "group_expiry": "2019-10-08",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 5,
+        "group": 5
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 5,
+    "fields": {
+        "date_joined": "2018-10-08",
+        "group_expiry": "2019-10-08",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 6,
+        "group": 5
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 6,
+    "fields": {
+        "date_joined": "2018-10-08",
+        "group_expiry": "2019-10-08",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 7,
+        "group": 5
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 7,
+    "fields": {
+        "date_joined": "2018-10-08",
+        "group_expiry": "2019-10-08",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 8,
+        "group": 5
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 8,
+    "fields": {
+        "date_joined": "2018-10-08",
+        "group_expiry": "2019-10-08",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 9,
+        "group": 5
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 9,
+    "fields": {
+        "date_joined": "2018-10-08",
+        "group_expiry": "2019-10-08",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 10,
+        "group": 5
+    }
+},
+{
+    "model": "database.membershipmodel",
+    "pk": 10,
+    "fields": {
+        "date_joined": "2018-10-08",
+        "group_expiry": "2019-10-08",
+        "sports_license_expiry": null,
+        "sports_license_no": null,
+        "member": 2,
+        "group": 5
+    }
+},
+{
+    "model": "database.boardmodel",
+    "pk": 1,
+    "fields": {
+        "creation_date": "2018-08-27",
+        "predecessor": null,
+        "group": 1
+    }
+},
+{
+    "model": "database.boardmodel",
+    "pk": 2,
+    "fields": {
+        "creation_date": "2018-10-08",
+        "predecessor": null,
+        "group": 5
+    }
+},
+{
+    "model": "database.rolemodel",
+    "pk": 1,
+    "fields": {
+        "role": "P",
+        "date_joined": "2018-08-27",
+        "board": 1,
+        "member": 2
+    }
+},
+{
+    "model": "database.rolemodel",
+    "pk": 2,
+    "fields": {
+        "role": "-",
+        "date_joined": "2018-08-27",
+        "board": 1,
+        "member": 3
+    }
+},
+{
+    "model": "database.rolemodel",
+    "pk": 3,
+    "fields": {
+        "role": "C",
+        "date_joined": "2018-08-27",
+        "board": 1,
+        "member": 4
+    }
+},
+{
+    "model": "database.rolemodel",
+    "pk": 4,
+    "fields": {
+        "role": "P",
+        "date_joined": "2018-10-08",
+        "board": 2,
+        "member": 5
+    }
+},
+{
+    "model": "database.rolemodel",
+    "pk": 5,
+    "fields": {
+        "role": "VP",
+        "date_joined": "2018-10-08",
+        "board": 2,
+        "member": 6
+    }
+},
+{
+    "model": "database.rolemodel",
+    "pk": 6,
+    "fields": {
+        "role": "C",
+        "date_joined": "2018-10-08",
+        "board": 2,
+        "member": 7
+    }
+}
 ]
