@@ -90,7 +90,7 @@ class AbstractFormModel(models.Model):
     form_signers = models.ManyToManyField('database.UserModel', related_name="form_signers")
     form_approvers = models.ManyToManyField('database.UserModel', related_name="form_approvers", blank=True)
     form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures", blank=True)
-    form_completed = models.BooleanField(default = False)
+    form_completed = models.BooleanField(default=False)
 
     # class attributes
     form_name = 'NO NAME'
@@ -125,3 +125,4 @@ class AbstractFormModel(models.Model):
 
     def sign(self):
         pass
+

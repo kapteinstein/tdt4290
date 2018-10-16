@@ -7,20 +7,23 @@
         <h2 class="uk-heading-divider"><span>Kontrakt for Midlertidig Ansettelse</span></h2>
 
         <h3 class="uk-heading-divider">Del 2: Utfylling og signering</h3>
-            
+        
         <form method="post"> {% csrf_token %}
             <div class="uk-margin">
                 <p>
                     <label>Navn:<br/></label>
                     <input class="uk-input uk-form-width-medium" type="text" value='{{ request.user.get_full_name }}' readonly>
                 </p>
-                {{ form.as_p }}
+                
+                <form method="post">{% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Signer">
+                </form>
+
             </div>
                 
         </form>
 
-        <hr>
-        <button class="uk-button uk-button-secondary"  href="#">Signer</button>
         <hr>
 
     </div>
