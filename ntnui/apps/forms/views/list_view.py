@@ -10,7 +10,7 @@ class IncomingView(View):
     def get(self, request):
         current_user = request.user
         # TODO make it possible to look at a forms contents after signing
-        forms = AbstractFormModel.objects.filter(form_signers=current_user)
+        forms = AbstractFormModel.objects.filter(form_signers=current_user).filter(form_completed=False)
 
         context = {
             'current_user': current_user,
