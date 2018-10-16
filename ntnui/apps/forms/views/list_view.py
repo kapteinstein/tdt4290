@@ -57,6 +57,6 @@ class InstantiateListView(View):
             'forms': FORM_TYPES.values,
             'navbar': 'instantiate-form-list', # Slett?
             'is_authorized': form_utils.is_authorized(current_user),
-            
+
         }
-        return render(request, 'instantiate_form.html', context)
+        return render(request, 'instantiate_form_list.html', context)

@@ -16,4 +16,5 @@ urlpatterns = [
     path('instantiator/<str:slug>', InstantiatorView.as_view(), name="instantiator"),
     path('signer/<str:slug>/<int:id>', SignerView.as_view(), name="signer"),
     path('', IncomingView.as_view(), name="forms-default"),
+    path('sign/', SignView.as_view(), name='sign'),
 ]
