@@ -6,6 +6,7 @@ from django.http import HttpResponse, Http404
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import HttpResponseForbidden
 
+#TODO delete this file (succeeded by generic form views)
 
 class CoachInstantiatorView(View):
 
