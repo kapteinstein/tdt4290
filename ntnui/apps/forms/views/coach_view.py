@@ -24,14 +24,6 @@ class CoachInstantiatorView(View):
         model_instance.save()
         return HttpResponse("Form instantiated")
 
-# DEPRECATED use generic info view
-class CoachSignerInfoView(View):
-    def get(self, request, id):
-        context = {
-            'form_id': id
-        }
-        return render(request, 'coach_info.html', context)
-
 class CoachSignerView(View):
     def get(self, request, id):
         try:
