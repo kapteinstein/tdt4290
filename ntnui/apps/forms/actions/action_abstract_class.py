@@ -7,4 +7,3 @@ class Action(ABC):
   def do(self):
     pass
 
-
