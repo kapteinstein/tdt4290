@@ -4,6 +4,7 @@ from forms.models import CoachFormModel, AbstractFormModel
 from database.models import MembershipModel, GroupModel
 from database.models.enums import ROLE_CHOICES
 from forms.form_types import FORM_TYPES
+from forms.utils import form_utils
 
 class IncomingView(View):
 
@@ -16,6 +17,7 @@ class IncomingView(View):
             'current_user': current_user,
             'forms': forms,
             'navbar': 'incoming-list',
+            'is_authorized': form_utils.is_authorized(current_user),
         }
         return render(request, 'incoming_list.html', context)
 
@@ -29,6 +31,7 @@ class OutgoingView(View):
         context = {
             'forms': forms,
             'navbar': 'outgoing-list',
+            'is_authorized': form_utils.is_authorized(current_user),
         }
         return render(request, 'outgoing_list.html', context)
 
@@ -52,5 +55,6 @@ class InstantiateListView(View):
         context = {
             'forms': form_models,
             'navbar': 'instantiate-form-list',
+            'is_authorized': form_utils.is_authorized(current_user),
         }
         return render(request, 'instantiate_form_list.html', context)
