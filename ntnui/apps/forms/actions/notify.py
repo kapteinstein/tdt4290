@@ -1,5 +1,5 @@
 from django.core.mail import send_mail
-from .action import Action
+from .action_abstract_class import Action
 
 
 class Notify(Action):
