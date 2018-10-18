@@ -5,6 +5,7 @@ from forms.models import CoachInstantiationForm, CoachSigningForm, CoachFormMode
 from django.http import HttpResponse, Http404
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import HttpResponseForbidden
+from forms.actions import Actions
 
 
 class CoachInstantiatorView(View):
@@ -19,7 +20,8 @@ class CoachInstantiatorView(View):
     def post(self, request):
         form = CoachInstantiationForm(request.POST)
         model_instance = form.save(commit=True)
-        #model_instance.notify_signers()
+        actions = Actions(model_instance)
+        actions.do()
         model_instance.save()
         return HttpResponse("Form instantiated")
 

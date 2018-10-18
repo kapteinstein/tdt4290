@@ -3,7 +3,6 @@ from django import forms
 from forms.models import AbstractFormModel, enums
 from datetime import datetime
 
-
 class CoachFormModel(AbstractFormModel):
 
     position = models.IntegerField(choices=enums._POSITION, null=True)
@@ -15,7 +14,11 @@ class CoachFormModel(AbstractFormModel):
     form_name = "Midlertidig ansettelse"
     form_slug = 'coach'
     required_sign_type = 0
+    actions = [
+        "notify_signers",
+    ]
 
+    
 
 class CoachInstantiationForm(forms.ModelForm):
     class Meta:
