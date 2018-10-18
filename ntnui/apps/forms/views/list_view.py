@@ -45,9 +45,7 @@ class InstantiateListView(View):
                 break
 
         if is_authorized:
-            form_models = {
-                CoachFormModel,
-            }
+            form_models = FORM_TYPES.values
         else:
             form_models = None
 

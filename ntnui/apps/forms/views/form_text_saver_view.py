@@ -5,7 +5,7 @@ from django.http import HttpResponse, Http404
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseForbidden
 
-
+# TODO finish or delete
 class FormTextSaverView(View):
 
     def get(self, request):

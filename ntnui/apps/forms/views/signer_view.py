@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from .form_types import signing_forms
+from ..form_types import signing_forms
 from forms.models import AbstractFormModel
 from django.http import HttpResponse, Http404
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
