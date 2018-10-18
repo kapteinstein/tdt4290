@@ -93,11 +93,16 @@ class AbstractFormModel(PolymorphicModel):
     form_approvers = models.ManyToManyField('database.UserModel', related_name="form_approvers", blank=True)
     form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures", blank=True)
     form_completed = models.BooleanField(default=False)
+    current_action = models.IntegerField(null = True, default=0)
+
+    meta_version = models.IntegerField(null=True)
 
     # class attributes
     form_name = 'NO NAME'
     form_slug = 'NO SLUG'
     required_sign_type = 0
+    actions = []
+
 
     # attribute spesific methods
     def get_required_sign_level(self):
@@ -108,23 +113,6 @@ class AbstractFormModel(PolymorphicModel):
 
     def is_form_completed(self):
         return ((set(self.form_signers.all()) | set(self.form_approvers.all())) == set(self.form_signatures.all()))
-
-    # Actions
-    # ---Notify
-    def notify_signers(self):
-        emails = self.form_signers.all().values_list('email', flat=True)
-        for email in emails:
-            send_mail("You have a new form", "Hei, we would like you to sign the following form", "no-reply@ntnui.no", [email])
-
-    def notify_approvers(self):
-        emails = self.form_approvers.all().values_list('email', flat=True)
-        for email in emails:
-            send_mail("You have a new form", "Hei, we would like you to approve the following form", "no-reply@ntnui.no", [email])
-
-    def notify_owner(self):
-        email = self.form_instantiatior.email
-        send_mail("You have a new form", "Hei, we would like you to sign the following form", "no-reply@ntnui.no", [email])
-
 
     def sign(self):
         pass

@@ -18,11 +18,10 @@
             </thead>
             <tbody>
                 {% for form in forms %}
-                    {% with 'forms:'|add:form.form_slug|add:'-signer-info' as signer_url %}
                     <tr>
                     <td>
                         {% if current_user not in form.form_signatures.all %}
-                            <a href="{% url signer_url id=form.id %}">
+                            <a href="{% url 'forms:signer-info' slug=form.form_slug id=form.id %}">
                                 {{ form.form_name }}
                             </a>
                         {% else %}
@@ -54,7 +53,6 @@
                         {% endif %}
                     </td>
                     </tr>
-                    {% endwith %}
                 {% endfor %}
             </tbody>
             </table>

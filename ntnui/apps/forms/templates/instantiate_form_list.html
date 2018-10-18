@@ -8,11 +8,9 @@
 
 {% for form in forms %}
     <li>
-    {% with 'forms:'|add:form.form_slug|add:'-instantiator' as instantiator_url %}
-        <a href="{% url instantiator_url %}">
+        <a href="{% url 'forms:instantiator' slug=form.form_slug %}">
             Send ut "{{ form.form_name }}" skjema
         </a>
-    {% endwith %}
     </li>
 {% endfor %}
 

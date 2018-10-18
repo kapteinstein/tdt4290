@@ -6,7 +6,7 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium import webdriver
 
 
-class ChromeTestCase(StaticLiveServerTestCase):
+class ChromeTestCase(LiveServerTestCase):
     @classmethod
     def setUpClass(self):
         if os.environ.get('BROWSER') == 'local':
@@ -20,11 +20,12 @@ class ChromeTestCase(StaticLiveServerTestCase):
                 command_executor='http://selenium:4444/wd/hub',
                 desired_capabilities=DesiredCapabilities.CHROME)
             self.server_url = self.live_server_url
-        self.chrome.implicitly_wait(10)
+        #self.chrome.implicitly_wait(1)
         self.precondition()
 
     @classmethod
     def tearDownClass(self):
+        print("runs")
         self.chrome.quit()
         super().tearDownClass()
 
@@ -33,7 +34,7 @@ class ChromeTestCase(StaticLiveServerTestCase):
         pass
 
 
-class FirefoxTestCase(StaticLiveServerTestCase):
+class FirefoxTestCase(LiveServerTestCase):
     @classmethod
     def setUpClass(self):
         if os.environ.get('BROWSER') == 'local':
@@ -47,7 +48,7 @@ class FirefoxTestCase(StaticLiveServerTestCase):
                 command_executor='http://selenium:4444/wd/hub',
                 desired_capabilities=DesiredCapabilities.FIREFOX)
             self.server_url = self.live_server_url
-        self.firefox.implicitly_wait(10)
+        # self.firefox.implicitly_wait(1)
         self.precondition()
 
     @classmethod

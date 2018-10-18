@@ -12,7 +12,8 @@ class IncomingView(View):
     def get(self, request):
         current_user = request.user
         # TODO make it possible to look at a forms contents after signing
-        forms = AbstractFormModel.objects.filter(form_signers=current_user)
+        forms = AbstractFormModel.objects.filter(form_signers=current_user).filter(form_completed=False)
+
         context = {
             'current_user': current_user,
             'forms': forms,
@@ -39,11 +40,19 @@ class OutgoingView(View):
 class InstantiateListView(View):
     def get(self, request):
         current_user = request.user
-        leader_of_groups = form_utils.get_leader_groups(current_user)
-        l = {'group': leader_of_groups}
-        for keys, values in l.items(): 
-            print(keys)
-            print(values)
+        is_authorized = False
+        for group in GroupModel.objects.all():
+            if current_user not in group:
+                continue
+            if group.board.get_role(current_user) == "President/Leader":
+                is_authorized = True
+                break
+
+        if is_authorized:
+            form_models = FORM_TYPES.values
+        else:
+            form_models = None
+
         context = {
             'forms': FORM_TYPES.values,
             'navbar': 'instantiate-form-list', # Slett?
@@ -51,7 +60,3 @@ class InstantiateListView(View):
             
         }
         return render(request, 'instantiate_form.html', context)
-
-
-#class InstantiationForm(forms.Form):
-#    available_groups = forms.CharField(label='Velg gruppe', widget=forms.Select(choices=FRUIT_CHOICES))
