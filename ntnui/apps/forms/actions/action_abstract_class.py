@@ -6,7 +6,5 @@ class Action(ABC):
   
   def do(self):
     pass
-  
-  def get_name(self):
-    pass
+
 
