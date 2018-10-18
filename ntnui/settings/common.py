@@ -178,18 +178,18 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 ##### MAILGUN SETTINGS #####
 
-EMAIL_HOST = 'smtp.mailgun.org'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'postmaster@mg.ntnui.no'
-EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_PASSWORD')
-EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.mailgun.org'
+#EMAIL_PORT = 587
+#EMAIL_HOST_USER = 'postmaster@mg.ntnui.no'
+#EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_PASSWORD')
+#EMAIL_USE_TLS = True
 
 
 ##### LOGIN CONFIGURATION #####
 LOGIN_URL = "/a/login"
 LOGIN_REDIRECT_URL = '/m/home'
 LOGOUT_REDIRECT_URL = '/m/home'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ##### END LOGIN CONFIGURATION #####
 
