@@ -2,7 +2,6 @@ from django.db import models
 from django import forms
 from forms.models import AbstractFormModel, enums
 from datetime import datetime
-from forms.actions import Notify
 
 class CoachFormModel(AbstractFormModel):
 
