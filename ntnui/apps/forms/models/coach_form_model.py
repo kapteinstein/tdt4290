@@ -14,7 +14,6 @@ class CoachFormModel(AbstractFormModel):
 
     form_name = "Midlertidig ansettelse"
     form_slug = 'coach'
-    current_version = 1
     required_sign_type = 0
 
 

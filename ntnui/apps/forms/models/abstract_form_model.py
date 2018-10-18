@@ -94,9 +94,7 @@ class AbstractFormModel(PolymorphicModel):
     form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures", blank=True)
     form_completed = models.BooleanField(default=False)
 
-    # Change the current version in inheriting forms when form text is updated
-    current_version = -1
-    meta_version = models.IntegerField(default=current_version)
+    meta_version = models.IntegerField(null=True)
 
     # class attributes
     form_name = 'NO NAME'
