@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from django import forms
 from forms.models import CoachFormModel, AbstractFormModel
 from database.models import MembershipModel, GroupModel
 from database.models.enums import ROLE_CHOICES
@@ -18,7 +19,6 @@ class IncomingView(View):
             'navbar': 'incoming-list',
             'is_authorized': form_utils.is_authorized(current_user),
         }
-        print(form_utils.is_authorized(current_user))
         return render(request, 'incoming_list.html', context)
 
 
@@ -39,24 +39,19 @@ class OutgoingView(View):
 class InstantiateListView(View):
     def get(self, request):
         current_user = request.user
-        is_authorized = False
-        for group in GroupModel.objects.all():
-            if current_user not in group:
-                continue
-            if group.board.get_role(current_user) == "President/Leader":
-                is_authorized = True
-                break
-
-        if is_authorized:
-            form_models = {
-                CoachFormModel,
-            }
-        else:
-            form_models = None
-
+        leader_of_groups = form_utils.get_leader_groups(current_user)
+        l = {'group': leader_of_groups}
+        for keys, values in l.items(): 
+            print(keys)
+            print(values)
         context = {
-            'forms': form_models,
-            'navbar': 'instantiate-form-list',
+            'forms': FORM_TYPES.values,
+            'navbar': 'instantiate-form-list', # Slett?
             'is_authorized': form_utils.is_authorized(current_user),
+            
         }
-        return render(request, 'instantiate_form_list.html', context)
+        return render(request, 'instantiate_form.html', context)
+
+
+#class InstantiationForm(forms.Form):
+#    available_groups = forms.CharField(label='Velg gruppe', widget=forms.Select(choices=FRUIT_CHOICES))
