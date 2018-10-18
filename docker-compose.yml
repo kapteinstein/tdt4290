@@ -23,6 +23,8 @@ services:
             - "8000"
         links:
             - selenium
+        env_file:
+            - .env
 
     selenium:
         image: selenium/hub
