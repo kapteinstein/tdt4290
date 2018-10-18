@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views import View
+from django import forms
 from forms.models import CoachFormModel, AbstractFormModel
 from database.models import MembershipModel, GroupModel
 from database.models.enums import ROLE_CHOICES
@@ -53,8 +54,9 @@ class InstantiateListView(View):
             form_models = None
 
         context = {
-            'forms': form_models,
-            'navbar': 'instantiate-form-list',
+            'forms': FORM_TYPES.values,
+            'navbar': 'instantiate-form-list', # Slett?
             'is_authorized': form_utils.is_authorized(current_user),
+            
         }
-        return render(request, 'instantiate_form_list.html', context)
+        return render(request, 'instantiate_form.html', context)
