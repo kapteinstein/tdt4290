@@ -9,6 +9,7 @@
             <table class="uk-table uk-table-divider">
             <thead>
                 <tr>
+                    <th>Opprettet</th>
                     <th>Skjema</th>
                     <th>Gruppe</th>
                     <th>Fra</th>
@@ -19,6 +20,7 @@
             <tbody>
                 {% for form in forms %}
                     <tr>
+                    <td>{{ form.form_created_time|date:'d-M-Y' }}</td>
                     <td>
                         {% if current_user not in form.form_signatures.all %}
                             <a href="{% url 'forms:signer-info' slug=form.form_slug id=form.id %}">
@@ -43,9 +45,9 @@
                     </td>
                     <td>
                         {%  if form.form_approvers.all %}
-                        {% for dude in form.form_approvers.all %}
+                        {% for approver in form.form_approvers.all %}
                             <p>
-                                {{ dude }}
+                                {{ approver }}
                             </p>
                         {% endfor %}
                         {% else %}

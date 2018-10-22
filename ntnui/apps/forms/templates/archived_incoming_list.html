@@ -9,6 +9,7 @@
             <table class="uk-table uk-table-divider">
             <thead>
                 <tr>
+                    <th>Signert dato</th>
                     <th>Skjema</th>
                     <th>Gruppe</th>
                     <th>Fra</th>
@@ -18,14 +19,15 @@
             <tbody>
                 {% for form in forms %}
                     <tr>
+                    <td>{{ form.form_modified_time|date:'d-M-Y' }}</td>
                     <td>{{ form.form_name }}</td>
                     <td>{{ form.group }}</td>
                     <td>{{ form.form_instantiator }}</td>
                     <td>
                         {%  if form.form_approvers.all %}
-                        {% for dude in form.form_approvers.all %}
+                        {% for approver in form.form_approvers.all %}
                             <p>
-                                {{ dude }}
+                                {{ approver }}
                             </p>
                         {% endfor %}
                         {% else %}

@@ -9,6 +9,7 @@
             <table class="uk-table uk-table-divider">
             <thead>
                 <tr>
+                    <th>Opprettet</th>
                     <th>Skjema</th>
                     <th>Gruppe</th>
                     <th>Til</th>
@@ -18,13 +19,14 @@
             <tbody>
                 {% for form in forms %}
                     <tr>
+                    <td>{{ form.form_created_time|date:'d-M-Y' }}</td>
                     <td>{{ form.form_name }}</td>
                     <td>{{ form.group }}</td>
                     <td>
-                        {% for dude in form.form_signers.all %}
+                        {% for signer in form.form_signers.all %}
                             <p>
-                                {{ dude }} -
-                                {% if dude in form.form_signatures.all %}
+                                {{ signer }} -
+                                {% if signer in form.form_signatures.all %}
                                 signert
                                 {% else %}
                                 ikke signert
@@ -34,9 +36,9 @@
                     </td>
                     <td>
                         {%  if form.form_approvers.all %}
-                        {% for dude in form.form_approvers.all %}
+                        {% for approver in form.form_approvers.all %}
                             <p>
-                                {{ dude }}
+                                {{ approver }}
                             </p>
                         {% endfor %}
                         {% else %}
