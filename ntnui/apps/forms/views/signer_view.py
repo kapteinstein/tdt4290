@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.views import View
 from ..form_types import signing_forms
 from forms.models import AbstractFormModel
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
+from django.urls import reverse
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 
 
@@ -27,14 +28,12 @@ class SignerView(View):
             raise Http404("Could not find form record")
 
     def post(self, request, slug, id):
-        # TODO Add verification before adding user to signature-list
         record = AbstractFormModel.objects.get(id=id)
         form = signing_forms[slug](request.POST or None, instance=record)
-        if form.is_valid():
-            record.form_signatures.add(request.user)
-            if record.is_form_completed():
-                record.form_completed = True
-            form.save()
-            return HttpResponse("valid") # TODO Display success page
+        request.session['record_id'] = id
 
-        return HttpResponse("invalid")
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('forms:sign')) # TODO Display success page
+        return render(request, 'form_signer.html', {'form': form, 'id': record.id})
+
