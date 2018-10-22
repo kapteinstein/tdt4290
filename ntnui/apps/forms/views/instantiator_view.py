@@ -41,13 +41,19 @@ FORM_CHOICES = (
 class InstantiateForm(djangoforms.Form):
     group_choices=(tuple([(group.group_id, group) for group in GroupModel.objects.all()]))
     group = djangoforms.ChoiceField(choices=group_choices)
-    form_signers = djangoforms.ChoiceField(choices=tuple([(user.ntnui_no, user) for user in UserModel.objects.all()]))
+    form_signers = djangoforms.ChoiceField()
     form_slug = djangoforms.ChoiceField(choices=FORM_CHOICES)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        group_widget = {'onchange': 'location = "//" + location.host + location.pathname+"?group="+this.value'}
+        group_widget = {'onchange': 'location = "//" + location.host + location.pathname+"?group="+this.value',
+                        'class': 'uk-select'}
         self.fields['group'].widget.attrs.update(group_widget)
+        self.fields['group'].label = "Gruppe"
+        self.fields['form_signers'].widget.attrs.update({'class': 'uk-select'})
+        self.fields['form_signers'].label = "Signerer"
+        self.fields['form_slug'].widget.attrs.update({'class': 'uk-select'})
+        self.fields['form_slug'].label = "Skjema"
 
 
 class NewInstantiatorView(View):
@@ -58,9 +64,9 @@ class NewInstantiatorView(View):
         if not group:
                 group = form.fields['group'].choices[0][0]
 
-        # TODO filtrer etter gruppe her
         form.fields['group'].initial = group
-
+        members = GroupModel.objects.get(group_id = group).members.filter()
+        form.fields['form_signers'].choices = tuple([(user.ntnui_no, user) for user in members])
         context = {
             'form': form
         }
@@ -70,15 +76,9 @@ class NewInstantiatorView(View):
     def post(self, request):
         form = InstantiateForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data['form_slug'])
             slug = form.cleaned_data['form_slug']
             group = form.cleaned_data['group']
             signee = form.cleaned_data['form_signers']
-            print(signee)
-            print(group)
-            # form = instantiation_forms[slug](request.POST)
-            # form.is_valid()
-            # model_instance = form.save(commit=True)
             model_instance = FORM_TYPES[slug].objects.create()
             model_instance.form_signers.set(signee)
             model_instance.group = GroupModel.objects.get(group_id=group)
@@ -91,4 +91,4 @@ class NewInstantiatorView(View):
             model_instance.save()
             return HttpResponse("Form instantiated")
         else:
-            print("aaa")
+            return "invalid form"
