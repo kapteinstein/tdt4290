@@ -31,6 +31,7 @@ class SignerView(View):
         record = AbstractFormModel.objects.get(id=id)
         form = signing_forms[slug](request.POST or None, instance=record)
         request.session['record_id'] = id
+        request.session['sign_level'] = record.get_required_sign_level()
 
         if form.is_valid():
             form.save()
