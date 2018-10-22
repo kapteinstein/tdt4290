@@ -39,8 +39,7 @@ FORM_CHOICES = (
 )
 
 class InstantiateForm(djangoforms.Form):
-    group_choices=(tuple([(group.group_id, group) for group in GroupModel.objects.all()]))
-    group = djangoforms.ChoiceField(choices=group_choices)
+    group = djangoforms.ChoiceField()
     form_signers = djangoforms.ChoiceField()
     form_slug = djangoforms.ChoiceField(choices=FORM_CHOICES)
 
@@ -64,6 +63,7 @@ class NewInstantiatorView(View):
         if not group:
                 group = form.fields['group'].choices[0][0]
 
+        groups = tuple([(group.group_id, group) for group in GroupModel.objects.all()])
         form.fields['group'].initial = group
         members = GroupModel.objects.get(group_id = group).members.filter()
         form.fields['form_signers'].choices = tuple([(user.ntnui_no, user) for user in members])
