@@ -3,7 +3,7 @@ from forms.models import CoachInstantiationForm, CoachSigningForm, CoachFormMode
 
 # Add here when creating a new type of form
 FORM_TYPES = {
-    'coach-form': CoachFormModel,
+    'coach': CoachFormModel,
 }
 
 instantiation_forms = {
