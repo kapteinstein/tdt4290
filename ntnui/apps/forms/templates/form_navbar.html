@@ -5,8 +5,8 @@
 {% load static %}
 
 {% block content %}
-    <div class="uk-cover-container">
-        <canvas class="uk-visible@m" width="0" height="270" ></canvas>
+     <div class="uk-cover-container">
+        <canvas class="uk-visible@m" width="0" height="200" ></canvas>
         <canvas class="uk-hidden@m" width="0" height="200" ></canvas>
         <img src="/media/forms/forms_photo.png" alt="group cover photo" uk-cover>
     </div>
@@ -18,7 +18,7 @@
                 <li {% if navbar == 'instantiator' %}class="uk-active"{% endif %}>
                     <a href="{% url 'forms:instantiator' %}" >
                         <span uk-icon="copy" class="uk-margin-small-right" ></span>
-                        Nytt skjema
+                        Send skjema
                     </a>
                 </li>
                 <li {% if navbar == 'outgoing-list' %}class="uk-active"{% endif %}>
@@ -36,6 +36,7 @@
                 </li>
                 {% if is_authorized %}
                 <li {% if navbar == 'archive' %}class="uk-active"{% endif %}>
+                    <span uk-icon="album" class="uk-margin-small-right"></span>
                     <a href="#">Arkiv <span class="uk-margin-small-left" uk-icon="icon: triangle-down"></span></a>
                     <div uk-dropdown="mode: click">
                         <ul class="uk-nav uk-dropdown-nav">

@@ -1,15 +1,15 @@
-{% extends 'form.html' %}
+{% extends 'form_navbar.html' %}
 
-{% block form-content%}
+{% block navbar_content %}
 
 
-<div class="uk-container uk-width-6-7@m">
-    <h2 class="uk-heading-divider"><span>Opprett skjema</span></h2>
+<div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
+        <h2 class="uk-heading-divider"><span>Send skjema</span></h2>
 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="submit" class="uk-button uk-button-secondary">
+        <input type="submit" value="Send skjema" class="uk-button uk-button-secondary">
     </form>
 
 </div>

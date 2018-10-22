@@ -9,6 +9,7 @@ from django import forms as djangoforms
 from ..form_types import *
 from ..utils.form_utils import *
 from django.core.exceptions import PermissionDenied
+from forms.utils import form_utils
 
 
 class InstantiateForm(djangoforms.Form):
@@ -36,9 +37,12 @@ class InstantiatorView(View):
 
     def get(self, request):
         form = self.get_form(request)
+        current_user = request.user
         context = {
             'navbar': 'instantiator',
-            'form': form
+            'form': form,
+            'is_authorized': form_utils.is_authorized(current_user),
+            'current_user': current_user,
         }
         return render(request, 'form_instantiator.html', context)
 
