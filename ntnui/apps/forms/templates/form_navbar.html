@@ -15,8 +15,8 @@
         <div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-1 uk-visible@m">
             <ul class="uk-tab uk-subnav uk-subnav-divider uk-margin-remove uk-padding-small"  uk-margin>
                {% if is_authorized %}
-                <li {% if navbar == 'instantiate-form-list' %}class="uk-active"{% endif %}>
-                    <a href="{% url 'forms:instantiate-form-list' %}" >
+                <li {% if navbar == 'instantiator' %}class="uk-active"{% endif %}>
+                    <a href="{% url 'forms:instantiator' %}" >
                         <span uk-icon="copy" class="uk-margin-small-right" ></span>
                         Nytt skjema
                     </a>
