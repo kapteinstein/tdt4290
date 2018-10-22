@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect
 
 from forms.models import *
 from forms.forms import SignForm
+from forms.actions import Actions
 
 
 class SignView(View):
@@ -24,5 +25,10 @@ class SignView(View):
                 if record.is_form_completed():
                     record.form_completed = True
                 record.save()
+                try:
+                    actions = Actions(record)
+                    actions.do()
+                except:
+                    pass
                 return HttpResponseRedirect(reverse('forms:incoming-list'))
         return render(request, 'sign.html', {'form': password_form, 'form_error': 'incorrect password'})
