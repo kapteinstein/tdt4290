@@ -7,7 +7,6 @@ class CoachFormModel(AbstractFormModel):
 
     position = models.IntegerField(choices=enums._POSITION, null=True)
     start_date = models.DateField(null=True)
-    group = models.ForeignKey('database.GroupModel', on_delete=models.CASCADE, related_name="group", null=True)
     compensation = models.IntegerField(choices=enums._COMPENSATIONS, null=True)
     compensation_comments = models.TextField(blank=True)
 
@@ -18,7 +17,7 @@ class CoachFormModel(AbstractFormModel):
         "notify_signers",
     ]
 
-    
+
 
 class CoachInstantiationForm(forms.ModelForm):
     class Meta:

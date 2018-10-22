@@ -88,11 +88,14 @@ from polymorphic.models import PolymorphicModel
 
 class AbstractFormModel(PolymorphicModel):
     # databse fields
+    group = models.ForeignKey('database.GroupModel', on_delete=models.CASCADE, related_name="group", null=True)
     form_instantiator = models.ForeignKey('database.UserModel', on_delete=models.SET_NULL, null=True, related_name="form_instantiatior")
     form_signers = models.ManyToManyField('database.UserModel', related_name="form_signers")
     form_approvers = models.ManyToManyField('database.UserModel', related_name="form_approvers", blank=True)
     form_signatures = models.ManyToManyField('database.UserModel', related_name="form_signatures", blank=True)
     form_completed = models.BooleanField(default=False)
+    form_created_time = models.DateTimeField(auto_now_add=True)
+    form_modified_time = models.DateTimeField(auto_now=True)
     current_action = models.IntegerField(null = True, default=0)
 
     meta_version = models.IntegerField(null=True)
