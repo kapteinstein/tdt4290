@@ -1,13 +1,9 @@
 from forms.models import *
-from forms.models import CoachInstantiationForm, CoachSigningForm, CoachFormModel
+from forms.models import CoachSigningForm, CoachFormModel
 
 # Add here when creating a new type of form
 FORM_TYPES = {
     'coach': CoachFormModel,
-}
-
-instantiation_forms = {
-    CoachFormModel.form_slug: CoachInstantiationForm,
 }
 
 signing_forms = {

@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.views import View
-from forms.models import CoachFormModel, AbstractFormModel
-from database.models import MembershipModel, GroupModel
-from database.models.enums import ROLE_CHOICES
-from forms.form_types import FORM_TYPES
+from forms.models import AbstractFormModel
+#from database.models import MembershipModel, GroupModel  # remove?
+#from database.models.enums import ROLE_CHOICES  # remove?
+#from forms.form_types import FORM_TYPES  # remove?
 from forms.utils import form_utils
 
 class IncomingArchiveView(View):

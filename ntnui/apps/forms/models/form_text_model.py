@@ -5,7 +5,7 @@ from django import forms
 From text is shown before a signee fills out a form.
 When a form is instantiated, it saves the highest primary key of a form text with the same slug.
 This makes it possible to change the form text for future signees, while
-already signed forms will still be associated with the text that was present during signing.    
+already signed forms will still be associated with the text that was present during signing.
 """
 
 class FormTextModel(models.Model):
@@ -18,7 +18,3 @@ class FormTextModel(models.Model):
 
     def get_form_(self):
         return self.form_text_content
-
-class FormTextSaverForm(forms.ModelForm):
-        model = FormTextModel
-        fields = ['form_name', 'form_text_content']

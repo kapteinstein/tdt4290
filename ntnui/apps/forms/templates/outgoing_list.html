@@ -13,6 +13,7 @@
                     <th>Gruppe</th>
                     <th>Til</th>
                     <th>Godkjenner</th>
+                    <th>Opprettet</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +44,7 @@
                             Ingen
                         {% endif %}
                     </td>
+                    <td>{{ form.form_created_time|date:'d-M-Y' }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -51,7 +53,7 @@
     {% else %}
         Det finnes ingen skjema fra deg som venter signering.
     {% endif %}
-       
+
     </div>
 
 {% endblock %}

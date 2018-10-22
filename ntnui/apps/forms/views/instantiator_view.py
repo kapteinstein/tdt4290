@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from forms.models import FormTextModel
 from forms.actions import Actions
 from database.models import GroupModel, UserModel
@@ -58,7 +59,7 @@ class InstantiatorView(View):
             setattr(model_instance, 'meta_version', form_text_id)
             # model_instance.notify_signers()
             model_instance.save()
-            return HttpResponse("Form instantiated")
+            return HttpResponseRedirect(reverse('forms:outgoing-list'))
         else:
             return "invalid form"
 

@@ -22,6 +22,7 @@ class SignerView(View):
                 context = {
                     'form': form,
                     'id': record.id,
+                    'record': record,
                 }
                 return render(request, 'form_signer.html', context)
         except ObjectDoesNotExist:
