@@ -5,7 +5,6 @@ from .form_types import FORM_TYPES
 
 app_name = 'forms'
 urlpatterns = [
-    path('1', NewInstantiatorView.as_view(), name="new-instantiator"),
     path('3', FormTextSaverView.as_view(), name="Form Text Saver"),
     path('4', FormTextTestView.as_view(), name="Form Text Test View"),
     path('incoming-list', IncomingView.as_view(), name="incoming-list"),
@@ -14,7 +13,7 @@ urlpatterns = [
     path('archive-incoming-list', IncomingArchiveView.as_view(), name="archive-incoming-list"),
     path('archive-outgoing-list', OutgoingArchiveView.as_view(), name="archive-outgoing-list"),
     path('signer-info/<str:slug>/<int:id>', InfoView.as_view(), name="signer-info"),
-    path('instantiator/<str:slug>', InstantiatorView.as_view(), name="instantiator"),
+    path('instantiator/', InstantiatorView.as_view(), name="instantiator"),
     path('signer/<str:slug>/<int:id>', SignerView.as_view(), name="signer"),
     path('', IncomingView.as_view(), name="forms-default"),
 ]
