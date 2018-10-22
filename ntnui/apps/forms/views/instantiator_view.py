@@ -36,6 +36,7 @@ class InstantiatorView(View):
     def get(self, request):
         form = self.get_form(request)
         context = {
+            'navbar': 'instantiator',
             'form': form
         }
         return render(request, 'form_instantiator.html', context)

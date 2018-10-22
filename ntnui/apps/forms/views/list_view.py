@@ -36,27 +36,3 @@ class OutgoingView(View):
         }
         return render(request, 'outgoing_list.html', context)
 
-
-class InstantiateListView(View):
-    def get(self, request):
-        current_user = request.user
-        is_authorized = False
-        for group in GroupModel.objects.all():
-            if current_user not in group:
-                continue
-            if group.board.get_role(current_user) == "President/Leader":
-                is_authorized = True
-                break
-
-        if is_authorized:
-            form_models = FORM_TYPES.values
-        else:
-            form_models = None
-
-        context = {
-            'forms': FORM_TYPES.values,
-            'navbar': 'instantiate-form-list',
-            'is_authorized': form_utils.is_authorized(current_user),
-            
-        }
-        return render(request, 'instantiate_form_list.html', context)
