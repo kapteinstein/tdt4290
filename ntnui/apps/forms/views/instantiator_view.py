@@ -10,27 +10,11 @@ from ..form_types import *
 from ..utils.form_utils import *
 from django.core.exceptions import PermissionDenied
 from forms.utils import form_utils
+from forms.forms import InstantiateForm
 
 
-class InstantiateForm(djangoforms.Form):
-    group = djangoforms.ChoiceField()
-    form_signers = djangoforms.ChoiceField()
-    form_choices = tuple([(key, value.form_name) for key,value in FORM_TYPES.items()])
-    form_slug = djangoforms.ChoiceField(choices=form_choices)
+# TODO Flytte til forms.py??
 
-    def __init__(self,form_signers,group,groups, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['group'].choices = groups
-        self.fields['group'].initial = group
-        self.fields['form_signers'].choices = form_signers
-        group_widget = {'onchange': 'location = "//" + location.host + location.pathname+"?group="+this.value',
-                        'class': 'uk-select'}
-        self.fields['group'].widget.attrs.update(group_widget)
-        self.fields['group'].label = "Gruppe"
-        self.fields['form_signers'].widget.attrs.update({'class': 'uk-select'})
-        self.fields['form_signers'].label = "Signerer"
-        self.fields['form_slug'].widget.attrs.update({'class': 'uk-select'})
-        self.fields['form_slug'].label = "Skjema"
 
 
 class InstantiatorView(View):
