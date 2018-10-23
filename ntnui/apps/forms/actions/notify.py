@@ -58,7 +58,7 @@ notification_email_data = {
   "notify_owner": {
     "subject": "Hei, skjemaet er fullført",
     "body": "Skjemaet er fullført, du finner det blant fullførte signeringer ",
-    "url_template": "http://localhost:8000/f/signer-info/{}/{}/",
+    "url_template": "http://localhost:8000/f/",
     "get_emails_from_form": emails_notify_owner,
   },
 }
