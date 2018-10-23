@@ -38,7 +38,7 @@ def emails_notify_approvers(form):
     return form.form_approvers.all().values_list('email', flat=True)
 
 def emails_notify_owner(form):
-    return [form.form_instantiatior.email]
+    return [form.form_instantiator.email]
 
 
 # Defines the data for the different notification types
