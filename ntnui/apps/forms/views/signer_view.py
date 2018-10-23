@@ -24,7 +24,7 @@ class SignerView(View):
                     'id': record.id,
                     'record': record,
                 }
-                return render(request, 'form_signer.html', context)
+            return render(request, 'form_signer.html', context)
         except ObjectDoesNotExist:
             raise Http404("Could not find form record")
 
