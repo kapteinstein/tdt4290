@@ -15,6 +15,7 @@ class CoachFormModel(AbstractFormModel):
     required_sign_type = 0
     actions = [
         "notify_signers",
+        "notify_owner"
     ]
 
 class CoachSigningForm(forms.ModelForm):
