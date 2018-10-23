@@ -19,14 +19,14 @@ class Notify(Action):
 def notify(email_data):
     def notify_class(form):
         emails = email_data["get_emails_from_form"](form)
-        url = define_url(form.pk, email_data["url_template"])
+        url = define_url(form.form_slug, form.pk, email_data["url_template"])
         return Notify(email_data["subject"], email_data["body"], emails, url)
     return notify_class
 
 
 
-def define_url(private_key, url_string):
-    return url_string.format(private_key)
+def define_url(slug, private_key, url_string):
+    return url_string.format(slug, private_key)
 
 
 
@@ -46,19 +46,19 @@ notification_email_data = {
   "notify_signers": {
     "subject": "Hei, du har et nytt skjema du skal signere",
     "body": "Følgende skjema er utsendt til signering av deg ",
-    "url_template": "http://localhost:8000/f/coach-signer-info/{}/",
+    "url_template": "http://localhost:8000/f/signer-info/{}/{}/",
     "get_emails_from_form": emails_notify_signers,
   },
   "notify_approvers": {
     "subject": "Hei, du har et nytt skjema du skal godkjenne",
     "body": "Følgende skjema er utsendt til godkjenning av deg ",
-    "url_template": "http://localhost:8000/f/coach-signer-info/{}/",
+    "url_template": "http://localhost:8000/f/signer-info/{}/{}/",
     "get_emails_from_form": emails_notify_approvers,
   },
   "notify_owner": {
     "subject": "Hei, skjemaet er fullført",
     "body": "Skjemaet er fullført, du finner det blant fullførte signeringer ",
-    "url_template": "http://localhost:8000/f/coach-signer-info/{}/",
+    "url_template": "http://localhost:8000/f/signer-info/{}/{}/",
     "get_emails_from_form": emails_notify_owner,
   },
 }
