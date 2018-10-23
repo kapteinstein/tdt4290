@@ -1,0 +1,25 @@
+{% extends 'form.html' %}
+
+{% block form-content %}
+
+<div class="uk-container uk-width-6-7@m">
+
+    {{ form_text | safe }}
+
+
+    <h3 class="uk-heading-divider">Utfylling</h3>
+    <div class="uk-margin">
+        <p>Navn: {{ request.user.get_full_name }}</p>
+        <p>Gruppe: {{ record.group }}</p>
+        {% for field in form.visible_fields %}
+            <p>
+            {{ field.label }}:{{ field.value }}
+            </p>
+            <p>{% for value, text in field.choices %}
+                {{ value }}: {{ text }}
+            {% endfor %}</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
