@@ -53,5 +53,5 @@ class SignView(View):
                     actions.do()
                 except:
                     pass
-                return HttpResponseRedirect(reverse('forms:incoming-list'))
+                return HttpResponseRedirect(reverse('forms:archive-incoming-list'))
         return render(request, 'sign.html', {'form': password_form, 'form_error': 'incorrect password'})
