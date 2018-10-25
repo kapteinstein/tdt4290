@@ -3,10 +3,7 @@ from .form_types import *
 
 class SignForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
-    
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        #self.fields['password'].widget.attrs.update({'class':'uk-form-password'})
+
         
 class InstantiateForm(forms.Form):
     group = forms.ChoiceField()

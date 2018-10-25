@@ -54,4 +54,4 @@ class SignView(View):
                     pass
                 return HttpResponseRedirect(reverse('forms:archive-incoming-list'))
         password_form.add_error(None, "Feil passord")
-        return render(request, 'confirm_password.html', {'form': password_form, 'form_error': 'feil passord'})
+        return render(request, 'confirm_password.html', {'form': password_form})
