@@ -3,6 +3,7 @@ from .form_types import *
 
 class SignForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput())
+    password.label = "Skriv inn ditt passord for å signere skjema"
 
         
 class InstantiateForm(forms.Form):
