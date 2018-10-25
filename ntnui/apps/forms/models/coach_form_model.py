@@ -5,9 +5,9 @@ from datetime import datetime
 
 class CoachFormModel(AbstractFormModel):
 
-    position = models.IntegerField(choices=enums._POSITION, null=True)
+    position = models.CharField(max_length = 128, choices=enums._POSITION, null=True)
     start_date = models.DateField(null=True)
-    compensation = models.IntegerField(choices=enums._COMPENSATIONS, null=True)
+    compensation = models.CharField(max_length = 128, choices=enums._COMPENSATIONS, null=True)
     compensation_comments = models.TextField(blank=True)
 
     form_name = "Midlertidig ansettelse"
