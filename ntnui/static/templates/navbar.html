@@ -50,8 +50,13 @@
                         <button class="uk-offcanvas-close" type="button" uk-close></button>
                         <ul class="uk-nav uk-nav-default">
                             <li class="uk-nav-header uk-margin-small-top">Menu</li>
-                            <li><a href="/admin">admin
-                                <span class="uk-margin-small-left" uk-icon="icon: database"></span>
+                            <li><a href="/admin">
+                                <span class="uk-margin-small-right" uk-icon="icon: database"></span>
+                                Admin
+                            </a></li>
+                            <li><a href={% url 'forms:forms-default' %}>
+                                <span class="uk-margin-small-right" uk-icon="icon: file-edit"></span>
+                                Skjema
                             </a></li>
                             <li><a href="{% url 'group-list' %}">
                                 <span class="uk-margin-small-right"  uk-icon="icon: users"></span>
