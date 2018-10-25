@@ -12,6 +12,7 @@ urlpatterns = [
     path('archive-incoming-list/', IncomingArchiveView.as_view(), name="archive-incoming-list"),
     path('archive-outgoing-list/', OutgoingArchiveView.as_view(), name="archive-outgoing-list"),
     path('signer-info/<str:slug>/<int:id>/', InfoView.as_view(), name="signer-info"),
+    path('signed-form-info/<str:slug>/<int:id>/', SignedFormView.as_view(), name="signed-form-info"),
     path('instantiator/', InstantiatorView.as_view(), name="instantiator"),
     path('signer/<str:slug>/<int:id>/', SignerView.as_view(), name="signer"),
     path('', IncomingView.as_view(), name="forms-default"),

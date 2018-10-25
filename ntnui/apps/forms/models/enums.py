@@ -1,13 +1,13 @@
 _POSITION = (
-    (0, "Trener"),
-    (1, "Oppmann"),
-    (2, "Instruktør"),
-    (3, "Hjelpetrener")
+    ("Trener", "Trener"),
+    ("Oppmann", "Oppmann"),
+    ("Instruktør", "Instruktør"),
+    ("Hjelpetrener", "Hjelpetrener")
 )
 
 _COMPENSATIONS = (
-    (0, "ingen"),
-    (1, "treningskort"),
-    (2, "betalt reise"),
-    (3, "annet")
+    ("ingen", "ingen"),
+    ("treningskort", "treningskort"),
+    ("betalt reise", "betalt reise"),
+    ("annet", "annet")
 )
