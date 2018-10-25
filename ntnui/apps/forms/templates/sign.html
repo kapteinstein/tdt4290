@@ -1,9 +1,0 @@
-{% if form_error %}
-    <span style='color: red'>{{ form_error }}</span>
-{% endif %}
-
-<form action='' method='post'>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="signer">
-</form>
