@@ -53,7 +53,7 @@ class InstantiatorView(View):
             group = form.cleaned_data['group']
             signee = form.cleaned_data['form_signers']
             model_instance = FORM_TYPES[slug].objects.create()
-            model_instance.form_signers.set(signee)
+            model_instance.form_signers.add(signee)
             model_instance.group = GroupModel.objects.get(group_id=group)
             model_instance.form_instantiator = request.user
             actions = Actions(model_instance)
@@ -63,6 +63,7 @@ class InstantiatorView(View):
             setattr(model_instance, 'meta_version', form_text_id)
             # model_instance.notify_signers()
             model_instance.save()
+
             return HttpResponseRedirect(reverse('forms:outgoing-list'))
         else:
             return "invalid form"
