@@ -9,7 +9,9 @@
 
     <h3 class="uk-heading-divider">Utfylling</h3>
     <div class="uk-margin">
-        <p><strong>Navn:</strong> {{ request.user.get_full_name }}</p>
+        {% for user in record.form_signers.all %}
+        <p><strong>Navn:</strong> {{ user.get_full_name }}</p>
+        {% endfor %}
         <p><strong>Gruppe:</strong> {{ record.group }}</p>
         {% for field in form.visible_fields %}
             <p>
