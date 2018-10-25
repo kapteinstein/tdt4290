@@ -17,11 +17,11 @@ class Notify(Action):
 
 #Returns a function taking a child of AbstractFormModel as a child that when called returns a object of the Notify-class
 def notify(email_data):
-    def notify_class(form):
+    def generate_notify_class(form):
         emails = email_data["get_emails_from_form"](form)
         url = define_url(form.form_slug, form.pk, email_data["url_template"])
         return Notify(email_data["subject"], email_data["body"], emails, url)
-    return notify_class
+    return generate_notify_class
 
 
 
