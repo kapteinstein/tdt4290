@@ -8,7 +8,7 @@ class IncomingView(View):
 
     def get(self, request):
         current_user = request.user
-        forms = AbstractFormModel.objects.filter(form_signers=current_user).filter(form_completed=False)
+        forms = AbstractFormModel.objects.filter(form_signers=current_user).filter(form_completed=False).order_by("-form_created_time")
 
         context = {
             'current_user': current_user,
@@ -23,7 +23,7 @@ class OutgoingView(View):
 
     def get(self, request):
         current_user = request.user
-        forms = AbstractFormModel.objects.filter(form_instantiator=current_user).filter(form_completed=False)
+        forms = AbstractFormModel.objects.filter(form_instantiator=current_user).filter(form_completed=False).order_by("-form_created_time")
 
         context = {
             'forms': forms,

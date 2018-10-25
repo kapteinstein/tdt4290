@@ -1,23 +1,21 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
 from ..models import AbstractFormModel, FormTextModel
 from ..utils import form_utils
-from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
-from django.http import Http404
+from django.http import HttpResponseForbidden
 from ..form_types import *
 
 
 class SignedFormView(View):
 
     def get(self, request, slug, id):
-        try:
             current_user = request.user
-            record = AbstractFormModel.objects.get(id=id)
+            record = get_object_or_404(AbstractFormModel, pk=id)
             form_text = FormTextModel.objects.get(id=record.meta_version)
             form = signing_forms[slug](request.POST or None, instance=record)
 
             if current_user not in record.form_signers.all() and current_user.ntnui_no != record.form_instantiator.ntnui_no:
-                raise PermissionDenied
+                return HttpResponseForbidden()
 
             context = {
                 'current_user': current_user,
@@ -27,5 +25,4 @@ class SignedFormView(View):
                 'is_authorized': form_utils.is_authorized(current_user),
             }
             return render(request, 'form_signed_info.html', context)
-        except ObjectDoesNotExist:
-            raise Http404("Could not find form record")
+

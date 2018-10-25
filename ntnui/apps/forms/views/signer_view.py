@@ -2,15 +2,12 @@ from django.shortcuts import render, get_object_or_404
 from django.views import View
 from ..form_types import signing_forms
 from forms.models import AbstractFormModel
-from django.http import HttpResponse, Http404, HttpResponseRedirect, HttpResponseForbidden
-
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.urls import reverse
-from django.core.exceptions import ObjectDoesNotExist
 
 
 class SignerView(View):
     def get(self, request, slug, id): 
-        
         # Gets the joined form thanks to inheriting from polymorphic model
         record = get_object_or_404(AbstractFormModel, pk=id)
         form = signing_forms[slug](request.POST or None, instance=record)

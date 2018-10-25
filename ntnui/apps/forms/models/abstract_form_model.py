@@ -106,7 +106,6 @@ class AbstractFormModel(PolymorphicModel):
     required_sign_type = 0
     actions = []
 
-
     # attribute spesific methods
     def get_required_sign_level(self):
         return self.required_sign_type

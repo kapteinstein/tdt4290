@@ -1,26 +1,23 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.urls import reverse
 from forms.models import FormTextModel
 from forms.actions import Actions
-from database.models import GroupModel, UserModel
-from django import forms as djangoforms
+from database.models import GroupModel
 from ..form_types import *
 from ..utils.form_utils import *
 from django.core.exceptions import PermissionDenied
 from forms.utils import form_utils
 from forms.forms import InstantiateForm
 
-
-# TODO Flytte til forms.py??
-
-
-
 class InstantiatorView(View):
 
     def get(self, request):
-        form = self.get_form(request)
+        try: 
+            form = self.get_form(request)
+        except PermissionDenied:
+            return HttpResponseForbidden()
         current_user = request.user
         context = {
             'navbar': 'instantiator',
@@ -31,7 +28,10 @@ class InstantiatorView(View):
         return render(request, 'form_instantiator.html', context)
 
     def post(self, request):
-        form = self.get_form(request)
+        try: 
+            form = self.get_form(request)
+        except PermissionDenied:
+            return HttpResponseForbidden()
         if form.is_valid():
             slug = form.cleaned_data['form_slug']
             group = form.cleaned_data['group']
@@ -47,7 +47,6 @@ class InstantiatorView(View):
             setattr(model_instance, 'meta_version', form_text_id)
             # model_instance.notify_signers()
             model_instance.save()
-
             return HttpResponseRedirect(reverse('forms:outgoing-list'))
         else:
             return "invalid form"
