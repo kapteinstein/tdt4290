@@ -24,11 +24,11 @@
                     <td>
                         {% if current_user not in form.form_signatures.all %}
                             <a href="{% url 'forms:signer-info' slug=form.form_slug id=form.id %}">
+                        {% else %}
+                            <a href="{% url 'forms:signed-form-info' slug=form.form_slug id=form.id %}">
+                        {% endif %}
                                 {{ form.form_name }}
                             </a>
-                        {% else %}
-                                {{ form.form_name }}
-                        {% endif %}
                     </td>
                     <td>
                         {{ form.group }}

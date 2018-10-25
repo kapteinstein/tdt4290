@@ -24,7 +24,11 @@
                 {% for form in forms %}
                     <tr>
                     <td>{{ form.form_modified_time|date:'d-M-Y' }}</td>
-                    <td>{{ form.form_name }}</td>
+                    <td>
+                        <a href="{% url 'forms:signed-form-info' slug=form.form_slug id=form.id %}">
+                            {{ form.form_name }}
+                        </a>
+                    </td>
                     <td>{{ form.group }}</td>
                     <td>{{ form.form_instantiator }}</td>
                     <td>
