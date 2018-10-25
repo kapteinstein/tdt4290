@@ -13,11 +13,11 @@ class SignedFormView(View):
         try:
             current_user = request.user
             record = AbstractFormModel.objects.get(id=id)
-            if current_user not in record.form_signers.all():
-                raise PermissionDenied
-
             form_text = FormTextModel.objects.get(id=record.meta_version)
             form = signing_forms[slug](request.POST or None, instance=record)
+
+            if current_user not in record.form_signers.all() and current_user.ntnui_no != record.form_instantiator.ntnui_no:
+                raise PermissionDenied
 
             context = {
                 'current_user': current_user,
