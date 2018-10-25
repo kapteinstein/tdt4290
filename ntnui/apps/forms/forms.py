@@ -6,9 +6,8 @@ class SignForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['password'].widget.attrs.update({'class':'uk-form-password'})
-        self.fields['password'].label = "Skriv inn passord"
-
+        #self.fields['password'].widget.attrs.update({'class':'uk-form-password'})
+        
 class InstantiateForm(forms.Form):
     group = forms.ChoiceField()
     form_signers = forms.ChoiceField()

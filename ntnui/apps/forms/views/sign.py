@@ -21,7 +21,6 @@ from forms.models import *
 from forms.forms import SignForm
 from forms.actions import Actions
 
-
 class SignView(View):
     def get(self, request):
         sign_level = request.session.get('sign_level', 1)  # fallback on high sign level (1)
@@ -30,7 +29,7 @@ class SignView(View):
             return HttpResponse('paper signature or BankID required')
 
         form = SignForm()
-        return render(request, 'sign.html', {'form': form})
+        return render(request, 'confirm_password.html', {'form': form})
 
     def post(self, request):
         sign_level = request.session.get('sign_level', 1)
@@ -54,4 +53,5 @@ class SignView(View):
                 except:
                     pass
                 return HttpResponseRedirect(reverse('forms:archive-incoming-list'))
-        return render(request, 'sign.html', {'form': password_form, 'form_error': 'incorrect password'})
+        password_form.add_error(None, "Feil passord")
+        return render(request, 'confirm_password.html', {'form': password_form, 'form_error': 'feil passord'})
