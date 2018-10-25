@@ -12,7 +12,7 @@
     </div>
 
     <nav class="uk-navbar-container">
-        <div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-1 uk-visible@m">
+        <div class="uk-flex uk-flex-center uk-flex-middle uk-width-1-1">
             <ul class="uk-tab uk-subnav uk-subnav-divider uk-margin-remove uk-padding-small"  uk-margin>
                {% if is_authorized %}
                 <li {% if navbar == 'instantiator' %}class="uk-active"{% endif %}>
@@ -36,16 +36,16 @@
                 </li>
                 {% if is_authorized %}
                 <li {% if navbar == 'archive' %}class="uk-active"{% endif %}>
-                    <span uk-icon="album" class="uk-margin-small-right"></span>
-                    <a href="#">Arkiv <span class="uk-margin-small-left" uk-icon="icon: triangle-down"></span></a>
-                    <div uk-dropdown="mode: click">
-                        <ul class="uk-nav uk-dropdown-nav">
-                            <li class="uk-active">
-                                <a href="{% url 'forms:archive-incoming-list' %}" >Signerte skjema</a>
-                                <a href="{% url 'forms:archive-outgoing-list' %}" >Utsendte skjema</a>
-                            </li>
-                        </ul>
-                    </div>
+                    <a href="#"><span uk-icon="album" class="uk-margin-small-right"></span>
+                        Arkiv <span class="uk-margin-small-left" uk-icon="icon: triangle-down"></span></a>
+                        <div uk-dropdown="mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li class="uk-active">
+                                    <a href="{% url 'forms:archive-incoming-list' %}" >Signerte skjema</a>
+                                    <a href="{% url 'forms:archive-outgoing-list' %}" >Utsendte skjema</a>
+                                </li>
+                            </ul>
+                        </div>
                 </li>
                     {% else %}
                     <li {% if navbar == 'archive' %}class="uk-active"{% endif %}>
