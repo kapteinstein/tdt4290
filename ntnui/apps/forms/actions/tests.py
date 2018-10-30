@@ -1,7 +1,10 @@
 from django.test import TestCase
 from forms.models import AbstractFormModel
+from forms.models import CoachFormModel
+from .action_abstract_class import Action
 from database.models import UserModel
 from .notify import *
+from .actions import *
 
 email_data = {
             "subject": "test",
@@ -9,6 +12,33 @@ email_data = {
             "url_template": "test{}/{}",
             "get_emails_from_form": emails_notify_signers,
         }
+
+
+class ActionsTestCase(TestCase):
+    def setUp(self):
+        self.form = AbstractFormModel.objects.create()
+        self.form.current_action = 0
+        self.form.actions = ["notify_signers"]
+        self.form.save()
+
+        self.actions = Actions(self.form)
+
+    def test_actions(self):
+        """Test status"""
+        status = self.actions.status()
+
+        self.assertEqual(status, "Send mail til signerere")
+
+class ActionTestCase(TestCase):
+    def setUp(self):
+        self.action = Action()
+
+    def test_action_abstract(self):
+        """run and check do"""
+        self.action.do()
+
+
+        self.assertTrue(callable(self.action.do))
 
 class NotifyTestCase(TestCase):
     def setUp(self):

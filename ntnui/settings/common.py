@@ -197,10 +197,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Use nose to run all tests
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
-# NOSE_ARGS = [
-#    '--with-coverage',
-#    '--cover-package=groups, forms, accounts',
-#]
+NOSE_ARGS = [
+   '--with-coverage',
+   '--cover-package=forms',
+]
 ##### END TEST CONFIGURATION #####
 
 ##### GRAPHENE/GRAPHQL CONFIGURATION #####
