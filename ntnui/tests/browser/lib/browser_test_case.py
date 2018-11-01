@@ -1,16 +1,18 @@
 import os
 import socket
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase, LiveServerTestCase
+from django.core.management import call_command
 from django.test import TestCase
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium import webdriver
 
 
-class ChromeTestCase(LiveServerTestCase):
+class ChromeTestCase(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(self):
         if os.environ.get('BROWSER') == 'local':
             super().setUpClass()
+            call_command('collectstatic', '--noinput')
             self.chrome = webdriver.Chrome()
             self.server_url = self.live_server_url
         else:
@@ -34,11 +36,12 @@ class ChromeTestCase(LiveServerTestCase):
         pass
 
 
-class FirefoxTestCase(LiveServerTestCase):
+class FirefoxTestCase(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(self):
         if os.environ.get('BROWSER') == 'local':
             super().setUpClass()
+            call_command('collectstatic', '--noinput')
             self.firefox = webdriver.Firefox()
             self.server_url = self.live_server_url
         else:

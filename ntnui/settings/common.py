@@ -201,6 +201,7 @@ NOSE_ARGS = [
    '--with-coverage',
    '--cover-package=forms',
 ]
+
 ##### END TEST CONFIGURATION #####
 
 ##### GRAPHENE/GRAPHQL CONFIGURATION #####
