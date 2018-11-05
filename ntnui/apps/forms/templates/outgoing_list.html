@@ -5,7 +5,11 @@
 <div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
     <h2 class="uk-heading-divider">Utsendte skjema</h2>
     {% if forms %}
-        <p>Disse skjema har du sendt ut og er ikke fullført ennå.</p>
+        <p>Disse skjema har du sendt ut og ikke er fullført enda.<br>
+        <a href="{% url 'forms:archive-outgoing-list' %}">
+             Finner du ikke utsendt skjema? Kanskje det er fullført, klikk her for å se fullørte skjema.
+        </a>
+        </p>
             <table class="uk-table uk-table-divider">
             <thead>
                 <tr>
@@ -51,7 +55,12 @@
             </table>
 
     {% else %}
-        Det finnes ingen skjema fra deg som venter signering.
+        Her vil du finne skjema som du har sendt ut og ikke har blitt signert enda.
+        Du har ingen utsendte skjema og listen er derfor tom.
+        <br>
+        <a href="{% url 'forms:archive-outgoing-list' %}">
+             Finner du ikke utsendt skjema? Kanskje det er fullført, klikk her for å se fullørte skjema.
+        </a>
     {% endif %}
 
     </div>

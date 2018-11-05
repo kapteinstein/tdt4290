@@ -22,6 +22,6 @@ class InstantiateForm(forms.Form):
         self.fields['group'].widget.attrs.update(group_widget)
         self.fields['group'].label = "Gruppe"
         self.fields['form_signers'].widget.attrs.update({'class': 'uk-select'})
-        self.fields['form_signers'].label = "Signerer"
+        self.fields['form_signers'].label = "Mottaker"
         self.fields['form_slug'].widget.attrs.update({'class': 'uk-select'})
         self.fields['form_slug'].label = "Skjema"
