@@ -149,3 +149,4 @@ geckodriver.log
 .vscode
 *.db
 ntnui/media/CACHE
+screenie*
