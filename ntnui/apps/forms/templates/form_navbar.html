@@ -31,18 +31,19 @@
                 <li {% if navbar == 'incoming-list' %}class="uk-active"{% endif %}>
                     <a href="{% url 'forms:incoming-list' %}" >
                         <span uk-icon="file-edit" class="uk-margin-small-right"></span>
-                        Aktive skjema
+                        Mottatte skjema
                     </a>
                 </li>
                 {% if is_authorized %}
                 <li {% if navbar == 'archive' %}class="uk-active"{% endif %}>
                     <a href="#"><span uk-icon="album" class="uk-margin-small-right"></span>
-                        Arkiv <span class="uk-margin-small-left" uk-icon="icon: triangle-down"></span></a>
+                        Fullførte Skjema
+                        <span class="uk-margin-small-left" uk-icon="icon: triangle-down"></span></a>
                         <div uk-dropdown="mode: click">
                             <ul class="uk-nav uk-dropdown-nav">
                                 <li class="uk-active">
-                                    <a href="{% url 'forms:archive-incoming-list' %}" >Signerte skjema</a>
                                     <a href="{% url 'forms:archive-outgoing-list' %}" >Utsendte skjema</a>
+                                    <a href="{% url 'forms:archive-incoming-list' %}" >Mottatte skjema</a>
                                 </li>
                             </ul>
                         </div>

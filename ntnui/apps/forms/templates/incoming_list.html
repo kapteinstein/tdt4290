@@ -3,9 +3,17 @@
 {% block navbar_content %}
 
     <div class="uk-container uk-width-4-5@m uk-width-2-3@l uk-margin-small-top">
-    <h2 class="uk-heading-divider">Aktive skjema</h2>
+    {%  if is_authorized %}
+    <h2 class="uk-heading-divider">Mottatte skjema</h2>
+    {% else %}
+    <h2 class="uk-heading-divider">Mottatte skjema</h2>
+    {% endif %}
     {% if forms %}
-        <p>Disse skjema venter på din signatur eller venter på ekstern godkjenning. Klikk på skjemaet du ønsker å signere.</p>
+        <p>Disse skjema venter på din signatur eller venter på ekstern godkjenning. Klikk på skjemaet du ønsker å signere.<br>
+        <a href="{% url 'forms:archive-incoming-list' %}">
+            Finner du ikke motatt skjema? Kanskje det er fullført, klikk her for å se fullførte skjema.
+        </a>
+        </p>
             <table class="uk-table uk-table-divider">
             <thead>
                 <tr>
@@ -61,6 +69,10 @@
 
     {% else %}
         Du har ikke fått noen skjema som venter din signering.
+        <br>
+        <a href="{% url 'forms:archive-incoming-list' %}">
+            Finner du ikke motatt skjema? Kanskje det er fullført, klikk her for å se fullførte skjema.
+        </a>
     {% endif %}
 
     </div>

@@ -34,4 +34,3 @@ class CoachSigningForm(forms.ModelForm):
             'start_date': forms.DateInput(format=('%m/%d/%Y'), attrs={'class':'form-control', 'value': datetime.now(),  'type':'date'}),
             'compensation_comments': forms.Textarea(attrs={'class': 'uk-textarea', 'rows':3}),
         }
-
