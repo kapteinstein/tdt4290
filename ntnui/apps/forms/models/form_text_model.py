@@ -2,10 +2,14 @@ from django.db import models
 from django import forms
 
 """
-From text is shown before a signee fills out a form.
+Form text is the document shown in InfoView and SignedFormView.
 When a form is instantiated, it saves the highest primary key of a form text with the same slug.
 This makes it possible to change the form text for future signees, while
 already signed forms will still be associated with the text that was present during signing.
+
+New form text instances should be added through the admin panel.
+The form_slug should correspond to a respective string in FORM_TYPES in form_types.py
+form_text_content is parsed as html when presented in views.
 """
 
 class FormTextModel(models.Model):

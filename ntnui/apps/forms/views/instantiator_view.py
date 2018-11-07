@@ -11,6 +11,7 @@ from django.core.exceptions import PermissionDenied
 from forms.utils import form_utils
 from forms.forms import InstantiateForm
 
+
 class InstantiatorView(View):
 
     def get(self, request):
@@ -27,6 +28,9 @@ class InstantiatorView(View):
         }
         return render(request, 'form_instantiator.html', context)
 
+    """
+    post() creates a new instance of the chosen form type.
+    """
     def post(self, request):
         try: 
             form = self.get_form(request)
@@ -51,16 +55,26 @@ class InstantiatorView(View):
         else:
             return "invalid form"
 
+
+    """
+    get_form() sets up the InstantiateForm with valid choices.
+    A group is valid if a user is the leader of the group.
+    The form signers are restricted to the group members.
+    If there is only one valid group, it is chosen by default and can't be changed.
+    When there are multiple groups, the view is refreshed on change to filter the form signers again.
+    """
     def get_form(self,request):
         current_user = request.user
         leader_groups = get_leader_groups(current_user)
         if not leader_groups:
             raise PermissionDenied
+
         groups = tuple([(group.group_id, group) for group in leader_groups])
         group = request.GET.get('group')
         if not group:
             group = groups[0][0]
         else:
+            # makes sure that the group from the URL is valid
             valid_group = False
             for g in groups:
                 if int(g[0]) == int(group):
