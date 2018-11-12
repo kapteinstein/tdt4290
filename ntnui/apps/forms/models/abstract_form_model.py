@@ -51,9 +51,6 @@ attributes:
         required_sign_type: Type of signature required.
                 0 -> low. (password level of authentication)
                 1 -> high. (paper signature or BankID)
-        access_level: required user access level to be able to instantiate a
-            form. See below.
-
 
 --- Note about access levels ---
 Every user should not be able to see and instansiate every form. A natural way
