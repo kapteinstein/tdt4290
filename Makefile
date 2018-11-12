@@ -108,7 +108,7 @@ dev_dumpall:
 	
 
 docker_test: ##@Test (test) Run all docker-tests (this does not include browser-tests)
-	$(foreach app,$(filter-out __pycache__, $(APPDIR)), echo "\n-- Testing $(app) --" && docker-compose run web python manage.py test $(app);)  # Run the test suite (details found in settings/common.py)
+	$(foreach app,$(filter-out __pycache__, $(APPDIR)), echo "\n-- Testing $(app) --" && docker-compose run web python manage.py test --nocapture --with-coverage $(app);)  # Run the test suite (details found in settings/common.py)
 	make docker_stop
 
 docker_browser_test: ##@Test (btest) Run all browser-tests in docker
