@@ -10,8 +10,8 @@ def signing_form_received(browser, server_url, assertEquals, assertTrue):
     logout(browser)
     login_user(browser, server_url, "leslie@knope.com")
     go_to_signing_form(browser, server_url)
-    nexts = browser.find_element_by_xpath("//input[@value = 'Neste']")
-    assertEquals(nexts.get_attribute("value"), "Neste")
+    nexts = browser.find_element_by_xpath("//input[@value = 'Til utfylling']")
+    assertEquals(nexts.get_attribute("value"), "Til utfylling")
 
 
     

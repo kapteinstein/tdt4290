@@ -28,7 +28,7 @@ def go_to_signing_form(browser, server_url):
     go_to_schema = browser.find_element_by_xpath("//a[contains(text(),'ansettelse')]").click()
 
 def fill_out(browser):
-    nexts = browser.find_element_by_xpath("//input[@value = 'Neste']").click()
+    nexts = browser.find_element_by_xpath("//input[@value = 'Til utfylling']").click()
     
     position = browser.find_element_by_xpath("//option[contains(text(),'Trener')]")
     position.click()
@@ -39,4 +39,4 @@ def fill_out(browser):
     browser.execute_script("arguments[0].type='text';", date)
     date.clear()
     date.send_keys("01/01/2020")
-    nexts = browser.find_element_by_xpath("//input[@value = 'Neste']").click()
+    nexts = browser.find_element_by_xpath("//input[@value = 'Til signering']").click()
